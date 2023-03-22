@@ -12,17 +12,21 @@ namespace H1_ERP_System.SalgsModul
     public class SalesOrderHeader
     {
         public int OrderNumber { get; set; } // Ordernummer
-        public string TimeCreated { get; set; } // Oprettelsetidspunkt
-        public string ImplementationTime { get; set; } //Gennemførelsetidspunkt
-
+        public DateTime TimeCreated { get; set; } // Oprettelsetidspunkt
+        public DateTime ImplementationTime { get; set; } //Gennemførelsetidspunkt
         public int CustomerId { get; set; } //Kundenummer
-
         public Stage Stage { get; set; } //Tilstand
-
         List<SaleOrderLine> OrderLines = new List<SaleOrderLine>();  //En liste af orderlinjer
         
-
-        public SalesOrderHeader(int ordernumber, string timecreated, string implementationtime, int customerId, Stage stage)
+        /// <summary>
+        /// Constructor for SalesOrderHeader
+        /// </summary>
+        /// <param name="ordernumber"> int : Number for the order </param>
+        /// <param name="timecreated"> DateTime : The time the order was created </param>
+        /// <param name="implementationtime"> DateTime : The time the order was Implementated </param>
+        /// <param name="customerId"> int : The id of the custommer </param>
+        /// <param name="stage"> List<> : list of the different stages </param>
+        public SalesOrderHeader(int ordernumber, DateTime timecreated, DateTime implementationtime, int customerId, Stage stage)
         {
             OrderNumber = ordernumber;
             TimeCreated = timecreated;
@@ -31,6 +35,11 @@ namespace H1_ERP_System.SalgsModul
             Stage = stage;
         }
 
+        /// <summary>
+        /// calculates all the prices in the list and returns the result
+        /// </summary>
+        /// <param name="Price"> int : Price for one item</param>
+        /// <returns> The price for all items </returns>
         public int SaleOrderPrice(int Price)
         {
            foreach (SaleOrderLine Order in OrderLines)
