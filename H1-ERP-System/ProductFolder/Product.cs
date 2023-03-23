@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H1_ERP_System.Product
+namespace H1_ERP_System.ProductFolder
 {
     public class Product
     {
