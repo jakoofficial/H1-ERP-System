@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H1_ERP_System.Virksomhed
+namespace H1_ERP_System.CompanyFolder
 {
     public enum Currency { DKK, USD, EUR}
     public class Company
