@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H1_ERP_System.KundeModul
+namespace H1_ERP_System
 {
     public partial class Database
     {
+        
     }
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H1_ERP_System.SalgsModul
+namespace H1_ERP_System
 {
-    internal class SaleOrderLine
+    public partial class Database
     {
-       
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H1_ERP_System.Customer
+namespace H1_ERP_System.CustomerFolder
 {
     public class Address
     {
