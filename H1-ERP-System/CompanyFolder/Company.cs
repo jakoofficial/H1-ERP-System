@@ -1,4 +1,4 @@
-﻿using H1_ERP_System.Customer;
+﻿using H1_ERP_System.CustomerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
