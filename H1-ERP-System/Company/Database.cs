@@ -8,5 +8,6 @@ namespace H1_ERP_System.Company
 {
     public partial class Database
     {
+        
     }
 }

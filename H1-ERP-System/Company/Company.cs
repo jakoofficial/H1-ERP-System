@@ -9,13 +9,13 @@ namespace H1_ERP_System.Virksomhed
     public enum Currency { DKK, USD, EUR}
     public class Company
     {
-        public string CompanyName { get; set; } 
-        public string Street { get; set; }
-        public string StreetNumber { get; set; }
-        public string PostalCode { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public Currency Currency { get; set; }
+        public string CompanyName { get; set; } //Firmanavn
+        public string Street { get; set; } //Vej
+        public string StreetNumber { get; set; } //Husnummer
+        public string PostalCode { get; set; } //Postnummer
+        public string City { get; set; } //By
+        public string Country { get; set; } //Land
+        public Currency Currency { get; set; } //Valuta
 
         public Company(string companyName, string street, string streetNumber, string postalCode, string city, string country, Currency currency)
         {
