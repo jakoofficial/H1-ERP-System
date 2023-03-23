@@ -1,4 +1,5 @@
-﻿using System;
+﻿using H1_ERP_System.Customer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,21 +11,19 @@ namespace H1_ERP_System.Virksomhed
     public class Company
     {
         public string CompanyName { get; set; } //Firmanavn
-        public string Street { get; set; } //Vej
-        public string StreetNumber { get; set; } //Husnummer
-        public string PostalCode { get; set; } //Postnummer
-        public string City { get; set; } //By
-        public string Country { get; set; } //Land
+        public Address Address { get; set; } 
         public Currency Currency { get; set; } //Valuta
-
-        public Company(string companyName, string street, string streetNumber, string postalCode, string city, string country, Currency currency)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="companyName"></param>
+        /// <param name="address"></param>
+        /// <param name="currency"> Choose between DKK, USD or EUR. </param>
+        public Company(string companyName, Address address, Currency currency)
         {
             CompanyName = companyName;
-            Street = street;
-            StreetNumber = streetNumber;
-            PostalCode = postalCode;
-            City = city;
-            Country = country;
+            Address = address;
             Currency = currency;
         }
     }
