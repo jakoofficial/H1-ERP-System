@@ -20,7 +20,7 @@ namespace H1_ERP_System
         /// <summary>
         ///  Creates a string with all the necessary data needed to login on the SQL Server.
         /// </summary>
-        /// <returns> SQL connection string we created </returns>
+        /// <returns> SQL connection we created </returns>
         public SqlConnection GetConnection()
         {
             SqlConnectionStringBuilder sb = new();
