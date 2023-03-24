@@ -8,5 +8,8 @@ using H1_ERP_System.SalesFolder;
 
 SqlConnection conn = Database.Instance.GetConnection();
 Database.ReadOrderData();
+//Database.SelectAllOrders();
+//Database.SelectSaleOrderFromID(1);
 
-Console.WriteLine(conn.State);
+Database.SelectSaleOrderFromID("SELECT * FROM dbo.SalesOrders WHERE CustomerId = 1");
+Console.ReadLine();
