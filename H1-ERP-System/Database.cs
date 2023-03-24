@@ -5,11 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using TECHCOOL;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
+using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 
 namespace H1_ERP_System
 {
     public partial class Database
     {
+        //Company c = Database.GetCompany("SELECT * FROM dbo.Companies WHERE CompanyId = 1");
+        //Address a = c.Address;
+
+        //Console.WriteLine(a.Country);
        
         public static Database Instance { get; }
         static Database()
@@ -35,6 +43,52 @@ namespace H1_ERP_System
             SqlConnection connection = new SqlConnection(connectionString);
 
             return connection;
+        }
+
+        public static Company GetCompany(string queryString)
+        {
+            if (!queryString.IsNullOrEmpty())
+            {
+                using (SqlConnection connection = Instance.GetConnection())
+                {
+                    SqlCommand cmd = new SqlCommand(queryString, connection);
+                    connection.Open();
+                    //Debug.WriteLine("Connectoin {0}", connection.State);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Company cp = new Company((string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
+                            return cp;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static Address GetAddress(string queryString)
+        {
+            if (!queryString.IsNullOrEmpty())
+            {
+                using (SqlConnection connection = Instance.GetConnection())
+                {
+                    SqlCommand cmd = new SqlCommand(queryString, connection);
+                    connection.Open();
+                    //Debug.WriteLine("Connectoin {0}", connection.State);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Address adr = new Address((string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
+                            return adr;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         /// <summary>
