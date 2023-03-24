@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace H1_ERP_System.CustomerFolder
 {
-    public class Person
+    abstract class Person
     {
         public string FirstName { get; private set; } //Fornavn
         public string LastName { get; private set; } //Eftername
