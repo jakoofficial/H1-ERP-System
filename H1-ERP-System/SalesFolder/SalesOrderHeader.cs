@@ -1,4 +1,5 @@
-﻿using System;
+﻿using H1_ERP_System.ProductFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,11 @@ namespace H1_ERP_System.SalesFolder
         /// <summary>
         /// Constructor for SalesOrderHeader
         /// </summary>
-        /// <param name="ordernumber"> int : Number for the order </param>
-        /// <param name="timecreated"> DateTime : The time the order was created </param>
-        /// <param name="implementationtime"> DateTime : The time the order was Implementated </param>
-        /// <param name="customerId"> int : The id of the custommer </param>
-        /// <param name="stage"> List<> : list of the different stages </param>
+        /// <param name="ordernumber"></param>
+        /// <param name="timecreated"></param>
+        /// <param name="implementationtime"></param>
+        /// <param name="customerId"></param>
+        /// <param name="stage"> Stage ; different stages for the order. </param>
         public SalesOrderHeader(int ordernumber, DateTime timecreated, DateTime implementationtime, int customerId, Stage stage)
         {
             OrderNumber = ordernumber;
@@ -35,18 +36,21 @@ namespace H1_ERP_System.SalesFolder
             Stage = stage;
         }
 
+       
+
         /// <summary>
         /// calculates all the prices in the list and returns the result
         /// </summary>
-        /// <param name="Price"> int : Price for one item</param>
-        /// <returns> The price for all items </returns>
-        public int SaleOrderPrice(int Price)
+        /// <param name="Price"></param>
+        /// <returns> The price for all items in total </returns>
+        public double SaleOrderPrice()
         {
-           foreach (SaleOrderLine Order in OrderLines)
+           double price = 0;
+           foreach (SaleOrderLine line in OrderLines)
             {
-                
+                price += line.FullPriceForLine();
             }
-            return Price;
+            return price;
         }
         
     }
