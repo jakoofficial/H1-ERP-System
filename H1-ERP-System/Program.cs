@@ -6,7 +6,3 @@ using H1_ERP_System.CompanyFolder;
 using H1_ERP_System.CustomerFolder;
 using H1_ERP_System.SalesFolder;
 
-SqlConnection conn = Database.Instance.GetConnection();
-Database.ReadOrderData();
-
-Console.WriteLine(conn.State);
