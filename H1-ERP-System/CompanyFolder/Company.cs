@@ -7,24 +7,28 @@ using System.Threading.Tasks;
 
 namespace H1_ERP_System.CompanyFolder
 {
-    public enum Currency { DKK, USD, EUR}
     public class Company
     {
+        public int Id { get; set; }
+        public enum Currencies { DKK, USD, EUR }
         public string CompanyName { get; set; } //Firmanavn
-        public Address Address { get; set; } 
-        public Currency Currency { get; set; } //Valuta
-        
+        public Address Address { get; set; }
+        public string Country { get; private set; }
+        public Currencies Currency { get; set; } //Valuta
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="companyName"></param>
         /// <param name="address"></param>
         /// <param name="currency"> Choose between DKK, USD or EUR. </param>
-        public Company(string companyName, Address address, Currency currency)
+        public Company(int id, string companyName, Address address, Currencies currency)
         {
+            Id = id;
             CompanyName = companyName;
             Address = address;
             Currency = currency;
+            Country = address.Country;
         }
     }
 }

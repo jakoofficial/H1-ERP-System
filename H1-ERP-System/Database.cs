@@ -5,12 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using TECHCOOL;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
+using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 
 namespace H1_ERP_System
 {
     public partial class Database
     {
-       
+        //Company c = Database.GetCompany("SELECT * FROM dbo.Companies WHERE CompanyId = 1");
+        //Address a = c.Address;
+
+        //Console.WriteLine(a.Country);
+
         public static Database Instance { get; }
         static Database()
         {
@@ -30,11 +38,59 @@ namespace H1_ERP_System
             sb.UserID = "H1PD021123_Gruppe2";
             sb.Password = "H1PD021123_Gruppe2";
             string connectionString = sb.ToString();
-            Console.WriteLine(connectionString);
+            //Console.WriteLine(connectionString);
 
             SqlConnection connection = new SqlConnection(connectionString);
 
             return connection;
+        }
+
+        public static List<Company> GetCompany(string queryString)
+        {
+            if (!queryString.IsNullOrEmpty())
+            {
+                List<Company> cList = new List<Company>();
+                using (SqlConnection connection = Instance.GetConnection())
+                {
+                    SqlCommand cmd = new SqlCommand(queryString, connection);
+                    connection.Open();
+                    //Debug.WriteLine("Connectoin {0}", connection.State);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Company cp = new Company((int)reader[0], (string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
+                            cList.Add(cp);
+                        }
+                    }
+                }
+                return cList;
+            }
+            return null;
+        }
+
+        public static Address GetAddress(string queryString)
+        {
+            if (!queryString.IsNullOrEmpty())
+            {
+                using (SqlConnection connection = Instance.GetConnection())
+                {
+                    SqlCommand cmd = new SqlCommand(queryString, connection);
+                    connection.Open();
+                    //Debug.WriteLine("Connectoin {0}", connection.State);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Address adr = new Address((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
+                            return adr;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         /// <summary>
@@ -45,7 +101,7 @@ namespace H1_ERP_System
         public static void ReadOrderData()
         {
             string queryString = "SELECT OrderID, CustomerID FROM dbo.Orders;";
-            using (SqlConnection connection = Instance.GetConnection()) 
+            using (SqlConnection connection = Instance.GetConnection())
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
