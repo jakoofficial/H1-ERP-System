@@ -9,6 +9,7 @@ namespace H1_ERP_System.CompanyFolder
 {
     public class Company
     {
+        public int Id { get; set; }
         public enum Currencies { DKK, USD, EUR }
         public string CompanyName { get; set; } //Firmanavn
         public Address Address { get; set; }
@@ -20,8 +21,9 @@ namespace H1_ERP_System.CompanyFolder
         /// <param name="companyName"></param>
         /// <param name="address"></param>
         /// <param name="currency"> Choose between DKK, USD or EUR. </param>
-        public Company(string companyName, Address address, Currencies currency)
+        public Company(int id, string companyName, Address address, Currencies currency)
         {
+            Id = id;
             CompanyName = companyName;
             Address = address;
             Currency = currency;

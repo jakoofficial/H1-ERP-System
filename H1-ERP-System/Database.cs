@@ -59,7 +59,7 @@ namespace H1_ERP_System
                     {
                         while (reader.Read())
                         {
-                            Company cp = new Company((string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
+                            Company cp = new Company((int)reader[0], (string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
                             return cp;
                         }
                     }
@@ -82,7 +82,7 @@ namespace H1_ERP_System
                     {
                         while (reader.Read())
                         {
-                            Address adr = new Address((string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
+                            Address adr = new Address((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
                             return adr;
                         }
                     }
