@@ -1,4 +1,7 @@
-﻿using System;
+﻿using H1_ERP_System.CustomerFolder;
+using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +11,27 @@ namespace H1_ERP_System
 {
     public partial class Database
     {
+        public static Address GetAddress(string queryString)
+        {
+            if (!queryString.IsNullOrEmpty())
+            {
+                using (SqlConnection connection = Instance.GetConnection())
+                {
+                    SqlCommand cmd = new SqlCommand(queryString, connection);
+                    connection.Open();
+                    //Debug.WriteLine("Connectoin {0}", connection.State);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Address adr = new Address((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
+                            return adr;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
     }
 }
