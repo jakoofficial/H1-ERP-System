@@ -9,7 +9,7 @@ namespace H1_ERP_System.ProductFolder
 {
     public class Product
     {
-        public enum Units { Hours, Meters, Pieces, Kilogram }
+        public enum Units { Hours, Meters, Pieces, Kilogram } //
         public int ItemNumber { get; set; } //Varenummer
         public string Name { get; set; } //Navn
         public string Description { get; set; } //Beskrivelse
@@ -25,10 +25,10 @@ namespace H1_ERP_System.ProductFolder
         /// <param name="itemNumber"></param>
         /// <param name="name"></param>
         /// <param name="description"></param>
-        /// <param name="salesPrice"></param>
-        /// <param name="purchasePrice"></param>
+        /// <param name="salesPrice"> The price the company is selling the item for </param>
+        /// <param name="purchasePrice"> The price it cost the company to buy the item </param>
         /// <param name="quantityInStock"></param>
-        /// <param name="unit"></param>
+        /// <param name="unit"> Choose the unit measurement </param>
         public Product(int itemNumber, string name, string description, double salesPrice, double purchasePrice, double quantityInStock, Units unit)
         {
             this.ItemNumber = itemNumber;
