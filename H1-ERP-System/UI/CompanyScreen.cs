@@ -1,29 +1,35 @@
-﻿using System;
+﻿using H1_ERP_System.CompanyFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TECHCOOL.UI;
-using static H1_ERP_System.UI.Todo;
 
 namespace H1_ERP_System.UI
 {
     public class CompanyScreen : Screen
     {
-        public override string Title { get; set; } = "CompanyScreen";
+        public override string Title { get; set; } = "Displaying Companies";
+
+        //Displays a table, with the Companies' information. [Name, Country and Which Currency they use.]
         protected override void Draw()
         {
             Clear(this);
-            ListPage<Todo> listPage = new ListPage<Todo>();
 
-            listPage.Add(new Todo("nr1", 1, Todo.TodoState.Todo));
-            listPage.Add(new Todo("nr2", 2, TodoState.Todo));
-            listPage.Add(new Todo("nr3", 3, TodoState.Todo));
-            listPage.AddColumn("Company name", "Title");
-            listPage.AddColumn("Country", "Priority");
-            listPage.AddColumn("Currency", "State");
+            List<Company> l = Database.GetCompany("SELECT * FROM dbo.Companies");
+            ListPage<Company> addPage = new ListPage<Company>();
+            for (int i = 0; i < l.Count; i++)
+            {
+                addPage.Add(l[i]);
+            }
 
-            listPage.Draw();
+            addPage.AddColumn("Company Name", "CompanyName");
+            addPage.AddColumn("Country", "Country");
+            addPage.AddColumn("Currency", "Currency");
+
+            addPage.Draw();
         }
     }
+
 }

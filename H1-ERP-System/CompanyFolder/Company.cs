@@ -13,6 +13,7 @@ namespace H1_ERP_System.CompanyFolder
         public enum Currencies { DKK, USD, EUR }
         public string CompanyName { get; set; } //Firmanavn
         public Address Address { get; set; }
+        public string Country { get; private set; }
         public Currencies Currency { get; set; } //Valuta
 
         /// <summary>
@@ -27,6 +28,7 @@ namespace H1_ERP_System.CompanyFolder
             CompanyName = companyName;
             Address = address;
             Currency = currency;
+            Country = address.Country;
         }
     }
 }

@@ -13,4 +13,4 @@ using TECHCOOL.UI;
 
 //Console.WriteLine(conn.State);
 
-Screen.Display( new CompanyScreen());
+Screen.Display(new CompanyScreen());
