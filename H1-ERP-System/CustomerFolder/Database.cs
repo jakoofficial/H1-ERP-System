@@ -55,9 +55,9 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// 
+        /// Add an address when adding a new Company or Customer
         /// </summary>
-        /// <param name="adr"></param>
+        /// <param name="adr">The Address of the Company or Customer</param>
         public static void AddAddress(Address adr)
         {
             string quesryString = "INSERT INTO dbo.Address " +
@@ -66,6 +66,10 @@ namespace H1_ERP_System
             RunNonQuery(quesryString);
         }
 
+        /// <summary>
+        /// Update the address from a company or customer using their Address
+        /// </summary>
+        /// <param name="adr">Address from the Company or Customer</param>
         public static void UpdateAddress(Address adr)
         {
             string queryString = "UPDATE dbo.Address " +
@@ -74,6 +78,10 @@ namespace H1_ERP_System
             RunNonQuery(queryString);
         }
 
+        /// <summary>
+        /// Remove the Address from the table using Company or Customer Address Id
+        /// </summary>
+        /// <param name="id">Address ID from the address on Company or Customer</param>
         public static void RemoveAddress(int id)
         {
             string queryString = $"DELETE FROM dbo.Address WHERE AddressId = {id}";
