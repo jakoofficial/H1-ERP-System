@@ -8,27 +8,36 @@ using TECHCOOL.UI;
 
 namespace H1_ERP_System.UI
 {
+    /// <summary>
+    /// CompanyScreen - Displays all the companies with Name, Country and Currency. 
+    /// *IS USED TO DISPLAY SIMPLE INFORMATION ON ALL COMPANIES IN THE DATABASE.*
+    /// </summary>
     public class CompanyScreen : Screen
     {
-        public override string Title { get; set; } = "Displaying Companies";
-
-        //Displays a table, with the Companies' information. [Name, Country and Which Currency they use.]
+        public override string Title { get; set; } = " Displaying Companies ";
         protected override void Draw()
         {
             Clear(this);
 
             List<Company> l = Database.GetCompany("SELECT * FROM dbo.Companies");
-            ListPage<Company> addPage = new ListPage<Company>();
+            ListPage<Company> companyList = new ListPage<Company>();
             for (int i = 0; i < l.Count; i++)
             {
-                addPage.Add(l[i]);
+                companyList.Add(l[i]);
             }
 
-            addPage.AddColumn("Company Name", "CompanyName");
-            addPage.AddColumn("Country", "Country");
-            addPage.AddColumn("Currency", "Currency");
+            companyList.AddColumn("Company Name", "CompanyName");
+            companyList.AddColumn("Country", "Country");
+            companyList.AddColumn("Currency", "Currency");
 
-            addPage.Draw();
+            companyList.Draw();
+            ReturnToStart();
+        }
+        public void ReturnToStart()
+        {
+            Console.WriteLine("Press any key to go back...");
+            Console.ReadKey();
+            StartPage.StartUp();
         }
     }
 
