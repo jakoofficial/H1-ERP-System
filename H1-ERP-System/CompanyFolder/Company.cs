@@ -14,6 +14,10 @@ namespace H1_ERP_System.CompanyFolder
         public string CompanyName { get; set; } //Firmanavn
         public Address Address { get; set; }
         public string Country { get; private set; }
+        public string City { get; private set; }
+        public string PostalCode { get; private set; }
+        public string StreetNumber { get; private set; }
+        public string Street { get; private set; }
         public Currencies Currency { get; set; } //Valuta
 
         /// <summary>
@@ -27,8 +31,12 @@ namespace H1_ERP_System.CompanyFolder
             Id = id;
             CompanyName = companyName;
             Address = address;
-            Currency = currency;
             Country = address.Country;
+            City = address.City;
+            PostalCode = address.PostalCode;
+            StreetNumber = address.Street;
+            Street = address.Street;
+            Currency = currency;
         }
     }
 }
