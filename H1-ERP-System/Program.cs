@@ -13,4 +13,13 @@ using TECHCOOL.UI;
 
 //Console.WriteLine(conn.State);
 
+//List<Company> cList = Database.GetCompanies("SELECT * FROM dbo.Companies");
+
+//Company c = (Company)cList[1];
+//c.CompanyName = "UpdatedCompanyName";
+//c.Currency = Company.Currencies.DKK;
+
+//Database.UpdateCompany(c);
+
+//Console.ReadLine();
 StartPage.StartUp();

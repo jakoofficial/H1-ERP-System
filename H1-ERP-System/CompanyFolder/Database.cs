@@ -53,6 +53,14 @@ namespace H1_ERP_System
             RunNonQuery(quesryString);
         }
 
+        public static void UpdateCompany(Company cp)
+        {
+            string queryString = "UPDATE dbo.Companies " +
+                $"SET CompanyName='{cp.CompanyName}', AddressId={cp.Address.Id}, Currency={(int)cp.Currency}" +
+                $"WHERE CompanyId={cp.Id}";
+            RunNonQuery(queryString);
+        }
+
         public static void RemoveCompany(Company cp)
         {
             RemoveAddress(cp.Address.Id);
