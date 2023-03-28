@@ -19,7 +19,7 @@ namespace H1_ERP_System.UI
         {
             Clear(this);
 
-            List<Company> l = Database.GetCompany("SELECT * FROM dbo.Companies");
+            List<Company> l = Database.GetCompanies("SELECT * FROM dbo.Companies");
             ListPage<Company> companyList = new ListPage<Company>();
             for (int i = 0; i < l.Count; i++)
             {
