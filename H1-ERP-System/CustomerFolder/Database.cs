@@ -34,12 +34,25 @@ namespace H1_ERP_System
             }
             return null;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="adr"></param>
         public static void AddAddress(Address adr)
         {
             string quesryString = "INSERT INTO dbo.Address " +
                 "(Street, StreetNumber, PostalCode, City, Country) " +
                 $"Values ('{adr.Street}', '{adr.StreetNumber}', '{adr.PostalCode}', '{adr.City}', '{adr.Country}')";
             RunNonQuery( quesryString );
+        }
+
+        public static void UpdateAddress(Address adr)
+        {
+            string queryString = "UPDATE dbo.Address " +
+                $"SET Street='{adr.Street}', StreetNumber='{adr.StreetNumber}', PostalCode='{adr.PostalCode}', City='{adr.City}', Country='{adr.Country}'" +
+                $"WHERE AddressId={adr.Id}";
+            RunNonQuery(queryString);
         }
 
         public static void RemoveAddress(int id)

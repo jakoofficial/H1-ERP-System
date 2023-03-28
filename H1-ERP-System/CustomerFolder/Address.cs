@@ -9,11 +9,11 @@ namespace H1_ERP_System.CustomerFolder
     public class Address
     {
         public int Id { get; set; }
-        public string Street { get; private set; } //Vej
-        public string StreetNumber { get; private set; } //Vejnummer
-        public string PostalCode { get; private set; } //Post nummer
-        public string City { get; private set; } //By
-        public string Country { get; private set; } //Land
+        public string Street { get; set; } //Vej
+        public string StreetNumber { get; set; } //Vejnummer
+        public string PostalCode { get; set; } //Post nummer
+        public string City { get; set; } //By
+        public string Country { get; set; } //Land
 
         /// <summary>
         /// For when an address is needed
