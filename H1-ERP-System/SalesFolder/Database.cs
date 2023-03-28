@@ -12,9 +12,14 @@ namespace H1_ERP_System
 {
     public partial class Database 
     {
-        public static SalesOrderHeader SelectSaleOrderFromID(string queryString)
+        /// <summary>
+        /// Gets SalesOrder data from database by using QueryString.
+        /// And returns a new SaleOrderHeader.
+        /// </summary>
+        /// <param name="queryString"></param>
+        /// <returns></returns>
+        public static SalesOrderHeader GetSalesOrders(string queryString)
         {
-            //string queryString = $"SELECT * FROM dbo.SalesOrders WHERE CustomerId = {id}";
             using (SqlConnection connection = Instance.GetConnection())
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -24,7 +29,7 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     { 
-                        SalesOrderHeader order = new SalesOrderHeader((int)reader[0],(DateTime)reader[1], (DateTime)reader[2], GetCustomerIDForOrder($"SELECT * FROM dbo.Customers WHERE CustomerId = {(int)reader[3]}"), (OrderStage)(int)reader[4]);
+                        SalesOrderHeader order = new SalesOrderHeader((int)reader[0],(DateTime)reader[1], (DateTime)reader[2], GetCustomer($"SELECT * FROM dbo.Customers WHERE CustomerId = {(int)reader[3]}"), (OrderStage)(int)reader[4]);
                         return order;
                     }
                 }
@@ -32,7 +37,7 @@ namespace H1_ERP_System
             }
         }
 
-        public static Customer GetCustomerIDForOrder(string queryString)
+        public static Customer GetCustomer(string queryString)
         {
             using (SqlConnection connection = Instance.GetConnection())
             {
@@ -43,7 +48,7 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     {
-                        Customer customer = new Customer((int)reader[0], (DateTime)reader[1], (string)reader[2], (string)reader[3], (Address)reader[4], (string)reader[5], (string)reader[6]);
+                        Customer customer = new Customer((int)reader[0], (DateTime)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]);
                         return customer;
                     }
                 }
@@ -51,25 +56,16 @@ namespace H1_ERP_System
             }
         }
 
-        //public static List<SalesOrderHeader> SelectAllOrders()
-        //{
-        //    List<SalesOrderHeader> orders = new List<SalesOrderHeader>();
-        //    string queryString = $"SELECT * FROM dbo.SalesOrders";
-        //    using (SqlConnection connection = Instance.GetConnection())
-        //    {
-        //        SqlCommand command = new SqlCommand(queryString, connection);
-        //        connection.Open();
-        //        Console.WriteLine(connection.State);
-        //        using (SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                Console.WriteLine(String.Format("{0}, {1}, {2}, {3}, {4}", reader[0], reader[1], reader[2], reader[3], reader[4]));
-        //                orders.Add(new SalesOrderHeader((int)reader[0], (DateTime)reader[1], (DateTime)reader[2], (int)reader[3], (OrderStage)(int)reader[4]));
-        //            }
-        //        }
-        //        return orders;
-        //    }
-        //}
+        public static void AddSaleOrderToDB(SalesOrderHeader salesOrderHeader)
+        {
+            string queryString = $"INSERT INTO dbo.SalesOrders(OrderNumber = , TimeCreated, ImplementationTime, CustomerId, Stage) " +
+                                 $"VALUES ({salesOrderHeader.OrderNumber},{salesOrderHeader.TimeCreated}, {salesOrderHeader.ImplementationTime}, {salesOrderHeader.CustomerId}, {salesOrderHeader.Stage})";
+
+            using (SqlConnection connection = Instance.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+            }
+        }
     }
 }

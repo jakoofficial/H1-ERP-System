@@ -11,5 +11,5 @@ Database.ReadOrderData();
 //Database.SelectAllOrders();
 //Database.SelectSaleOrderFromID(1);
 
-Database.SelectSaleOrderFromID("SELECT * FROM dbo.SalesOrders WHERE CustomerId = 1");
+Database.GetSalesOrders("SELECT * FROM dbo.SalesOrders WHERE CustomerId = 1");
 Console.ReadLine();
