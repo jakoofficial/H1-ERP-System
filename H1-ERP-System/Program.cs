@@ -8,13 +8,22 @@ using H1_ERP_System.SalesFolder;
 using H1_ERP_System.UI;
 using TECHCOOL.UI;
 
-//Database database = new Database();
-//var dateString = "5/1/2008 8:30:52 AM";
-//DateTime date1 = DateTime.Parse(dateString,
-//                          System.Globalization.CultureInfo.InvariantCulture);
+//SqlConnection conn = Database.Instance.GetConnection();
+//Database.ReadOrderData();
 
-//Customer test = new Customer(10, date1, "Jacob", "Jacobsen", );
+//Console.WriteLine(conn.State);
 
-//SalesOrderHeader s = new SalesOrderHeader(10,date1,date1, );
+//List<Company> cList = Database.GetCompanies("SELECT * FROM dbo.Companies");
 
-//database.AddSaleOrderToDB(SalesOrderHeader s)
+//Company c = (Company)cList[1];
+//Address a = c.Address;
+//a.Street = "UpdateStreet";
+//a.StreetNumber = "10a";
+//a.Country = "Bulgarien";
+//a.PostalCode = "52590";
+//a.City = "Hamlet";
+
+//Database.UpdateAddress(a);
+
+//Console.ReadLine();
+StartPage.StartUp();
