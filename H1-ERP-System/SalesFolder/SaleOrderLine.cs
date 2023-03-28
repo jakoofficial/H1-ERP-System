@@ -11,16 +11,20 @@ namespace H1_ERP_System.SalesFolder
 {
     public class SaleOrderLine
     {
-        private Product Product { get; set; }
-        private DateTime PurchasedDate { get; set; }
-        private int PurchasedAmount { get; set; }
+        public int Id { get; set; }
+        public Product Product { get; set; }
+        public DateTime PurchasedDate { get; set; }
+        public int PurchasedAmount { get; set; }
+        public int SalesOrderHeaderID { get; set; }
 
 
-        public SaleOrderLine(Product product, DateTime purchasedDate, int purchasedAmount)
+        public SaleOrderLine(int id, Product product, DateTime purchasedDate, int purchasedAmount, int salesOrderHeaderID)
         {     
+            Id = id;
             Product = product;
             PurchasedDate = purchasedDate;
             PurchasedAmount = purchasedAmount;
+            SalesOrderHeaderID = salesOrderHeaderID;
         }
 
         /// <summary>
