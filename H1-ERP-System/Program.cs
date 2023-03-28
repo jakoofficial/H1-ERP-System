@@ -16,10 +16,14 @@ using TECHCOOL.UI;
 //List<Company> cList = Database.GetCompanies("SELECT * FROM dbo.Companies");
 
 //Company c = (Company)cList[1];
-//c.CompanyName = "UpdatedCompanyName";
-//c.Currency = Company.Currencies.DKK;
+//Address a = c.Address;
+//a.Street = "UpdateStreet";
+//a.StreetNumber = "10a";
+//a.Country = "Bulgarien";
+//a.PostalCode = "52590";
+//a.City = "Hamlet";
 
-//Database.UpdateCompany(c);
+//Database.UpdateAddress(a);
 
 //Console.ReadLine();
 StartPage.StartUp();

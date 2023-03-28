@@ -34,7 +34,7 @@ namespace H1_ERP_System.CompanyFolder
             Country = address.Country;
             City = address.City;
             PostalCode = address.PostalCode;
-            StreetNumber = address.Street;
+            StreetNumber = address.StreetNumber;
             Street = address.Street;
             Currency = currency;
         }
