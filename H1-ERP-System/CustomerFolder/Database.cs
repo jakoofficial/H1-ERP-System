@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,19 @@ namespace H1_ERP_System
                 }
             }
             return null;
+        }
+        public static void AddAddress(Address adr)
+        {
+            string quesryString = "INSERT INTO dbo.Address " +
+                "(Street, StreetNumber, PostalCode, City, Country) " +
+                $"Values ('{adr.Street}', '{adr.StreetNumber}', '{adr.PostalCode}', '{adr.City}', '{adr.Country}')";
+            RunNonQuery( quesryString );
+        }
+
+        public static void RemoveAddress(int id)
+        {
+            string queryString = $"DELETE FROM dbo.Address WHERE AddressId = {id}";
+            RunNonQuery(queryString);
         }
     }
 }

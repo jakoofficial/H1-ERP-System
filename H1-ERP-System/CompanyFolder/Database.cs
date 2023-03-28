@@ -1,4 +1,5 @@
 ﻿using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -39,6 +40,24 @@ namespace H1_ERP_System
                 return cList;
             }
             return null;
+        }
+
+        public static void AddCompany(Company cp)
+        {
+            AddAddress(cp.Address);
+            Address a = GetAddress("SELECT * FROM dbo.Address ORDER BY AddressId DESC");
+
+            string quesryString = "INSERT INTO dbo.Companies " +
+                "(CompanyName, AddressId, Currency) " +
+                $"Values ('{cp.CompanyName}', {a.Id}, {(int)cp.Currency})";
+            RunNonQuery(quesryString);
+        }
+
+        public static void RemoveCompany(Company cp)
+        {
+            RemoveAddress(cp.Address.Id);
+            string queryString = $"DELETE FROM dbo.Companies WHERE CompanyId = {cp.Id}";
+            RunNonQuery(queryString);
         }
     }
 }
