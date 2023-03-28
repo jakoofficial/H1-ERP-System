@@ -5,11 +5,12 @@ using H1_ERP_System.ProductFolder;
 using H1_ERP_System.CompanyFolder;
 using H1_ERP_System.CustomerFolder;
 using H1_ERP_System.SalesFolder;
+using H1_ERP_System.UI;
+using TECHCOOL.UI;
 
-SqlConnection conn = Database.Instance.GetConnection();
-Database.ReadOrderData();
-//Database.SelectAllOrders();
-//Database.SelectSaleOrderFromID(1);
+//SqlConnection conn = Database.Instance.GetConnection();
+//Database.ReadOrderData();
 
-Database.GetSalesOrders("SELECT * FROM dbo.SalesOrders WHERE CustomerId = 1");
-Console.ReadLine();
+//Console.WriteLine(conn.State);
+
+Screen.Display(new CompanyScreen());

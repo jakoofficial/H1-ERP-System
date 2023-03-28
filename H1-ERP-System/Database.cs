@@ -18,7 +18,7 @@ namespace H1_ERP_System
         //Address a = c.Address;
 
         //Console.WriteLine(a.Country);
-       
+
         public static Database Instance { get; }
         static Database()
         {
@@ -38,17 +38,18 @@ namespace H1_ERP_System
             sb.UserID = "H1PD021123_Gruppe2";
             sb.Password = "H1PD021123_Gruppe2";
             string connectionString = sb.ToString();
-            Console.WriteLine(connectionString);
+            //Console.WriteLine(connectionString);
 
             SqlConnection connection = new SqlConnection(connectionString);
 
             return connection;
         }
 
-        public static Company GetCompany(string queryString)
+        public static List<Company> GetCompany(string queryString)
         {
             if (!queryString.IsNullOrEmpty())
             {
+                List<Company> cList = new List<Company>();
                 using (SqlConnection connection = Instance.GetConnection())
                 {
                     SqlCommand cmd = new SqlCommand(queryString, connection);
@@ -59,11 +60,12 @@ namespace H1_ERP_System
                     {
                         while (reader.Read())
                         {
-                            Company cp = new Company((string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
-                            return cp;
+                            Company cp = new Company((int)reader[0], (string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
+                            cList.Add(cp);
                         }
                     }
                 }
+                return cList;
             }
             return null;
         }
@@ -82,7 +84,7 @@ namespace H1_ERP_System
                     {
                         while (reader.Read())
                         {
-                            Address adr = new Address((string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
+                            Address adr = new Address((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
                             return adr;
                         }
                     }
@@ -99,7 +101,7 @@ namespace H1_ERP_System
         public static void ReadOrderData()
         {
             string queryString = "SELECT OrderID, CustomerID FROM dbo.Orders;";
-            using (SqlConnection connection = Instance.GetConnection()) 
+            using (SqlConnection connection = Instance.GetConnection())
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
