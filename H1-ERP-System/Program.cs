@@ -26,4 +26,6 @@ using TECHCOOL.UI;
 //Database.UpdateAddress(a);
 
 //Console.ReadLine();
+
+
 StartPage.StartUp();
