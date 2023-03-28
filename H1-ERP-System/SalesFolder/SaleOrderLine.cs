@@ -13,12 +13,12 @@ namespace H1_ERP_System.SalesFolder
     {
         public int Id { get; set; }
         public Product Product { get; set; }
-        public DateTime PurchasedDate { get; set; }
+        public string PurchasedDate { get; set; }
         public int PurchasedAmount { get; set; }
         public int SalesOrderHeaderID { get; set; }
 
 
-        public SaleOrderLine(int id, Product product, DateTime purchasedDate, int purchasedAmount, int salesOrderHeaderID)
+        public SaleOrderLine(int id, Product product, string purchasedDate, int purchasedAmount, int salesOrderHeaderID)
         {     
             Id = id;
             Product = product;

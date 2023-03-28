@@ -14,8 +14,8 @@ namespace H1_ERP_System.SalesFolder
     public class SalesOrderHeader
     {
         public int OrderNumber { get; set; } // Ordernummer
-        public DateTime TimeCreated { get; set; } // Oprettelsetidspunkt
-        public DateTime ImplementationTime { get; set; } //Gennemførelsetidspunkt
+        public string TimeCreated { get; set; } // Oprettelsetidspunkt
+        public string ImplementationTime { get; set; } //Gennemførelsetidspunkt
         public Customer CustomerId { get; set; } //Kundenummer
         public OrderStage Stage { get; set; } //Tilstand
         public List<SaleOrderLine> OrderLines { get; set; } = new List<SaleOrderLine>(); //En liste af orderlinjer
@@ -28,7 +28,7 @@ namespace H1_ERP_System.SalesFolder
         /// <param name="implementationtime"></param>
         /// <param name="customerId"></param>
         /// <param name="stage"> Stage ; different stages for the order. </param>
-        public SalesOrderHeader(int ordernumber, DateTime timecreated, DateTime implementationtime, Customer customerId, OrderStage stage)
+        public SalesOrderHeader(int ordernumber, string timecreated, string implementationtime, Customer customerId, OrderStage stage)
         {
             OrderNumber = ordernumber;
             TimeCreated = timecreated;
