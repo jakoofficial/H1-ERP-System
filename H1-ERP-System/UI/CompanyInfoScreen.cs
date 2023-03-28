@@ -16,7 +16,7 @@ namespace H1_ERP_System.UI
     public class CompanyInfoScreen : Screen
     {
         public override string Title { get; set; } = " Companies ";
-        List<Company> l = Database.GetCompany("SELECT * FROM dbo.Companies");
+        List<Company> l = Database.GetCompanies("SELECT * FROM dbo.Companies");
         protected override void Draw()
         {
             Clear(this);
@@ -69,6 +69,7 @@ namespace H1_ERP_System.UI
             int.TryParse(Console.ReadLine(), out int choice);
             if (choice == 1)
             {
+                Clear(this);
                 Text();
             }
             else 
