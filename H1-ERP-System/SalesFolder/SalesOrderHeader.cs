@@ -1,4 +1,5 @@
-﻿using H1_ERP_System.ProductFolder;
+﻿using H1_ERP_System.CustomerFolder;
+using H1_ERP_System.ProductFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace H1_ERP_System.SalesFolder
 {
-    public enum Stage { None, Created, Confirmed, Packaged, Completed }
+    public enum OrderStage { None, Created, Confirmed, Packaged, Completed }
 
 
     public class SalesOrderHeader
@@ -15,9 +16,9 @@ namespace H1_ERP_System.SalesFolder
         public int OrderNumber { get; set; } // Ordernummer
         public DateTime TimeCreated { get; set; } // Oprettelsetidspunkt
         public DateTime ImplementationTime { get; set; } //Gennemførelsetidspunkt
-        public int CustomerId { get; set; } //Kundenummer
-        public Stage Stage { get; set; } //Tilstand
-        List<SaleOrderLine> OrderLines = new List<SaleOrderLine>();  //En liste af orderlinjer
+        public Customer CustomerId { get; set; } //Kundenummer
+        public OrderStage Stage { get; set; } //Tilstand
+        public List<SaleOrderLine> OrderLines { get; set; } = new List<SaleOrderLine>(); //En liste af orderlinjer
         
         /// <summary>
         /// Constructor for SalesOrderHeader
@@ -27,13 +28,14 @@ namespace H1_ERP_System.SalesFolder
         /// <param name="implementationtime"></param>
         /// <param name="customerId"></param>
         /// <param name="stage"> Stage ; different stages for the order. </param>
-        public SalesOrderHeader(int ordernumber, DateTime timecreated, DateTime implementationtime, int customerId, Stage stage)
+        public SalesOrderHeader(int ordernumber, DateTime timecreated, DateTime implementationtime, Customer customerId, OrderStage stage)
         {
             OrderNumber = ordernumber;
             TimeCreated = timecreated;
             ImplementationTime = implementationtime;
             CustomerId = customerId;
             Stage = stage;
+            
         }
 
        

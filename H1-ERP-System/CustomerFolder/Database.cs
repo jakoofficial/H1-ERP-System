@@ -12,6 +12,25 @@ namespace H1_ERP_System
 {
     public partial class Database
     {
+        public static Customer GetCustomer(string queryString)
+        {
+            using (SqlConnection connection = Instance.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                Console.WriteLine(connection.State);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Customer customer = new Customer((int)reader[0], (DateTime)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]);
+                        return customer;
+                    }
+                }
+                return null;
+            }
+        }
+
         public static Address GetAddress(string queryString)
         {
             if (!queryString.IsNullOrEmpty())
@@ -44,7 +63,7 @@ namespace H1_ERP_System
             string quesryString = "INSERT INTO dbo.Address " +
                 "(Street, StreetNumber, PostalCode, City, Country) " +
                 $"Values ('{adr.Street}', '{adr.StreetNumber}', '{adr.PostalCode}', '{adr.City}', '{adr.Country}')";
-            RunNonQuery( quesryString );
+            RunNonQuery(quesryString);
         }
 
         public static void UpdateAddress(Address adr)
