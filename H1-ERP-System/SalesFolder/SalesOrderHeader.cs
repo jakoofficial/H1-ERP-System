@@ -18,7 +18,7 @@ namespace H1_ERP_System.SalesFolder
         public DateTime ImplementationTime { get; set; } //Gennemførelsetidspunkt
         public Customer CustomerId { get; set; } //Kundenummer
         public OrderStage Stage { get; set; } //Tilstand
-        List<SaleOrderLine> OrderLines = new List<SaleOrderLine>();  //En liste af orderlinjer
+        public List<SaleOrderLine> OrderLines { get; set; } = new List<SaleOrderLine>(); //En liste af orderlinjer
         
         /// <summary>
         /// Constructor for SalesOrderHeader
@@ -35,6 +35,7 @@ namespace H1_ERP_System.SalesFolder
             ImplementationTime = implementationtime;
             CustomerId = customerId;
             Stage = stage;
+            
         }
 
        

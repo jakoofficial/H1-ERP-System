@@ -8,9 +8,13 @@ using H1_ERP_System.SalesFolder;
 using H1_ERP_System.UI;
 using TECHCOOL.UI;
 
-//SqlConnection conn = Database.Instance.GetConnection();
-//Database.ReadOrderData();
+//Database database = new Database();
+//var dateString = "5/1/2008 8:30:52 AM";
+//DateTime date1 = DateTime.Parse(dateString,
+//                          System.Globalization.CultureInfo.InvariantCulture);
 
-//Console.WriteLine(conn.State);
+//Customer test = new Customer(10, date1, "Jacob", "Jacobsen", );
 
-Screen.Display(new CompanyScreen());
+//SalesOrderHeader s = new SalesOrderHeader(10,date1,date1, );
+
+//database.AddSaleOrderToDB(SalesOrderHeader s)
