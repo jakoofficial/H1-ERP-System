@@ -13,7 +13,7 @@ namespace H1_ERP_System
     public partial class Database
     {
         /// <summary>
-        /// Used to get a list of companies from the database table 
+        /// Used to get a list of companies from the database table using a queryString
         /// </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>
@@ -42,6 +42,10 @@ namespace H1_ERP_System
             return null;
         }
 
+        /// <summary>
+        /// Add company to the company table using a new Company
+        /// </summary>
+        /// <param name="cp">The Company that is being added</param>
         public static void AddCompany(Company cp)
         {
             AddAddress(cp.Address);
@@ -53,6 +57,10 @@ namespace H1_ERP_System
             RunNonQuery(quesryString);
         }
 
+        /// <summary>
+        /// Update the company using a specific company with it's changes
+        /// </summary>
+        /// <param name="cp"></param>
         public static void UpdateCompany(Company cp)
         {
             string queryString = "UPDATE dbo.Companies " +
@@ -61,6 +69,10 @@ namespace H1_ERP_System
             RunNonQuery(queryString);
         }
 
+        /// <summary>
+        /// Remove the chosen company using the Company object
+        /// </summary>
+        /// <param name="cp"></param>
         public static void RemoveCompany(Company cp)
         {
             RemoveAddress(cp.Address.Id);
