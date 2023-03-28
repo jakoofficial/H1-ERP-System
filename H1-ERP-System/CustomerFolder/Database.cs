@@ -23,7 +23,7 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     {
-                        Customer customer = new Customer((int)reader[0], (DateTime)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]);
+                        Customer customer = new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]);
                         return customer;
                     }
                 }

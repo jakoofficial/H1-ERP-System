@@ -28,4 +28,5 @@ using TECHCOOL.UI;
 //Console.ReadLine();
 
 
+
 StartPage.StartUp();
