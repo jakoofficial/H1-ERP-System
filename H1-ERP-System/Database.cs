@@ -45,54 +45,6 @@ namespace H1_ERP_System
             return connection;
         }
 
-        public static List<Company> GetCompany(string queryString)
-        {
-            if (!queryString.IsNullOrEmpty())
-            {
-                List<Company> cList = new List<Company>();
-                using (SqlConnection connection = Instance.GetConnection())
-                {
-                    SqlCommand cmd = new SqlCommand(queryString, connection);
-                    connection.Open();
-                    //Debug.WriteLine("Connectoin {0}", connection.State);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Company cp = new Company((int)reader[0], (string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
-                            cList.Add(cp);
-                        }
-                    }
-                }
-                return cList;
-            }
-            return null;
-        }
-
-        public static Address GetAddress(string queryString)
-        {
-            if (!queryString.IsNullOrEmpty())
-            {
-                using (SqlConnection connection = Instance.GetConnection())
-                {
-                    SqlCommand cmd = new SqlCommand(queryString, connection);
-                    connection.Open();
-                    //Debug.WriteLine("Connectoin {0}", connection.State);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Address adr = new Address((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]);
-                            return adr;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
         /// <summary>
         /// Creates a queryString to select the data that is needed.
         /// uses "connection.Open" under "using ()" to open the connection.
