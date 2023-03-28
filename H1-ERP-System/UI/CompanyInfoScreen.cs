@@ -70,6 +70,7 @@ namespace H1_ERP_System.UI
             if (choice == 1)
             {
                 Clear(this);
+                Draw();
                 Text();
             }
             else 
