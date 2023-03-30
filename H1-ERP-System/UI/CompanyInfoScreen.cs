@@ -27,54 +27,37 @@ namespace H1_ERP_System.UI
             }
             companyList.AddColumn("ID", "Id", 5);
             companyList.AddColumn("Company Name", "CompanyName");
-            companyList.Draw();
+            //companyList.Draw();
 
+            Company cp = companyList.Select();
 
-            Text();
+            Text(cp);
         }
 
         /// <summary>
         /// Text() - Asks the user which Company they would like *ALL* information on: Company name, Address and Currency used. 
         /// </summary>
-        public void Text()
+        public void Text(Company cp)
         {
-            Console.WriteLine("\nWhich company would you like information about? \nPlease select an ID!");
-            Console.Write("> ");
-            int.TryParse(Console.ReadLine(), out int choice);
-            if (choice != 0 && choice <= l.Count)
-            {
-                Company cp = l[choice - 1];
-                ListPage<Company> companyInfoList = new ListPage<Company>();
-                companyInfoList.Add(cp);
+            //Console.WriteLine("\nWhich company would you like information about? \nPlease select an ID!");
+            //Console.Write("> ");
+            //if (choice != 0 && choice <= l.Count)
+            //{
+            ListPage<Company> companyInfoList = new ListPage<Company>();
+            companyInfoList.Add(cp);
 
-                companyInfoList.AddColumn("Company Name", "CompanyName");
-                companyInfoList.AddColumn("Street", "Street");
-                companyInfoList.AddColumn("Street Number", "StreetNumber");
-                companyInfoList.AddColumn("Postal code", "PostalCode");
-                companyInfoList.AddColumn("City", "City");
-                companyInfoList.AddColumn("Country", "Country");
-                companyInfoList.AddColumn("Currency", "Currency");
+            companyInfoList.AddColumn("Company Name", "CompanyName");
+            companyInfoList.AddColumn("Street", "Street");
+            companyInfoList.AddColumn("Street Number", "StreetNumber");
+            companyInfoList.AddColumn("Postal code", "PostalCode");
+            companyInfoList.AddColumn("City", "City");
+            companyInfoList.AddColumn("Country", "Country");
+            companyInfoList.AddColumn("Currency", "Currency");
 
-                companyInfoList.Draw();
+            companyInfoList.Draw();
 
-                Commands(Console.ReadKey(), cp);
-
-                TryAgain();
-            }
-        }
-
-        public void Commands(ConsoleKeyInfo key, Company? cp)
-        {
-            if (key.Key == ConsoleKey.F1)
-                Draw();
-            else if (key.Key == ConsoleKey.F2)
-                EditCompany(cp);
-            //Something
-        }
-
-        public void EditCompany(Company cp)
-        {
-
+            TryAgain();
+            //}
         }
 
         /// <summary>
@@ -91,7 +74,7 @@ namespace H1_ERP_System.UI
             {
                 Clear(this);
                 Draw();
-                Text();
+                //Text();
             }
             else
             {
