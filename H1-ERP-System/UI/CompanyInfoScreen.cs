@@ -28,6 +28,8 @@ namespace H1_ERP_System.UI
             companyList.AddColumn("ID", "Id", 5);
             companyList.AddColumn("Company Name", "CompanyName");
             companyList.Draw();
+
+
             Text();
         }
 
@@ -41,9 +43,9 @@ namespace H1_ERP_System.UI
             int.TryParse(Console.ReadLine(), out int choice);
             if (choice != 0 && choice <= l.Count)
             {
-                
+                Company cp = l[choice - 1];
                 ListPage<Company> companyInfoList = new ListPage<Company>();
-                companyInfoList.Add(l[choice-1]);
+                companyInfoList.Add(cp);
 
                 companyInfoList.AddColumn("Company Name", "CompanyName");
                 companyInfoList.AddColumn("Street", "Street");
@@ -54,9 +56,27 @@ namespace H1_ERP_System.UI
                 companyInfoList.AddColumn("Currency", "Currency");
 
                 companyInfoList.Draw();
+
+                Commands(Console.ReadKey(), cp);
+
                 TryAgain();
             }
         }
+
+        public void Commands(ConsoleKeyInfo key, Company? cp)
+        {
+            if (key.Key == ConsoleKey.F1)
+                Draw();
+            else if (key.Key == ConsoleKey.F2)
+                EditCompany(cp);
+            //Something
+        }
+
+        public void EditCompany(Company cp)
+        {
+
+        }
+
         /// <summary>
         /// TryAgain() - Asks user if they'd like to try to search for another Company, if not, clears and opens the StartUp page again. 
         /// If yes, goes back to Text().
@@ -73,7 +93,7 @@ namespace H1_ERP_System.UI
                 Draw();
                 Text();
             }
-            else 
+            else
             {
                 Console.Clear();
                 StartPage.StartUp();

@@ -18,8 +18,8 @@ namespace H1_ERP_System.UI
         {
         repeat:
 
-            Console.WriteLine($"=== ERP ===");
             Console.Clear();
+            Console.WriteLine($"=== ERP ===");
             Console.WriteLine("1. Companies in Database. \n2. Check specific company. \n3. Close the program.");
             Console.Write("> ");
 

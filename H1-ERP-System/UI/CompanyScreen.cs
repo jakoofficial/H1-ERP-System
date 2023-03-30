@@ -31,6 +31,12 @@ namespace H1_ERP_System.UI
             companyList.AddColumn("Currency", "Currency");
 
             companyList.Draw();
+
+            if (Console.ReadKey().Key == ConsoleKey.F1)
+            {
+                Draw();
+            }
+
             ReturnToStart();
         }
         public void ReturnToStart()
