@@ -37,7 +37,6 @@ namespace H1_ERP_System
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     reader.Read();
@@ -64,13 +63,12 @@ namespace H1_ERP_System
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         pList.Add(new Product((int)reader[0], (string)reader[1], (string)reader[2], (double)reader[3], (double)reader[4], (double)reader[6], (Product.Units)(int)reader[7]));
-                        pList[i].SetLocation((string)reader[5]);
+                        pList[i++].SetLocation((string)reader[5]);
                     }
                 }
             }
