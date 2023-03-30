@@ -9,7 +9,7 @@ namespace H1_ERP_System.CustomerFolder
     public class Customer : Person
     {
         public int CustomerId { get; private set; } //Bruger identifikation
-        public DateTime LastPurchase { get; set; } //Sidste købte dato
+        public string LastPurchase { get; set; } //Sidste købte dato
 
         /// <summary>
         /// For when a customer needs to be created
@@ -21,7 +21,7 @@ namespace H1_ERP_System.CustomerFolder
         /// <param name="address">String : The address of the customer</param>
         /// <param name="phoneNumber">String : The phone number of the customer</param>
         /// <param name="email">String : The customer's E-mail</param>
-        public Customer(int customerId, DateTime lastPurchase, string firstName, string lastName, Address address, string phoneNumber, string email) 
+        public Customer(int customerId, string lastPurchase, string firstName, string lastName, Address address, string phoneNumber, string email) 
             : base(firstName, lastName, address, phoneNumber, email)
         {
             CustomerId = customerId;
