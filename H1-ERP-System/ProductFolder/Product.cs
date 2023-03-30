@@ -17,6 +17,8 @@ namespace H1_ERP_System.ProductFolder
         public double PurchasePrice { get; set; } //Indkøbspris
         public string Location { get; private set; } //Lokation 
         public double QuantityInStock { get; set; } //Antal på lager
+        public double Profit { get; set; }
+        public string ProfitProcent { get; set; }
         public Units Unit { get; set; } //Enhed
 
         /// <summary>
@@ -38,6 +40,8 @@ namespace H1_ERP_System.ProductFolder
             this.PurchasePrice = purchasePrice;
             this.QuantityInStock = quantityInStock;
             this.Unit = unit;
+            Profit = CalculateProfit();
+            ProfitProcent = CalculateProfitMargin();
         }
 
         /// <summary>
