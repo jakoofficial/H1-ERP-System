@@ -1,4 +1,5 @@
 ﻿using H1_ERP_System.CustomerFolder;
+using H1_ERP_System.ProductFolder;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -29,6 +30,70 @@ namespace H1_ERP_System
                 }
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Retrieves a list with all the Customer from our database
+        /// </summary>
+        /// <returns></returns>
+        public static List<Customer> GetCustomerList()
+        {
+            List<Customer> cList = new List<Customer>();
+
+            string queryString = $"SELECT * FROM dbo.Customer";
+            using (SqlConnection connection = Instance.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+                Console.WriteLine(connection.State);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]));                       
+                    }
+                }
+            }
+            return cList;
+        }
+        /// <summary>
+        /// Inserts a product into our database
+        /// </summary>
+        /// <param name="c"> The Customer that will be added to our database </param>
+        public static void AddCustomerToDB(Customer c)
+        {
+            AddAddress(c.Address);
+            Address a = GetAddress("SELECT * FROM dbo.Address ORDER BY AddressId DESC");
+
+            string queryString = "INSERT INTO dbo.Customers " +
+                "(LastPurchased, FirstName, LastName, AddressId, PhoneNumber, Email) " +
+                "VALUES " +
+                $"('{c.LastPurchase}', '{c.FirstName}', '{c.LastName}', {a.Id}, '{c.PhoneNumber}', '{c.Email}');";
+            RunNonQuery(queryString);
+        }
+
+        /// <summary>
+        /// Updates a Customer in the database
+        /// </summary>
+        /// <param name="c"> The updated Customer </param>
+        public static void UpdateCustomer(Customer c)
+        {
+            UpdateAddress(c.Address);
+            string queryString = "UPDATE dbo.Customers " +
+                $"SET LastPurchased='{c.LastPurchase}', FirstName='{c.FirstName}', LastName='{c.LastName}', PhoneNumber={c.PhoneNumber}, Email='{c.Email}' " +
+                $"WHERE CustomerId={c.CustomerId}";
+            RunNonQuery(queryString);
+        }
+
+        /// <summary>
+        /// deletes a Customer from the database and the address the customer has in the database
+        /// </summary>
+        /// <param name="c"></param>
+        public static void DeleteCustomer(Customer c)
+        {
+            RemoveAddress(c.Address.Id);
+            string queryString = $"DELETE FROM dbo.Customers WHERE CustomerId={c.CustomerId}";
+            RunNonQuery(queryString);
         }
 
         public static Address GetAddress(string queryString)
