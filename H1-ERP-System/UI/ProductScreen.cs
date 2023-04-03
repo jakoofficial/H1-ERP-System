@@ -15,8 +15,7 @@ namespace H1_ERP_System.UI
 {
     public class ProductScreen : Screen
     {
-        public override string Title { get; set; } = "List of tasks to do";
-        public string ProductTitleSelected { get; set; } = "";
+        public override string Title { get; set; } = " Product List ";
         /// <summary>
         /// Creates a table of Products using ListPage.
         /// </summary>
