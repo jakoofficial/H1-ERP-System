@@ -18,9 +18,12 @@ namespace H1_ERP_System.UI
         {
         repeat:
 
-            Console.Clear();
             Console.WriteLine($"=== ERP ===");
-            Console.WriteLine("1. Companies in Database. \n2. Check specific company. \n3. Close the program.");
+            Console.Clear();
+            Console.WriteLine("1. Companies in Database. \n" +
+                              "2. Check Specific Company. \n" +
+                              "3. Check Product List. \n" +
+                              "4. Close The Program.");
             Console.Write("> ");
 
             int.TryParse(Console.ReadLine(), out int choice);
@@ -33,6 +36,9 @@ namespace H1_ERP_System.UI
                     Screen.Display(new CompanyInfoScreen());
                     break;
                 case 3:
+                    Screen.Display(new ProductScreen());
+                    break;
+                case 4:
                     Environment.Exit(0);
                     break;
                 default:
