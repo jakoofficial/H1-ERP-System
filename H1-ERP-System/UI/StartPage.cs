@@ -39,6 +39,9 @@ namespace H1_ERP_System.UI
                     Screen.Display(new ProductScreen());
                     break;
                 case 4:
+                    Screen.Display(new SalesScreen());
+                    break;
+                case 5:
                     Environment.Exit(0);
                     break;
                 default:

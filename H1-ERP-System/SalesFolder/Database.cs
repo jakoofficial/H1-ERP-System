@@ -11,7 +11,7 @@ using H1_ERP_System.ProductFolder;
 
 namespace H1_ERP_System
 {
-    public partial class Database 
+    public partial class Database
     {
         /// <summary>
         /// Gets SalesOrder data from database by using QueryString.
@@ -19,8 +19,9 @@ namespace H1_ERP_System
         /// </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>
-        public static SalesOrderHeader GetSalesOrders(string queryString)
+        public static List<SalesOrderHeader> GetSalesOrders(string queryString)
         {
+            List<SalesOrderHeader> orderList = new List<SalesOrderHeader>();
             using (SqlConnection connection = Instance.GetConnection())
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -29,11 +30,12 @@ namespace H1_ERP_System
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
-                    { 
-                        SalesOrderHeader order = new SalesOrderHeader((int)reader[0],(string)reader[1], (string)reader[2], GetCustomer($"SELECT * FROM dbo.Customers WHERE CustomerId = {(int)reader[3]}"), (OrderStage)(int)reader[4]);
+                    {
+                        SalesOrderHeader order = new SalesOrderHeader((int)reader[0], (string)reader[1], (string)reader[2], GetCustomer($"SELECT * FROM dbo.Customers WHERE CustomerId = {(int)reader[3]}"), (OrderStage)(int)reader[4]);
                         order.OrderLines = CreateSaleOrderList((int)reader[0]);
-                        return order;
+                        orderList.Add(order);
                     }
+                    return orderList;
                 }
                 return null;
             }
@@ -50,7 +52,7 @@ namespace H1_ERP_System
             string queryString = $"SELECT * FROM dbo.SaleOrderLines WHERE OrderNumber={SaleOrderHeaderID}";
             using (SqlConnection connection = Instance.GetConnection())
             {
-                
+
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 Console.WriteLine(connection.State);
@@ -87,7 +89,7 @@ namespace H1_ERP_System
 
         }
 
-        
+
         /// <summary>
         /// Updates a SaleOrderHeader by writing the new one in as "s"
         /// also updates OrderLines(the list of SaleOrderLines)
@@ -105,7 +107,7 @@ namespace H1_ERP_System
             {
                 string queryString2 = "UPDATE dbo.SalesOrderLines " +
                                      $"SET ProductId={item.Product.ItemNumber}, PurchasedDate='{item.PurchasedDate}', PurchasedAmount={item.PurchasedAmount}, OrderNumber={item.SalesOrderHeaderID} " +
-                                     $"WHERE SalesOrderId={item.Id}";
+                                     $"WHERE SalesOrderId={item.SaleOrderLineId}";
 
                 RunNonQuery(queryString2);
             }
@@ -121,7 +123,7 @@ namespace H1_ERP_System
 
             RunNonQuery(queryString);
         }
-        
+
 
     }
 }

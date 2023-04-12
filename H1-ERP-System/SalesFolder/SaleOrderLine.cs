@@ -11,7 +11,7 @@ namespace H1_ERP_System.SalesFolder
 {
     public class SaleOrderLine
     {
-        public int Id { get; set; }
+        public int SaleOrderLineId { get; set; }
         public Product Product { get; set; }
         public string PurchasedDate { get; set; }
         public int PurchasedAmount { get; set; }
@@ -20,7 +20,7 @@ namespace H1_ERP_System.SalesFolder
 
         public SaleOrderLine(int id, Product product, string purchasedDate, int purchasedAmount, int salesOrderHeaderID)
         {     
-            Id = id;
+            SaleOrderLineId = id;
             Product = product;
             PurchasedDate = purchasedDate;
             PurchasedAmount = purchasedAmount;
