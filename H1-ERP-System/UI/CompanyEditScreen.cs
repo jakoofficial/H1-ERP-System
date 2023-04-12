@@ -54,7 +54,7 @@ namespace H1_ERP_System.UI
 
             Database.UpdateCompany(cp);
             
-            Address adr = Database.GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {cp.Id}");
+            Address adr = Database.GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {cp.AddressId}");
             adr.StreetNumber = cp.StreetNumber; 
             adr.Street = cp.Street;
             adr.City = cp.City; 

@@ -24,7 +24,8 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     {
-                        Customer customer = new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]);
+                        Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}");
+                        Customer customer = new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[5], (string)reader[6], adr.AddressId, adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country);
                         return customer;
                     }
                 }
@@ -40,17 +41,18 @@ namespace H1_ERP_System
         {
             List<Customer> cList = new List<Customer>();
 
-            string queryString = $"SELECT * FROM dbo.Customer";
+            string queryString = $"SELECT * FROM dbo.Customers";
             using (SqlConnection connection = Instance.GetConnection())
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]));                       
+                        Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}");
+                        cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[5], (string)reader[6], adr.AddressId, adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country));
+                        //cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]));                       
                     }
                 }
             }
@@ -62,13 +64,13 @@ namespace H1_ERP_System
         /// <param name="c"> The Customer that will be added to our database </param>
         public static void AddCustomerToDB(Customer c)
         {
-            AddAddress(c.Address);
+            AddAddress(new Address(0, c.Street, c.StreetNumber, c.PostalCode, c.City, c.Country));
             Address a = GetAddress("SELECT * FROM dbo.Address ORDER BY AddressId DESC");
 
             string queryString = "INSERT INTO dbo.Customers " +
                 "(LastPurchased, FirstName, LastName, AddressId, PhoneNumber, Email) " +
                 "VALUES " +
-                $"('{c.LastPurchase}', '{c.FirstName}', '{c.LastName}', {a.Id}, '{c.PhoneNumber}', '{c.Email}');";
+                $"('{c.LastPurchase}', '{c.FirstName}', '{c.LastName}', {a.AddressId}, '{c.PhoneNumber}', '{c.Email}');";
             RunNonQuery(queryString);
         }
 
@@ -78,7 +80,7 @@ namespace H1_ERP_System
         /// <param name="c"> The updated Customer </param>
         public static void UpdateCustomer(Customer c)
         {
-            UpdateAddress(c.Address);
+            UpdateAddress(new Address(0, c.Street, c.StreetNumber, c.PostalCode, c.City, c.Country));
             string queryString = "UPDATE dbo.Customers " +
                 $"SET LastPurchased='{c.LastPurchase}', FirstName='{c.FirstName}', LastName='{c.LastName}', PhoneNumber={c.PhoneNumber}, Email='{c.Email}' " +
                 $"WHERE CustomerId={c.CustomerId}";
@@ -91,7 +93,7 @@ namespace H1_ERP_System
         /// <param name="c"></param>
         public static void DeleteCustomer(Customer c)
         {
-            RemoveAddress(c.Address.Id);
+            RemoveAddress(c.AddressId);
             string queryString = $"DELETE FROM dbo.Customers WHERE CustomerId={c.CustomerId}";
             RunNonQuery(queryString);
         }
@@ -139,7 +141,7 @@ namespace H1_ERP_System
         {
             string queryString = "UPDATE dbo.Address " +
                 $"SET Street='{adr.Street}', StreetNumber='{adr.StreetNumber}', PostalCode='{adr.PostalCode}', City='{adr.City}', Country='{adr.Country}'" +
-                $"WHERE AddressId={adr.Id}";
+                $"WHERE AddressId={adr.AddressId}";
             RunNonQuery(queryString);
         }
 
