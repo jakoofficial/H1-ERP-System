@@ -32,7 +32,8 @@ namespace H1_ERP_System
                     {
                         while (reader.Read())
                         {
-                            Company cp = new Company((int)reader[0], (string)reader[1], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}"), (Company.Currencies)(int)reader[3]);
+                            Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}");
+                            Company cp = new Company((int)reader[0], (string)reader[1], (Company.Currencies)(int)reader[3], adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country);
                             cList.Add(cp);
                         }
                     }
@@ -48,12 +49,12 @@ namespace H1_ERP_System
         /// <param name="cp">The Company that is being added</param>
         public static void AddCompany(Company cp)
         {
-            AddAddress(cp.Address);
+            AddAddress(new Address(0, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
             Address a = GetAddress("SELECT * FROM dbo.Address ORDER BY AddressId DESC");
 
             string quesryString = "INSERT INTO dbo.Companies " +
                 "(CompanyName, AddressId, Currency) " +
-                $"Values ('{cp.CompanyName}', {a.Id}, {(int)cp.Currency})";
+                $"Values ('{cp.CompanyName}', {a.AddressId}, {(int)cp.Currency})";
             RunNonQuery(quesryString);
         }
 
@@ -64,8 +65,8 @@ namespace H1_ERP_System
         public static void UpdateCompany(Company cp)
         {
             string queryString = "UPDATE dbo.Companies " +
-                $"SET CompanyName='{cp.CompanyName}', AddressId={cp.Address.Id}, Currency={(int)cp.Currency}" +
-                $"WHERE CompanyId={cp.Id}";
+                $"SET CompanyName='{cp.CompanyName}', AddressId={cp.AddressId}, Currency={(int)cp.Currency}" +
+                $"WHERE CompanyId={cp.CompanyId}";
             RunNonQuery(queryString);
         }
 
@@ -75,8 +76,8 @@ namespace H1_ERP_System
         /// <param name="cp"></param>
         public static void RemoveCompany(Company cp)
         {
-            RemoveAddress(cp.Address.Id);
-            string queryString = $"DELETE FROM dbo.Companies WHERE CompanyId = {cp.Id}";
+            RemoveAddress(cp.AddressId);
+            string queryString = $"DELETE FROM dbo.Companies WHERE CompanyId = {cp.CompanyId}";
             RunNonQuery(queryString);
         }
     }
