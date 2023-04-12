@@ -52,10 +52,10 @@ namespace H1_ERP_System
             AddAddress(new Address(0, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
             Address a = GetAddress("SELECT * FROM dbo.Address ORDER BY AddressId DESC");
 
-            string quesryString = "INSERT INTO dbo.Companies " +
+            string queryString = "INSERT INTO dbo.Companies " +
                 "(CompanyName, AddressId, Currency) " +
                 $"Values ('{cp.CompanyName}', {a.AddressId}, {(int)cp.Currency})";
-            RunNonQuery(quesryString);
+            RunNonQuery(queryString);
         }
 
         /// <summary>
