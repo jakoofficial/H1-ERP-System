@@ -16,9 +16,9 @@ namespace H1_ERP_System.UI
     public class CompanyEditScreen : Screen
     {
         public override string Title { get; set; } = " Edit Company ";
-        public Company CP { get; set; }
+        public Company? CP { get; set; }
 
-        public CompanyEditScreen(Company cp) 
+        public CompanyEditScreen(Company cp = null) 
         { 
             CP = cp;
         }
@@ -30,7 +30,7 @@ namespace H1_ERP_System.UI
         }
 
         /// <summary>
-        /// 
+        /// Allows the user to edit the company's information including the address 
         /// </summary>
         /// <param name="cp"></param>
         public static void EditCompany(Company cp)
@@ -54,7 +54,7 @@ namespace H1_ERP_System.UI
 
             Database.UpdateCompany(cp);
             
-            Address adr = Database.GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {cp.Address.Id}");
+            Address adr = Database.GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {cp.Id}");
             adr.StreetNumber = cp.StreetNumber; 
             adr.Street = cp.Street;
             adr.City = cp.City; 
