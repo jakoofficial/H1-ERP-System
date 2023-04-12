@@ -30,10 +30,15 @@ namespace H1_ERP_System.UI
             companyList.AddColumn("Country", "Country");
             companyList.AddColumn("Currency", "Currency");
 
-            companyList.Draw();
+            //companyList.Draw();
+
+            Company selected = companyList.Select();
+            Screen.Display(new CompanyEditScreen(selected));
+            //CompanyEditScreen.EditCompany(selected);
+
             ReturnToStart();
         }
-        public void ReturnToStart()
+        public static void ReturnToStart()
         {
             Console.WriteLine("Press any key to go back...");
             Console.ReadKey();
