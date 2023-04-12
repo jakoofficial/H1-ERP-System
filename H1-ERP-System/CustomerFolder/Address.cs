@@ -8,7 +8,7 @@ namespace H1_ERP_System.CustomerFolder
 {
     public class Address
     {
-        public int Id { get; set; }
+        public int AddressId { get; set; }
         public string Street { get; set; } //Vej
         public string StreetNumber { get; set; } //Vejnummer
         public string PostalCode { get; set; } //Post nummer
@@ -25,7 +25,7 @@ namespace H1_ERP_System.CustomerFolder
         /// <param name="country">String : Country where address is located</param>
         public Address(int id, string street, string streetNumber, string postalCode, string city, string country) 
         {
-            Id = id;
+            AddressId = id;
             Street = street;
             StreetNumber = streetNumber;
             PostalCode = postalCode;
