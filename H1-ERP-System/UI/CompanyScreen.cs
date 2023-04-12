@@ -29,11 +29,20 @@ namespace H1_ERP_System.UI
             companyList.AddColumn("Company Name", "CompanyName");
             companyList.AddColumn("Country", "Country");
             companyList.AddColumn("Currency", "Currency");
+            companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
 
-            companyList.Draw();
+            //companyList.Draw();
+            Console.WriteLine("Press F2 For ");
+                Company selected = companyList.Select();
+            if (Console.ReadKey().Key == ConsoleKey.F2)
+            {
+                Screen.Display(new CompanyEditScreen(selected));
+            }
+            //CompanyEditScreen.EditCompany(selected);
+
             ReturnToStart();
         }
-        public void ReturnToStart()
+        public static void ReturnToStart()
         {
             Console.WriteLine("Press any key to go back...");
             Console.ReadKey();
