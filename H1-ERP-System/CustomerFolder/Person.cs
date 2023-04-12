@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace H1_ERP_System.CustomerFolder
 {
-    abstract public class Person
+    abstract public class Person : Address
     {
         public string FirstName { get; private set; } //Fornavn
-        public string LastName { get; private set; } //Eftername
-        public Address Address { get; private set; } //Addressen
+        public string LastName { get; private set; } //Efternavn
         public string PhoneNumber { get; private set; } //Telefon nummer
         public string Email { get; private set; } //E-mail
 
@@ -22,14 +21,17 @@ namespace H1_ERP_System.CustomerFolder
         /// <param name="address">Address : The area of which the person lives</param>
         /// <param name="phoneNumber">String : The phone number of the person</param>
         /// <param name="email">String : E-mail the person uses</param>
-        public Person(string firstName, string lastName, Address address, string phoneNumber, string email) 
-        { 
-            FirstName = firstName;
-            LastName = lastName;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            Email = email;
-        }
+        
+        public Person
+
+        //public Person(string firstName, string lastName, Address address, string phoneNumber, string email) 
+        //{ 
+        //    FirstName = firstName;
+        //    LastName = lastName;
+        //    Address = address;
+        //    PhoneNumber = phoneNumber;
+        //    Email = email;
+        //}
 
         /// <summary>
         /// Gets the name of the person

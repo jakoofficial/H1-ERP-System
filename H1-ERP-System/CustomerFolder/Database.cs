@@ -40,12 +40,11 @@ namespace H1_ERP_System
         {
             List<Customer> cList = new List<Customer>();
 
-            string queryString = $"SELECT * FROM dbo.Customer";
+            string queryString = $"SELECT * FROM dbo.Customers";
             using (SqlConnection connection = Instance.GetConnection())
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -68,7 +67,7 @@ namespace H1_ERP_System
             string queryString = "INSERT INTO dbo.Customers " +
                 "(LastPurchased, FirstName, LastName, AddressId, PhoneNumber, Email) " +
                 "VALUES " +
-                $"('{c.LastPurchase}', '{c.FirstName}', '{c.LastName}', {a.Id}, '{c.PhoneNumber}', '{c.Email}');";
+                $"('{c.LastPurchase}', '{c.FirstName}', '{c.LastName}', {a.AddressId}, '{c.PhoneNumber}', '{c.Email}');";
             RunNonQuery(queryString);
         }
 
@@ -91,7 +90,7 @@ namespace H1_ERP_System
         /// <param name="c"></param>
         public static void DeleteCustomer(Customer c)
         {
-            RemoveAddress(c.Address.Id);
+            RemoveAddress(c.Address.AddressId);
             string queryString = $"DELETE FROM dbo.Customers WHERE CustomerId={c.CustomerId}";
             RunNonQuery(queryString);
         }
@@ -139,7 +138,7 @@ namespace H1_ERP_System
         {
             string queryString = "UPDATE dbo.Address " +
                 $"SET Street='{adr.Street}', StreetNumber='{adr.StreetNumber}', PostalCode='{adr.PostalCode}', City='{adr.City}', Country='{adr.Country}'" +
-                $"WHERE AddressId={adr.Id}";
+                $"WHERE AddressId={adr.AddressId}";
             RunNonQuery(queryString);
         }
 

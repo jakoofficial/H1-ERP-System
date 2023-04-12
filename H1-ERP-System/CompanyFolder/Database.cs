@@ -53,7 +53,7 @@ namespace H1_ERP_System
 
             string quesryString = "INSERT INTO dbo.Companies " +
                 "(CompanyName, AddressId, Currency) " +
-                $"Values ('{cp.CompanyName}', {a.Id}, {(int)cp.Currency})";
+                $"Values ('{cp.CompanyName}', {a.AddressId}, {(int)cp.Currency})";
             RunNonQuery(quesryString);
         }
 
@@ -64,7 +64,7 @@ namespace H1_ERP_System
         public static void UpdateCompany(Company cp)
         {
             string queryString = "UPDATE dbo.Companies " +
-                $"SET CompanyName='{cp.CompanyName}', AddressId={cp.Address.Id}, Currency={(int)cp.Currency}" +
+                $"SET CompanyName='{cp.CompanyName}', AddressId={cp.Address.AddressId}, Currency={(int)cp.Currency}" +
                 $"WHERE CompanyId={cp.Id}";
             RunNonQuery(queryString);
         }
@@ -75,7 +75,7 @@ namespace H1_ERP_System
         /// <param name="cp"></param>
         public static void RemoveCompany(Company cp)
         {
-            RemoveAddress(cp.Address.Id);
+            RemoveAddress(cp.Address.AddressId);
             string queryString = $"DELETE FROM dbo.Companies WHERE CompanyId = {cp.Id}";
             RunNonQuery(queryString);
         }
