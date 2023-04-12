@@ -8,6 +8,7 @@ namespace H1_ERP_System.CustomerFolder
 {
     abstract public class Person : Address
     {
+
         public string FirstName { get; private set; } //Fornavn
         public string LastName { get; private set; } //Efternavn
         public string PhoneNumber { get; private set; } //Telefon nummer
@@ -21,8 +22,14 @@ namespace H1_ERP_System.CustomerFolder
         /// <param name="address">Address : The area of which the person lives</param>
         /// <param name="phoneNumber">String : The phone number of the person</param>
         /// <param name="email">String : E-mail the person uses</param>
+        protected Person(string firstName, string lastName, string phoneNumber, string email, int addressId, string street, string streetNumber, string postalCode, string city, string country) : base(addressId, street, streetNumber, postalCode, city, country)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            PhoneNumber = phoneNumber;
+            Email = email;
+        }
         
-        public Person
 
         //public Person(string firstName, string lastName, Address address, string phoneNumber, string email) 
         //{ 

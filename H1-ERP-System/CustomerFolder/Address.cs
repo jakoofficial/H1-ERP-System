@@ -23,9 +23,9 @@ namespace H1_ERP_System.CustomerFolder
         /// <param name="postalCode">String : Postal code for the address</param>
         /// <param name="city">String : City where address is located</param>
         /// <param name="country">String : Country where address is located</param>
-        public Address(int id, string street, string streetNumber, string postalCode, string city, string country) 
+        public Address(int addressId, string street, string streetNumber, string postalCode, string city, string country) 
         {
-            AddressId = id;
+            AddressId = addressId;
             Street = street;
             StreetNumber = streetNumber;
             PostalCode = postalCode;

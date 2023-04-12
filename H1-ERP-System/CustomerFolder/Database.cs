@@ -24,7 +24,8 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     {
-                        Customer customer = new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]);
+                        Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}");
+                        Customer customer = new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[5], (string)reader[6], adr.AddressId, adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country);
                         return customer;
                     }
                 }
@@ -49,7 +50,9 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     {
-                        cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]));                       
+                        Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}");
+                        cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[5], (string)reader[6], adr.AddressId, adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country));
+                        //cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]));                       
                     }
                 }
             }
@@ -61,7 +64,7 @@ namespace H1_ERP_System
         /// <param name="c"> The Customer that will be added to our database </param>
         public static void AddCustomerToDB(Customer c)
         {
-            AddAddress(c.Address);
+            AddAddress(new Address(0, c.Street, c.StreetNumber, c.PostalCode, c.City, c.Country));
             Address a = GetAddress("SELECT * FROM dbo.Address ORDER BY AddressId DESC");
 
             string queryString = "INSERT INTO dbo.Customers " +
@@ -77,7 +80,7 @@ namespace H1_ERP_System
         /// <param name="c"> The updated Customer </param>
         public static void UpdateCustomer(Customer c)
         {
-            UpdateAddress(c.Address);
+            UpdateAddress(new Address(0, c.Street, c.StreetNumber, c.PostalCode, c.City, c.Country));
             string queryString = "UPDATE dbo.Customers " +
                 $"SET LastPurchased='{c.LastPurchase}', FirstName='{c.FirstName}', LastName='{c.LastName}', PhoneNumber={c.PhoneNumber}, Email='{c.Email}' " +
                 $"WHERE CustomerId={c.CustomerId}";
@@ -90,7 +93,7 @@ namespace H1_ERP_System
         /// <param name="c"></param>
         public static void DeleteCustomer(Customer c)
         {
-            RemoveAddress(c.Address.AddressId);
+            RemoveAddress(c.AddressId);
             string queryString = $"DELETE FROM dbo.Customers WHERE CustomerId={c.CustomerId}";
             RunNonQuery(queryString);
         }
