@@ -7,18 +7,23 @@ using System.Threading.Tasks;
 
 namespace H1_ERP_System.CompanyFolder
 {
-    public class Company
+    public class Company : Address
     {
-        public int Id { get; set; }
+        public int CompanyId { get; set; }
         public enum Currencies { DKK, USD, EUR }
         public string CompanyName { get; set; } //Firmanavn
-        public Address Address { get; set; }
-        public string Country { get; private set; }
-        public string City { get; private set; }
-        public string PostalCode { get; private set; }
-        public string StreetNumber { get; private set; }
-        public string Street { get; private set; }
+        //public Address Address { get; set; }
+        //public string Country { get; private set; }
+        //public string City { get; private set; }
+        //public string PostalCode { get; private set; }
+        //public string StreetNumber { get; private set; }
+        //public string Street { get; private set; }
         public Currencies Currency { get; set; } //Valuta
+
+        public Company() : base(0,"", "", "", "", "")
+        {
+
+        }
 
         /// <summary>
         /// 
@@ -26,17 +31,26 @@ namespace H1_ERP_System.CompanyFolder
         /// <param name="companyName"></param>
         /// <param name="address"></param>
         /// <param name="currency"> Choose between DKK, USD or EUR. </param>
-        public Company(int id, string companyName, Address address, Currencies currency)
+        public Company(int id, string companyName, Currencies currency, string street, string streetNumber, string postalCode, string city, string country) 
+            : base(id, street, streetNumber, postalCode, city, country)
         {
-            Id = id;
+            CompanyId = id;
             CompanyName = companyName;
-            Address = address;
-            Country = address.Country;
-            City = address.City;
-            PostalCode = address.PostalCode;
-            StreetNumber = address.StreetNumber;
-            Street = address.Street;
             Currency = currency;
         }
+
+
+        //public Company(int id, string companyName, Address address, Currencies currency)
+        //{
+        //    Id = id;
+        //    CompanyName = companyName;
+        //    Address = address;
+        //    Country = address.Country;
+        //    City = address.City;
+        //    PostalCode = address.PostalCode;
+        //    StreetNumber = address.StreetNumber;
+        //    Street = address.Street;
+        //    Currency = currency;
+        //}
     }
 }
