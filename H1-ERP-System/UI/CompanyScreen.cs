@@ -30,6 +30,7 @@ namespace H1_ERP_System.UI
             companyList.AddColumn("Country", "Country");
             companyList.AddColumn("Currency", "Currency");
             companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
+            companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.CreateCompany);
 
             //companyList.Draw();
             Console.WriteLine("F1 | Edit highlighted\n" +

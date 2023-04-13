@@ -20,19 +20,24 @@ namespace H1_ERP_System.CompanyFolder
         //public string Street { get; private set; }
         public Currencies Currency { get; set; } //Valuta
 
+        public Company() : base(0,"", "", "", "", "")
+        {
+
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="companyName"></param>
         /// <param name="address"></param>
         /// <param name="currency"> Choose between DKK, USD or EUR. </param>
-        public Company(int id, string companyName, Currencies currency, string street, string streetNumber, string postalCode, string city, string country) : base(id, street, streetNumber, postalCode, city, country)
+        public Company(int id, string companyName, Currencies currency, string street, string streetNumber, string postalCode, string city, string country) 
+            : base(id, street, streetNumber, postalCode, city, country)
         {
             CompanyId = id;
             CompanyName = companyName;
             Currency = currency;
         }
-
 
 
         //public Company(int id, string companyName, Address address, Currencies currency)
