@@ -26,7 +26,41 @@ namespace H1_ERP_System.UI
         protected override void Draw()
         {
             Clear(this);
-            EditCompany(CP);
+            //EditCompany(CP);
+        }
+
+        public static void CreateCompany(Company cp)
+        {
+            Form<Company> cpEditor = new Form<Company>();
+            cp = new Company();
+
+            cpEditor.TextBox($"Company Name ", "CompanyName");
+            cpEditor.TextBox("Country", "Country");
+            cpEditor.TextBox("City", "City");
+            cpEditor.TextBox("PostalCode", "PostalCode");
+            cpEditor.TextBox("StreetNumber", "StreetNumber");
+            cpEditor.TextBox("Street", "Street");
+            cpEditor.SelectBox($"Currency", "Currency");
+            cpEditor.AddOption($"Currency", "EUR", Company.Currencies.EUR);
+            cpEditor.AddOption($"Currency", "USD", Company.Currencies.USD);
+            cpEditor.AddOption($"Currency", "DKK", Company.Currencies.DKK);
+
+            Console.WriteLine("Press ESC When Done\n");
+            cpEditor.Edit(cp);
+
+            //Address adr = new Address(0, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country);
+            //adr.StreetNumber = cp.StreetNumber;
+            //adr.Street = cp.Street;
+            //adr.City = cp.City;
+            //adr.PostalCode = cp.PostalCode;
+            //adr.Country = cp.Country;
+
+            Database.AddCompany(new Company(0, cp.CompanyName, cp.Currency, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
+
+            Clear();
+            Console.WriteLine("\n Successfully Updated");
+            Console.ReadLine();
+            Screen.Display(new CompanyScreen());
         }
 
         /// <summary>
