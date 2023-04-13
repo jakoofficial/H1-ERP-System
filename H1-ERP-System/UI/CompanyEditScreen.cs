@@ -26,13 +26,44 @@ namespace H1_ERP_System.UI
         protected override void Draw()
         {
             Clear(this);
-            EditCompany(CP);
+            //EditCompany(CP);
+        }
+
+        /// <summary>
+        /// Allows the creation of a new Company with new Address
+        /// </summary>
+        /// <param name="cp">Company</param>
+        public static void CreateCompany(Company cp)
+        {
+            Form<Company> cpEditor = new Form<Company>();
+            cp = new Company();
+
+            cpEditor.TextBox($"Company Name ", "CompanyName");
+            cpEditor.TextBox("Country", "Country");
+            cpEditor.TextBox("City", "City");
+            cpEditor.TextBox("PostalCode", "PostalCode");
+            cpEditor.TextBox("StreetNumber", "StreetNumber");
+            cpEditor.TextBox("Street", "Street");
+            cpEditor.SelectBox($"Currency", "Currency");
+            cpEditor.AddOption($"Currency", "EUR", Company.Currencies.EUR);
+            cpEditor.AddOption($"Currency", "USD", Company.Currencies.USD);
+            cpEditor.AddOption($"Currency", "DKK", Company.Currencies.DKK);
+
+            Console.WriteLine("Press ESC When Done\n");
+            cpEditor.Edit(cp);
+
+            Database.AddCompany(new Company(0, cp.CompanyName, cp.Currency, cp.AddressId, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
+
+            Clear();
+            Console.WriteLine("\n Successfully Created");
+            Console.ReadLine();
+            Screen.Display(new CompanyScreen());
         }
 
         /// <summary>
         /// Allows the user to edit the company's information including the address 
         /// </summary>
-        /// <param name="cp"></param>
+        /// <param name="cp">Company</param>
         public static void EditCompany(Company cp)
         {
             //var props = new Dictionary<string, object>();
@@ -68,5 +99,13 @@ namespace H1_ERP_System.UI
             Console.ReadLine();
             Screen.Display(new CompanyScreen());
         }
+        //static bool CheckEmpty(Company c)
+        //{//https://stackoverflow.com/questions/41275797/check-if-any-property-of-class-is-null
+        // //Comment by Rob (Dec 22, 2016)
+        //    bool isNull = c.GetType().GetProperties().All(p => p.GetValue(c).ToString() != "");
+        //    return !isNull;
+        //}
+
+        
     }
 }

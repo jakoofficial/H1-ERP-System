@@ -25,7 +25,7 @@ namespace H1_ERP_System.UI
             {
                 companyList.Add(l[i]);
             }
-            companyList.AddColumn("ID", "Id", 5);
+            companyList.AddColumn("ID", "CompanyId", 5);
             companyList.AddColumn("Company Name", "CompanyName");
             //companyList.Draw();
 

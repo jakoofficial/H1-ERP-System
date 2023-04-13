@@ -15,12 +15,13 @@ namespace H1_ERP_System.UI
 {
     public class ProductScreen : Screen
     {
-        public override string Title { get; set; } = " Product List ";
+        public override string Title { get; set; }
         /// <summary>
         /// Creates a table of Products using ListPage.
         /// </summary>
         protected override void Draw()
         {
+            Title = " Product List  ";
             Clear(this);
             List<Product> productList = Database.GetProductslist();
             ListPage<Product> productListPage = new ListPage<Product>();
@@ -37,8 +38,6 @@ namespace H1_ERP_System.UI
             Product selected = productListPage.Select();
             if (selected != null)
             {
-                Console.WriteLine("You selected: " + selected.Name);
-                Clear(this);
                 ProductDetails(selected); 
             }
             else
@@ -51,6 +50,7 @@ namespace H1_ERP_System.UI
         /// <param name="selected"></param>
         public void ProductDetails(Product selected)
         {
+            Title = $" {selected.Name} ";
             Clear(this);
             ListPage<Product> SelectedproductListPage = new ListPage<Product>();
              
