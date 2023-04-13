@@ -17,9 +17,20 @@ namespace H1_ERP_System.SalesFolder
         public string TimeCreated { get; set; } // Oprettelsetidspunkt
         public string ImplementationTime { get; set; } //Gennemførelsetidspunkt
         public Customer CustomerId { get; set; } //Kundenummer
+        public int Customer_Id
+        {
+            get { return CustomerId.CustomerId; }
+            set { }
+        } //Kundenummer
+        public string Customer_FullName
+        {
+            get { return CustomerId.FullName; }
+            set { }
+        } //Kunde Navn
+        public double FullPrice { get; set; } //Kunde Navn
         public OrderStage Stage { get; set; } //Tilstand
-        public List<SaleOrderLine> OrderLines { get; set; } = new List<SaleOrderLine>(); //En liste af orderlinjer
-        
+        public List<SaleOrderLine> OrderLines { get; set; } //En liste af orderlinjer
+
         /// <summary>
         /// Constructor for SalesOrderHeader
         /// </summary>
@@ -28,17 +39,16 @@ namespace H1_ERP_System.SalesFolder
         /// <param name="implementationtime"></param>
         /// <param name="customerId"></param>
         /// <param name="stage"> Stage ; different stages for the order. </param>
-        public SalesOrderHeader(int ordernumber, string timecreated, string implementationtime, Customer customerId, OrderStage stage)
+        public SalesOrderHeader(int ordernumber, string timecreated, string implementationtime, Customer customerId, OrderStage stage, List<SaleOrderLine> orderLines)
         {
             OrderNumber = ordernumber;
             TimeCreated = timecreated;
             ImplementationTime = implementationtime;
             CustomerId = customerId;
             Stage = stage;
-            
+            OrderLines = orderLines;
+            FullPrice = SaleOrderPrice();
         }
-
-       
 
         /// <summary>
         /// calculates all the prices in the list and returns the result
@@ -47,13 +57,13 @@ namespace H1_ERP_System.SalesFolder
         /// <returns> The price for all items in total </returns>
         public double SaleOrderPrice()
         {
-           double price = 0;
-           foreach (SaleOrderLine line in OrderLines)
+            double price = 0;
+            foreach (SaleOrderLine line in OrderLines)
             {
                 price += line.FullPriceForLine();
             }
             return price;
         }
-        
+
     }
 }
