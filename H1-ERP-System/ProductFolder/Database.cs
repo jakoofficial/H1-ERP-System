@@ -42,8 +42,7 @@ namespace H1_ERP_System
                     reader.Read();
                     Product p = new Product((int)reader[0], (string)reader[1], (string)reader[2], (double)reader[3], (double)reader[4], (double)reader[6], (Product.Units)(int)reader[7]);
                     p.SetLocation((string)reader[5]);
-                    Console.WriteLine($"Test {p.Unit}");
-                    Console.WriteLine(String.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}", reader[0], reader[1], reader[2], reader[3], reader[4], reader[5], reader[6], reader[7]));
+                    //Console.WriteLine(String.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}", reader[0], reader[1], reader[2], reader[3], reader[4], reader[5], reader[6], reader[7]));
                     return p;
                 }
             }

@@ -26,13 +26,13 @@ namespace H1_ERP_System
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Console.WriteLine(connection.State);
+                //Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        SalesOrderHeader order = new SalesOrderHeader((int)reader[0], (string)reader[1], (string)reader[2], GetCustomer($"SELECT * FROM dbo.Customers WHERE CustomerId = {(int)reader[3]}"), (OrderStage)(int)reader[4]);
-                        order.OrderLines = CreateSaleOrderList((int)reader[0]);
+                        SalesOrderHeader order = new SalesOrderHeader((int)reader[0], (string)reader[1], (string)reader[2], GetCustomer($"SELECT * FROM dbo.Customers WHERE CustomerId = {(int)reader[3]}"), (OrderStage)(int)reader[4], CreateSaleOrderList((int)reader[0]));
+                        //order.OrderLines = CreateSaleOrderList((int)reader[0]);
                         orderList.Add(order);
                     }
                     return orderList;
@@ -49,22 +49,22 @@ namespace H1_ERP_System
         public static List<SaleOrderLine> CreateSaleOrderList(int SaleOrderHeaderID)
         {
             List<SaleOrderLine> order = new List<SaleOrderLine>();
-            string queryString = $"SELECT * FROM dbo.SaleOrderLines WHERE OrderNumber={SaleOrderHeaderID}";
+            string queryString = $"SELECT * FROM dbo.SalesOrderLines WHERE OrderNumber={SaleOrderHeaderID}";
             using (SqlConnection connection = Instance.GetConnection())
             {
 
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Console.WriteLine(connection.State);
+                //Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         order.Add(new SaleOrderLine((int)reader[0], GetProductFromID((int)reader[1]), (string)reader[2], (int)reader[3], (int)reader[4]));
-                        return order;
                     }
                 }
-                return null;
+                return order;
+                //return null;
             }
         }
 
