@@ -39,9 +39,9 @@ namespace H1_ERP_System.SalesFolder
         /// <param name="implementationtime"></param>
         /// <param name="customerId"></param>
         /// <param name="stage"> Stage ; different stages for the order. </param>
-        public SaleOrderHeader(int ordernumber, string timecreated, string implementationtime, Customer customerId, OrderStage stage, List<SaleOrderLine> orderLines)
+        public SaleOrderHeader(int saleOrderId, string timecreated, string implementationtime, Customer customerId, OrderStage stage, List<SaleOrderLine> orderLines)
         {
-            SaleOrderId = ordernumber;
+            SaleOrderId = saleOrderId;
             TimeCreated = timecreated;
             ImplementationTime = implementationtime;
             CustomerId = customerId;
