@@ -11,8 +11,12 @@ namespace H1_ERP_System.UI
     public class CustomerScreen : Screen
     {
         public override string Title { get; set; } = "Customerlist";
+        /// <summary>
+        /// Draws a list with all the Customers
+        /// </summary>
         protected override void Draw()
         {
+            Title = "Customerlist";
             Clear(this);
             ListPage<Customer> customerListPage = new ListPage<Customer>();
             List<Customer> list = Database.GetCustomerList();
@@ -22,19 +26,43 @@ namespace H1_ERP_System.UI
             }
 
             customerListPage.AddColumn("Customers ID", "CustomerId");
-            customerListPage.AddColumn("Last purchase", "LastPurchase");
-            customerListPage.AddColumn("Firstname", "FirstName");
-            customerListPage.AddColumn("LastName", "LastName");
-            customerListPage.AddColumn("Address", "Address");
+            customerListPage.AddColumn("Name", "FullName");
             customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
             customerListPage.AddColumn("Email", "Email");
 
-            customerListPage.Select();
-            //if (selected != null)
-            //{
-            //    Console.WriteLine($"You selected {selected.FirstName} {selected.LastName}");
-            //    Clear(this);
-            //}
+            Customer selected = customerListPage.Select();
+            if (selected != null)
+            {
+                Title = $"{selected.FirstName} {selected.LastName}";
+                Clear(this);
+                CustomerDeatials(selected);
+            }
+            else 
+            {
+                Quit();
+            }
+        }
+
+        /// <summary>
+        /// Shows the details for a selected Customer
+        /// </summary>
+        /// <param name="selected"></param>
+        public void CustomerDeatials(Customer selected)
+        {
+            ListPage<Customer> selectedCustomerListPage = new ListPage<Customer>();
+            selectedCustomerListPage.Add(selected);
+
+            selectedCustomerListPage.AddColumn("Name", "FullName");
+            selectedCustomerListPage.AddColumn("Street", "Street");
+            selectedCustomerListPage.AddColumn("Street number", "StreetNumber");
+            selectedCustomerListPage.AddColumn("PostalCode", "PostalCode");
+            selectedCustomerListPage.AddColumn("City", "City");
+            selectedCustomerListPage.AddColumn("Country", "Country");
+            selectedCustomerListPage.AddColumn("Last purchase", "LastPurchase");
+            selectedCustomerListPage.Draw();
+
+            Console.ReadKey();
+            Quit();
         }
     }
 }
