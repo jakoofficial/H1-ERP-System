@@ -14,14 +14,20 @@ namespace H1_ERP_System.CustomerFolder
         public string PhoneNumber { get; private set; } //Telefon nummer
         public string Email { get; private set; } //E-mail
 
+
         /// <summary>
         /// Used for creating a person
         /// </summary>
-        /// <param name="firstName">String : The first name of the person</param>
-        /// <param name="lastName">String : The last name of the person</param>
-        /// <param name="address">Address : The area of which the person lives</param>
-        /// <param name="phoneNumber">String : The phone number of the person</param>
-        /// <param name="email">String : E-mail the person uses</param>
+        /// <param name="firstName">The first name of the person</param>
+        /// <param name="lastName">The last name of the person</param>
+        /// <param name="phoneNumber">The phone number of the person</param>
+        /// <param name="email">E-mail the person uses</param>
+        /// <param name="addressId"></param>
+        /// <param name="street">The street address</param>
+        /// <param name="streetNumber">the street number</param>
+        /// <param name="postalCode">Postal code for the address</param>
+        /// <param name="city">City where address is located</param>
+        /// <param name="country">Country where address is located</param>
         protected Person(string firstName, string lastName, string phoneNumber, string email, int addressId, string street, string streetNumber, string postalCode, string city, string country) : base(addressId, street, streetNumber, postalCode, city, country)
         {
             FirstName = firstName;
@@ -31,14 +37,6 @@ namespace H1_ERP_System.CustomerFolder
         }
         
 
-        //public Person(string firstName, string lastName, Address address, string phoneNumber, string email) 
-        //{ 
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    Address = address;
-        //    PhoneNumber = phoneNumber;
-        //    Email = email;
-        //}
 
         /// <summary>
         /// Gets the name of the person
