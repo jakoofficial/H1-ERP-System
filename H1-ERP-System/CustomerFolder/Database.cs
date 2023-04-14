@@ -19,7 +19,7 @@ namespace H1_ERP_System
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Console.WriteLine(connection.State);
+                //Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())

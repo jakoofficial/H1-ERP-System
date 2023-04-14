@@ -30,16 +30,13 @@ namespace H1_ERP_System.UI
             companyList.AddColumn("Country", "Country");
             companyList.AddColumn("Currency", "Currency");
             companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
+            companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.CreateCompany);
 
             //companyList.Draw();
-            Console.WriteLine("Press F2 For ");
-                Company selected = companyList.Select();
-            if (Console.ReadKey().Key == ConsoleKey.F2)
-            {
-                Screen.Display(new CompanyEditScreen(selected));
-            }
-            //CompanyEditScreen.EditCompany(selected);
-
+            Console.WriteLine("F1 | Edit highlighted\n" +
+                              "F2 | Create new");
+            Company selected = companyList.Select();
+            
             ReturnToStart();
         }
         public static void ReturnToStart()

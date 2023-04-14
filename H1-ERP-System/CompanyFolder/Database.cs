@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,8 @@ namespace H1_ERP_System
                         while (reader.Read())
                         {
                             Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[2]}");
-                            Company cp = new Company((int)reader[0], (string)reader[1], (Company.Currencies)(int)reader[3], adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country);
+                            Debug.Write((int)reader[2]);
+                            Company cp = new Company((int)reader[0], (string)reader[1], (Company.Currencies)(int)reader[3], adr.AddressId, adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country);
                             cList.Add(cp);
                         }
                     }
@@ -52,10 +54,10 @@ namespace H1_ERP_System
             AddAddress(new Address(0, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
             Address a = GetAddress("SELECT * FROM dbo.Address ORDER BY AddressId DESC");
 
-            string quesryString = "INSERT INTO dbo.Companies " +
+            string queryString = "INSERT INTO dbo.Companies " +
                 "(CompanyName, AddressId, Currency) " +
                 $"Values ('{cp.CompanyName}', {a.AddressId}, {(int)cp.Currency})";
-            RunNonQuery(quesryString);
+            RunNonQuery(queryString);
         }
 
         /// <summary>
