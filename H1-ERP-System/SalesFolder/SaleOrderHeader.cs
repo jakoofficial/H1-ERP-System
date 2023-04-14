@@ -32,14 +32,15 @@ namespace H1_ERP_System.SalesFolder
         public List<SaleOrderLine> OrderLines { get; set; } //En liste af orderlinjer
 
         /// <summary>
-        /// Constructor for SalesOrderHeader
+        ///
         /// </summary>
         /// <param name="ordernumber"></param>
         /// <param name="timecreated"></param>
         /// <param name="implementationtime"></param>
-        /// <param name="customerId"></param>
-        /// <param name="stage"> Stage ; different stages for the order. </param>
-        public SaleOrderHeader(int saleOrderId, string timecreated, string implementationtime, Customer customerId, OrderStage stage, List<SaleOrderLine> orderLines)
+        /// <param name="customerId">Int (ID)</param>
+        /// <param name="stage">Enum - Requires an Int. Maximum = 4</param>
+        /// <param name="orderLines">List of SaleOrderLines</param>
+        public SalesOrderHeader(int ordernumber, string timecreated, string implementationtime, Customer customerId, OrderStage stage, List<SaleOrderLine> orderLines)
         {
             SaleOrderId = saleOrderId;
             TimeCreated = timecreated;
