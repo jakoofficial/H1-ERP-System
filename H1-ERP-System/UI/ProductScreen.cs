@@ -37,9 +37,7 @@ namespace H1_ERP_System.UI
 
             Product selected = productListPage.Select();
             if (selected != null)
-            {
                 ProductDetails(selected); 
-            }
             else
                 ReturnToStart();
         }
