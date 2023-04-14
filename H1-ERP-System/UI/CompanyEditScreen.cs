@@ -29,6 +29,10 @@ namespace H1_ERP_System.UI
             //EditCompany(CP);
         }
 
+        /// <summary>
+        /// Allows the creation of a new Company with new Address
+        /// </summary>
+        /// <param name="cp">Company</param>
         public static void CreateCompany(Company cp)
         {
             Form<Company> cpEditor = new Form<Company>();
@@ -48,17 +52,10 @@ namespace H1_ERP_System.UI
             Console.WriteLine("Press ESC When Done\n");
             cpEditor.Edit(cp);
 
-            //Address adr = new Address(0, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country);
-            //adr.StreetNumber = cp.StreetNumber;
-            //adr.Street = cp.Street;
-            //adr.City = cp.City;
-            //adr.PostalCode = cp.PostalCode;
-            //adr.Country = cp.Country;
-
-            Database.AddCompany(new Company(0, cp.CompanyName, cp.Currency, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
+            Database.AddCompany(new Company(0, cp.CompanyName, cp.Currency, cp.AddressId, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
 
             Clear();
-            Console.WriteLine("\n Successfully Updated");
+            Console.WriteLine("\n Successfully Created");
             Console.ReadLine();
             Screen.Display(new CompanyScreen());
         }
@@ -66,7 +63,7 @@ namespace H1_ERP_System.UI
         /// <summary>
         /// Allows the user to edit the company's information including the address 
         /// </summary>
-        /// <param name="cp"></param>
+        /// <param name="cp">Company</param>
         public static void EditCompany(Company cp)
         {
             //var props = new Dictionary<string, object>();
@@ -102,5 +99,13 @@ namespace H1_ERP_System.UI
             Console.ReadLine();
             Screen.Display(new CompanyScreen());
         }
+        //static bool CheckEmpty(Company c)
+        //{//https://stackoverflow.com/questions/41275797/check-if-any-property-of-class-is-null
+        // //Comment by Rob (Dec 22, 2016)
+        //    bool isNull = c.GetType().GetProperties().All(p => p.GetValue(c).ToString() != "");
+        //    return !isNull;
+        //}
+
+        
     }
 }
