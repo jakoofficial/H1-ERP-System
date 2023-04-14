@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\H1-ERP-System\H1-ERP-System.csproj" />
+  </ItemGroup>
+
 </Project>

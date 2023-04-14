@@ -13,16 +13,6 @@ namespace H1_ERP_System.CustomerFolder
         public string LastPurchase { get; set; } //Sidste købte dato
         public string FullName { get; private set; }
 
-        ///// <summary>
-        ///// For when a customer needs to be created
-        ///// </summary>
-        ///// <param name="customerId">Int : The ID of the customer</param>
-        ///// <param name="lastPurchase">DateTime : The date of last purchase</param>
-        ///// <param name="firstName">String : First name of the customer</param>
-        ///// <param name="lastName">String : Last name of the customer</param>
-        ///// <param name="address">String : The address of the customer</param>
-        ///// <param name="phoneNumber">String : The phone number of the customer</param>
-        ///// <param name="email">String : The customer's E-mail</param>
 
         /// <summary>
         /// For when a customer needs to be created
@@ -48,11 +38,5 @@ namespace H1_ERP_System.CustomerFolder
         
 
 
-        //public Customer(int customerId, string lastPurchase, string firstName, string lastName, Address address, string phoneNumber, string email) 
-        //    : base(firstName, lastName, address, phoneNumber, email)
-        //{
-        //    CustomerId = customerId;
-        //    LastPurchase = lastPurchase;
-        //}
     }
 }
