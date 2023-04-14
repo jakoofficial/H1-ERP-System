@@ -11,16 +11,20 @@ namespace H1_ERP_System.SalesFolder
 {
     public class SaleOrderLine
     {
-        public int Id { get; set; }
+        public int SaleOrderLineId { get; set; }
         public Product Product { get; set; }
         public string PurchasedDate { get; set; }
         public int PurchasedAmount { get; set; }
         public int SalesOrderHeaderID { get; set; }
+        public string ProductName { get
+            {
+                return Product == null ? "" : Product.Name;
+            } }
 
 
         public SaleOrderLine(int id, Product product, string purchasedDate, int purchasedAmount, int salesOrderHeaderID)
         {     
-            Id = id;
+            SaleOrderLineId = id;
             Product = product;
             PurchasedDate = purchasedDate;
             PurchasedAmount = purchasedAmount;
@@ -34,9 +38,9 @@ namespace H1_ERP_System.SalesFolder
         public double FullPriceForLine()
         {
             double totalPrice = 0;
-            for (int i = 0; i <= PurchasedAmount; i++)
+            for (int i = 0; i < PurchasedAmount; i++)
             {
-                Product.SalesPrice += totalPrice;
+                totalPrice += Product.SalesPrice;
             }
             return totalPrice;
         } 
