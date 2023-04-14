@@ -28,8 +28,8 @@ namespace H1_ERP_System.UI
         //Displays the Order Header.
         public void ShowOrderHeader()
         {
-            ListPage<SalesOrderHeader> salesList = new ListPage<SalesOrderHeader>();
-            List<SalesOrderHeader> orders = Database.GetSalesOrders($"SELECT * FROM SalesOrders");
+            ListPage<SaleOrderHeader> salesList = new ListPage<SaleOrderHeader>();
+            List<SaleOrderHeader> orders = Database.GetSaleOrders($"SELECT * FROM SalesOrders");
 
             for (int i = 0; i < orders.Count; i++)
             {
@@ -42,13 +42,13 @@ namespace H1_ERP_System.UI
             salesList.AddColumn("Customer Name", "Customer_FullName", 30);
             salesList.AddColumn("Total", "FullPrice");
 
-            SalesOrderHeader s = salesList.Select();
+            SaleOrderHeader s = salesList.Select();
             Clear(this);
             ShowOrderLines(s);
         }
 
         //Displays the Order Lines.
-        public void ShowOrderLines(SalesOrderHeader salesOrder)
+        public void ShowOrderLines(SaleOrderHeader salesOrder)
         {
             ListPage<SaleOrderLine> lpSal = new ListPage<SaleOrderLine>();
             for (int i = 0; i < salesOrder.OrderLines.Count; i++)
