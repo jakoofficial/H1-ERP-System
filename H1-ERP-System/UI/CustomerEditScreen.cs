@@ -3,6 +3,7 @@ using H1_ERP_System.CustomerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using TECHCOOL.UI;
@@ -24,6 +25,65 @@ namespace H1_ERP_System.UI
             Clear(this);
         }
 
+        #region CreateCustomer
+        /// <summary>
+        /// Creates a customer and checks if any of the values are empty.
+        /// - Console.WriteLine have a s to fix a error in TECHCOOL where it will remove the first letter.
+        /// </summary>
+        /// <param name="co"> Custoemr </param>
+        public static void CreateCustomer(Customer co)
+        {
+            Console.Clear();
+            Form<Customer> coEdit = new Form<Customer>();
+            co = new Customer();
+
+            coEdit.TextBox($"First Name ", "FirstName");
+            coEdit.TextBox("Last Name", "LastName");
+            coEdit.TextBox("Phonenumber", "PhoneNumber");
+            coEdit.TextBox("Street", "Street");
+            coEdit.TextBox("Street Number", "StreetNumber");
+            coEdit.TextBox("PostalCode", "PostalCode");
+            coEdit.TextBox("City", "City");
+            coEdit.TextBox("Country", "Country");
+            coEdit.TextBox("EMail", "Email");
+            coEdit.TextBox("Last Purchase", "LastPurchase");
+
+        createCustomer:
+            Console.WriteLine("Press ESC When Done\n");
+            coEdit.Edit(co);
+            Customer customer = new Customer(0, co.LastPurchase, co.FirstName, co.LastName, co.PhoneNumber, co.Email, 0, co.Street, co.StreetNumber, co.PostalCode, co.City, co.Country);
+
+            if (!Checker.ChecksIfEmpty(customer))
+            {
+                Database.AddCustomerToDB(customer);
+                Console.Clear();
+                Console.WriteLine("s\n Successfully Created");
+                Console.ReadLine();
+                Screen.Display(new CustomerScreen());
+            }
+            else
+            {
+                Console.Clear();
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine("s\n Customer might have an empty value and can not be made.\n\n" +
+                                  " Press ENTER for trying again\n" +
+                                  " Or ESCAPE to quit creation\n");
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key == ConsoleKey.Escape)
+                    Screen.Display(new CustomerScreen());
+                else if (key == ConsoleKey.Enter)
+                    goto createCustomer;
+            }
+        }
+        #endregion
+
+
+        #region EditCustomer
+        /// <summary>
+        /// Edits a Customer and checks if anything is empty
+        /// - Console.WriteLine have a s to fix a error in TECHCOOL where it will remove the first letter.
+        /// </summary>
+        /// <param name="co"> Customer</param>
         public static void EditCustomer(Customer co)
         {
             Console.Clear();
@@ -57,15 +117,16 @@ namespace H1_ERP_System.UI
                 {
                     Database.UpdateAddress(coAddress);
                     Console.Clear();
-                    Console.WriteLine("Successfully Updated");
-                    Console.ReadLine();
+                    Console.WriteLine("s\n Successfully Updated" +
+                                      "\n Press Any Key To return to CustomerList.");
+                    Console.ReadKey();
                     Screen.Display(new CustomerScreen());
                 }
                 else
                 {
-                    Console.WriteLine("Address might have an empty value and can not be updated.\n\n" +
-                                      "Press ENTER for trying again\n" +
-                                      "Or ESCAPE to quit editing\n");
+                    Console.WriteLine("s\n Address might have an empty value and can not be updated.\n\n" +
+                                      " Press ENTER for trying again\n" +
+                                      " Or ESCAPE to quit editing\n");
                     ConsoleKey key = Console.ReadKey().Key;
                     if (key == ConsoleKey.Escape)
                         Screen.Display(new CustomerScreen());
@@ -76,9 +137,9 @@ namespace H1_ERP_System.UI
             else
             {
                 Console.Clear();
-                Console.WriteLine("Customer might have an empty value and can not be updated.\n\n" +
-                                  "Press ENTER for trying again\n" +
-                                  "Or ESCAPE to quit editing\n");
+                Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
+                                  " Press ENTER for trying again\n" +
+                                  " Or ESCAPE to quit editing\n");
                 ConsoleKey key = Console.ReadKey().Key;
                 if (key == ConsoleKey.Escape)
                     Screen.Display(new CustomerScreen());
@@ -86,5 +147,6 @@ namespace H1_ERP_System.UI
                     goto editCustomer;
             }
         }
+        #endregion
     }
 }

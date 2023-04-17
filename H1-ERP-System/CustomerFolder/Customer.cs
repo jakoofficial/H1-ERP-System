@@ -14,6 +14,9 @@ namespace H1_ERP_System.CustomerFolder
         public string FullName { get; private set; }
 
 
+        public Customer() : base("", "", "", "", 0, "", "", "", "", "")
+        { }
+
         /// <summary>
         /// For when a customer needs to be created
         /// </summary>

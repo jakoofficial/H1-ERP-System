@@ -12,6 +12,8 @@ namespace H1_ERP_System.UI
     public class CustomerScreen : Screen
     {
         public override string Title { get; set; } = "Customerlist";
+
+        #region CustomerScreen
         /// <summary>
         /// Draws a list with all the Customers
         /// </summary>
@@ -30,10 +32,16 @@ namespace H1_ERP_System.UI
             customerListPage.AddColumn("Name", "FullName");
             customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
             customerListPage.AddColumn("Email", "Email");
-
+            customerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.CreateCustomer);
+            
+            
+            Console.WriteLine("Enter  | Select\n" +
+                              "F2     | Create new\n" +
+                              "ESC    | Go back");
 
             Customer selected = customerListPage.Select();
-            if (selected != null)
+
+            if (selected != null )
             {
                 Title = $"{selected.FirstName} {selected.LastName}";
                 Clear(this);
@@ -44,7 +52,9 @@ namespace H1_ERP_System.UI
                 Quit();
             }
         }
+        #endregion
 
+        #region CustomerDetails
         /// <summary>
         /// Shows the details for a selected Customer
         /// </summary>
@@ -64,19 +74,14 @@ namespace H1_ERP_System.UI
             selectedCustomerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.EditCustomer);
             //selectedCustomerListPage.Draw();
 
-            Console.WriteLine("F1  | Edit highlighted\n" +
-                              "F2  | Create new\n" +
+            Console.WriteLine("F2  | Edit highlighted\n" +
                               "ESC | Go back");
             Customer selectedCustomer = selectedCustomerListPage.Select();
 
             Console.ReadKey();
-            ReturnToStart();
+            Quit();
         }
-        public static void ReturnToStart()
-        {
-            Console.WriteLine("Press any key to go back...");
-            Console.ReadKey();
-            StartPage.StartUp();
-        }
+        #endregion
+
     }
 }
