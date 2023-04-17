@@ -30,7 +30,7 @@ namespace H1_ERP_System.UI
             //companyList.Draw();
 
             Company cp = companyList.Select();
-
+            Clear(this);
             Text(cp);
         }
 
@@ -56,6 +56,8 @@ namespace H1_ERP_System.UI
 
             companyInfoList.Draw();
 
+            Console.ReadKey();
+            Clear(this);
             TryAgain();
             //}
         }
@@ -66,6 +68,7 @@ namespace H1_ERP_System.UI
         /// </summary>
         public void TryAgain()
         {
+            Clear();
             Console.WriteLine("\nWould you like to try again?");
             Console.WriteLine("1. Yes \n2. No");
             Console.Write("> ");

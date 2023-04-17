@@ -156,9 +156,40 @@ namespace H1_ERP_System.UI
         }
 
 
-        //public static void DeleteCompany()
-        //{
+        /// <summary>
+        /// deletes a specified Company if the user confrims it 
+        /// </summary>
+        /// <param name="comp"></param>
+        public static void DeleteCompany(Company comp)
+        {
+            repeat:
+            Clear();
+            Console.WriteLine($"Are you sure you want to delete '" +
+                $"{comp.CompanyName}' \n1. yes\n2. No");
+            int.TryParse(Console.ReadLine(), out int choice);
+            switch (choice)
+            {
+                case 1:
+                    Database.RemoveCompany(comp);
+                    Clear();
+                    Console.WriteLine($"The company {comp.CompanyName} has been deleted\nPres enter to return");
+                    Console.ReadLine();
+                    break;
 
-        //}
+                case 2:
+                    Clear();
+                    Console.WriteLine($"The deletion of {comp.CompanyName} has been canceled\nPres enter to return");
+                    Console.ReadLine();
+                    break;
+
+                default:
+                    goto repeat;
+
+            }
+
+            
+            Screen.Display(new CompanyScreen());
+         
+        }
     }
 }
