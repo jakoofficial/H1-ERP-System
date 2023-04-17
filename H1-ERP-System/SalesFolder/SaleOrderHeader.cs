@@ -11,9 +11,9 @@ namespace H1_ERP_System.SalesFolder
     public enum OrderStage { None, Created, Confirmed, Packaged, Completed }
 
 
-    public class SalesOrderHeader
+    public class SaleOrderHeader
     {
-        public int OrderNumber { get; set; } // Ordernummer
+        public int SaleOrderId { get; set; } // Ordernummer
         public string TimeCreated { get; set; } // Oprettelsetidspunkt
         public string ImplementationTime { get; set; } //Gennemførelsetidspunkt
         public Customer CustomerId { get; set; } //Kundenummer
@@ -34,15 +34,15 @@ namespace H1_ERP_System.SalesFolder
         /// <summary>
         ///
         /// </summary>
-        /// <param name="ordernumber"></param>
+        /// <param name="saleOrderId"></param>
         /// <param name="timecreated"></param>
         /// <param name="implementationtime"></param>
         /// <param name="customerId">Int (ID)</param>
         /// <param name="stage">Enum - Requires an Int. Maximum = 4</param>
         /// <param name="orderLines">List of SaleOrderLines</param>
-        public SalesOrderHeader(int ordernumber, string timecreated, string implementationtime, Customer customerId, OrderStage stage, List<SaleOrderLine> orderLines)
+        public SaleOrderHeader(int saleOrderId, string timecreated, string implementationtime, Customer customerId, OrderStage stage, List<SaleOrderLine> orderLines)
         {
-            OrderNumber = ordernumber;
+            SaleOrderId = saleOrderId;
             TimeCreated = timecreated;
             ImplementationTime = implementationtime;
             CustomerId = customerId;

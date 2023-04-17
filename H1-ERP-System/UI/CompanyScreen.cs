@@ -32,9 +32,11 @@ namespace H1_ERP_System.UI
             companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
             companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.CreateCompany);
 
+
             //companyList.Draw();
-            Console.WriteLine("F1 | Edit highlighted\n" +
-                              "F2 | Create new");
+            Console.WriteLine("F1  | Edit highlighted\n" +
+                              "F2  | Create new\n" +
+                              "ESC | Go back");
             Company selected = companyList.Select();
             
             ReturnToStart();
