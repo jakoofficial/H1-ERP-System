@@ -18,8 +18,8 @@ namespace H1_ERP_System.UI
         public override string Title { get; set; } = " Edit Company ";
         public Company? CP { get; set; }
 
-        public CompanyEditScreen(Company cp = null) 
-        { 
+        public CompanyEditScreen(Company cp = null)
+        {
             CP = cp;
         }
 
@@ -35,6 +35,7 @@ namespace H1_ERP_System.UI
         /// <param name="cp">Company</param>
         public static void CreateCompany(Company cp)
         {
+            Clear();
             Form<Company> cpEditor = new Form<Company>();
             cp = new Company();
 
@@ -49,15 +50,34 @@ namespace H1_ERP_System.UI
             cpEditor.AddOption($"Currency", "USD", Company.Currencies.USD);
             cpEditor.AddOption($"Currency", "DKK", Company.Currencies.DKK);
 
+        createCompany:
             Console.WriteLine("Press ESC When Done\n");
             cpEditor.Edit(cp);
+            Company company = new Company(0, cp.CompanyName, cp.Currency, cp.AddressId, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country);
 
-            Database.AddCompany(new Company(0, cp.CompanyName, cp.Currency, cp.AddressId, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country));
+            if (!Checker.ChecksIfEmpty(cp))
+            {
+                Database.AddCompany(company);
+                Clear();
+                Console.WriteLine("\n Successfully Created");
+                Console.ReadLine();
+                Screen.Display(new CompanyScreen());
+            }
+            else
+            {
+                Clear();
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine("Company might have an empty value and can not be made.\n\n" +
+                                  "Press ENTER for trying again\n" +
+                                  "Or ESCAPE to quit creation\n");
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key == ConsoleKey.Escape)
+                    Screen.Display(new CompanyScreen());
+                else if (key == ConsoleKey.Enter)
+                    goto createCompany;
+            }
 
-            Clear();
-            Console.WriteLine("\n Successfully Created");
-            Console.ReadLine();
-            Screen.Display(new CompanyScreen());
+
         }
 
         /// <summary>
@@ -67,7 +87,11 @@ namespace H1_ERP_System.UI
         public static void EditCompany(Company cp)
         {
             //var props = new Dictionary<string, object>();
+            Clear();
+
+        editCompany:
             Form<Company> cpEditor = new Form<Company>();
+            Company tempComp = cp;
 
             cpEditor.TextBox($"Company Name ", "CompanyName");
             cpEditor.TextBox("Country", "Country");
@@ -82,30 +106,55 @@ namespace H1_ERP_System.UI
 
             Console.WriteLine("Press ESC When Done\n");
             cpEditor.Edit(cp);
+            if (!Checker.ChecksIfEmpty(cp))
+            {
+                Database.UpdateCompany(cp);
 
-            Database.UpdateCompany(cp);
-            
-            Address adr = Database.GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {cp.AddressId}");
-            adr.StreetNumber = cp.StreetNumber; 
-            adr.Street = cp.Street;
-            adr.City = cp.City; 
-            adr.PostalCode = cp.PostalCode;
-            adr.Country = cp.Country;
+                tempComp = cp;
 
-            Database.UpdateAddress(adr);
+                Address adr = Database.GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {cp.AddressId}");
+                adr.StreetNumber = cp.StreetNumber;
+                adr.Street = cp.Street;
+                adr.City = cp.City;
+                adr.PostalCode = cp.PostalCode;
+                adr.Country = cp.Country;
 
-            Clear();
-            Console.WriteLine("\n Successfully Updated");
-            Console.ReadLine();
-            Screen.Display(new CompanyScreen());
+                if (!Checker.ChecksIfEmpty(adr))
+                {
+                    Database.UpdateAddress(adr);
+                    Clear();
+                    Console.WriteLine("\n Successfully Updated");
+                    Console.ReadLine();
+                    Screen.Display(new CompanyScreen());
+                }
+                else
+                {
+                    Console.WriteLine("Address might have an empty value and can not be updated.\n\n" +
+                                      "Press ENTER for trying again\n" +
+                                      "Or ESCAPE to quit editing\n");
+                    cp = tempComp;
+                    ConsoleKey key = Console.ReadKey().Key;
+                    if (key == ConsoleKey.Escape)
+                        Screen.Display(new CompanyScreen());
+                    else if (key == ConsoleKey.Enter)
+                        goto editCompany;
+                }
+            }
+            else
+            {
+                Clear();
+                Console.WriteLine("Company might have an empty value and can not be updated.\n\n" +
+                                  "Press ENTER for trying again\n" +
+                                  "Or ESCAPE to quit editing\n");
+                cp = tempComp;
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key == ConsoleKey.Escape)
+                    Screen.Display(new CompanyScreen());
+                else if (key == ConsoleKey.Enter)
+                    goto editCompany;
+            }
         }
-        //static bool CheckEmpty(Company c)
-        //{//https://stackoverflow.com/questions/41275797/check-if-any-property-of-class-is-null
-        // //Comment by Rob (Dec 22, 2016)
-        //    bool isNull = c.GetType().GetProperties().All(p => p.GetValue(c).ToString() != "");
-        //    return !isNull;
-        //}
 
-        
+
     }
 }
