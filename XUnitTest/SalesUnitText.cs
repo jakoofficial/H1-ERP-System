@@ -20,8 +20,8 @@ namespace XUnitTest
             Customer c = new Customer(2, "lastPurchase", "f-name", "l-name", "phoneNumber", "email", 1, "street", "", "", "", "");
             Assert.Equal(2, c.CustomerId);
             //OrderNumber test
-            SalesOrderHeader soh = new SalesOrderHeader(30, "date", "date", c, OrderStage.Packaged, sol);
-            Assert.Equal(30, soh.OrderNumber);
+            SaleOrderHeader soh = new SaleOrderHeader(30, "date", "date", c, OrderStage.Packaged, sol);
+            Assert.Equal(30, soh.SaleOrderId);
         }
     }
 }

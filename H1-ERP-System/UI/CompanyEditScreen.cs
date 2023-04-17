@@ -156,5 +156,9 @@ namespace H1_ERP_System.UI
         }
 
 
+        //public static void DeleteCompany()
+        //{
+
+        //}
     }
 }

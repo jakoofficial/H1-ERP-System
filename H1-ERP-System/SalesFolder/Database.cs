@@ -49,7 +49,7 @@ namespace H1_ERP_System
         public static List<SaleOrderLine> CreateSaleOrderList(int SaleOrderHeaderID)
         {
             List<SaleOrderLine> order = new List<SaleOrderLine>();
-            string queryString = $"SELECT * FROM dbo.SaleOrderLine WHERE OrderNumber={SaleOrderHeaderID}";
+            string queryString = $"SELECT * FROM dbo.SalesOrderLines WHERE OrderNumber={SaleOrderHeaderID}";
             using (SqlConnection connection = Instance.GetConnection())
             {
 
