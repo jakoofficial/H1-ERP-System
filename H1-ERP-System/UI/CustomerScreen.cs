@@ -1,4 +1,5 @@
-﻿using H1_ERP_System.CustomerFolder;
+﻿using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace H1_ERP_System.UI
             customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
             customerListPage.AddColumn("Email", "Email");
 
+
             Customer selected = customerListPage.Select();
             if (selected != null)
             {
@@ -59,10 +61,22 @@ namespace H1_ERP_System.UI
             selectedCustomerListPage.AddColumn("City", "City");
             selectedCustomerListPage.AddColumn("Country", "Country");
             selectedCustomerListPage.AddColumn("Last purchase", "LastPurchase");
-            selectedCustomerListPage.Draw();
+            selectedCustomerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.EditCustomer);
+            //selectedCustomerListPage.Draw();
+
+            Console.WriteLine("F1  | Edit highlighted\n" +
+                              "F2  | Create new\n" +
+                              "ESC | Go back");
+            Customer selectedCustomer = selectedCustomerListPage.Select();
 
             Console.ReadKey();
-            Quit();
+            ReturnToStart();
+        }
+        public static void ReturnToStart()
+        {
+            Console.WriteLine("Press any key to go back...");
+            Console.ReadKey();
+            StartPage.StartUp();
         }
     }
 }

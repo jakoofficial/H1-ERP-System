@@ -29,11 +29,11 @@ using TECHCOOL.UI;
 
 
 
-StartPage.StartUp();
+//StartPage.StartUp();
 //Address a = new Address(16, "jensengade", "122", "9876", "jensenby", "land");
 //Customer c = new Customer(2, "1234567890+", "jensss", "jensen", a, "88888888", "jens@jensen.dk");
 
 //Database.AddCustomerToDB(c);
 
-//SalesScreen test = new SalesScreen();
-//Screen.Display(test);
+CustomerScreen test = new CustomerScreen();
+Screen.Display(test);
