@@ -36,7 +36,7 @@ namespace H1_ERP_System.UI
                 salesList.Add(orders[i]);
             }
 
-            salesList.AddColumn("Sale ID", "OrderNumber");
+            salesList.AddColumn("Sale ID", "SaleOrderId");
             salesList.AddColumn("Purchase date", "TimeCreated", 30);
             salesList.AddColumn("Customer ID", "Customer_Id");
             salesList.AddColumn("Customer Name", "Customer_FullName", 30);

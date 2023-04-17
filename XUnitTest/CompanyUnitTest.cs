@@ -15,14 +15,14 @@ namespace XUnitTest
         public void TestIfEmpty()
         {
             Company companyEmp = new Company(0,"", 0, 0, "", "", "", "", "");
-            Assert.True(!Checker.ChecksIfEmpty(companyEmp));
+            Assert.True(Checker.ChecksIfEmpty(companyEmp));
 
         }
         [Fact]
         public void TestIfFull()
         {
             Company companyFull = new Company(0,"asd", 0, 0, "ad", "asd", "ad", "asd", "ad");
-            Assert.True(Checker.ChecksIfEmpty(companyFull));
+            Assert.True(!Checker.ChecksIfEmpty(companyFull));
 
         }
     }
