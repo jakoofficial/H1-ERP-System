@@ -15,14 +15,14 @@ namespace H1_ERP_System.UI
 {
     public class ProductScreen : Screen
     {
-        public override string Title { get; set; }
+        public override string Title { get; set; } = "Product List";
         /// <summary>
         /// Creates a table of Products using ListPage.
         /// </summary>
         protected override void Draw()
         {
-            Title = " Product List  ";
             Clear(this);
+
             List<Product> productList = Database.GetProductslist();
             ListPage<Product> productListPage = new ListPage<Product>();
             for (int i = 0; i < productList.Count; i++)
@@ -37,7 +37,7 @@ namespace H1_ERP_System.UI
 
             Product selected = productListPage.Select();
             if (selected != null)
-                ProductDetails(selected); 
+                ProductDetails(selected);
             else
                 Clear();
                 Quit();
@@ -51,23 +51,29 @@ namespace H1_ERP_System.UI
         {
             Title = $" {selected.Name} ";
             Clear(this);
-            ListPage<Product> SelectedproductListPage = new ListPage<Product>();
-             
-            SelectedproductListPage.Add(selected);
-            SelectedproductListPage.AddColumn("Item Number", $"ItemNumber");
-            SelectedproductListPage.AddColumn("Name", "Name");
-            SelectedproductListPage.AddColumn("Description", "Description");
-            SelectedproductListPage.AddColumn("Sale Price", "SalesPrice");
-            SelectedproductListPage.AddColumn("Purchase Price", "PurchasePrice");
-            SelectedproductListPage.AddColumn("Location", "Location");
-            SelectedproductListPage.AddColumn("In Stock", "QuantityInStock");
-            SelectedproductListPage.AddColumn("Unit Type", "Unit");
-            SelectedproductListPage.AddColumn("% Profit", "ProfitProcent");
-            SelectedproductListPage.AddColumn("Profit in DKK.", "Profit");
-            SelectedproductListPage.Draw();
+            ListPage<Product> SelectedProductListPage = new ListPage<Product>();
+
+            Console.WriteLine("Press F1 to Create a new product.");
+            Console.WriteLine("Press F2 to edit a product.");
+            SelectedProductListPage.Add(selected);
+            SelectedProductListPage.AddColumn("Item Number", "ItemNumber");
+            SelectedProductListPage.AddColumn("Name", "Name");
+            SelectedProductListPage.AddColumn("Description", "Description");
+            SelectedProductListPage.AddColumn("Sale Price", "SalesPrice");
+            SelectedProductListPage.AddColumn("Purchase Price", "PurchasePrice");
+            SelectedProductListPage.AddColumn("Location", "Location");
+            SelectedProductListPage.AddColumn("In Stock", "QuantityInStock");
+            SelectedProductListPage.AddColumn("Unit Type", "Unit");
+            SelectedProductListPage.AddColumn("% Profit", "ProfitProcent");
+            SelectedProductListPage.AddColumn("Profit in DKK.", "Profit");
+            SelectedProductListPage.AddKey(ConsoleKey.F1, ProductEditScreen.CreateProduct);
+            SelectedProductListPage.AddKey(ConsoleKey.F2, ProductEditScreen.EditProduct);
+
+
+            SelectedProductListPage.Select();
+            Console.ReadKey();
             Quit();
         }
-
     }
 }
 

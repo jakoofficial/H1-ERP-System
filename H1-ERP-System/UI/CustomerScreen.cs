@@ -1,4 +1,5 @@
-﻿using H1_ERP_System.CustomerFolder;
+﻿using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,8 @@ namespace H1_ERP_System.UI
     public class CustomerScreen : Screen
     {
         public override string Title { get; set; } = "Customerlist";
-        /// <summary>
-        /// Draws a list with all the Customers
-        /// </summary>
+
+        #region CustomerScreen
         protected override void Draw()
         {
             Title = "Customerlist";
@@ -21,33 +21,34 @@ namespace H1_ERP_System.UI
             ListPage<Customer> customerListPage = new ListPage<Customer>();
             List<Customer> list = Database.GetCustomerList();
             foreach (Customer customer in list)
-            {
                 customerListPage.Add(customer);
-            }
 
             customerListPage.AddColumn("Customers ID", "CustomerId");
             customerListPage.AddColumn("Name", "FullName");
             customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
             customerListPage.AddColumn("Email", "Email");
+            customerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.CreateCustomer);
+            
+            
+            Console.WriteLine("Enter  | Select\n" +
+                              "F2     | Create new\n" +
+                              "ESC    | Go back");
 
             Customer selected = customerListPage.Select();
-            if (selected != null)
+
+            if (selected != null )
             {
                 Title = $"{selected.FirstName} {selected.LastName}";
                 Clear(this);
-                CustomerDeatials(selected);
+                CustomerDetails(selected);
             }
             else 
-            {
                 Quit();
-            }
         }
+        #endregion
 
-        /// <summary>
-        /// Shows the details for a selected Customer
-        /// </summary>
-        /// <param name="selected"></param>
-        public void CustomerDeatials(Customer selected)
+        #region CustomerDetails
+        public void CustomerDetails(Customer selected)
         {
             ListPage<Customer> selectedCustomerListPage = new ListPage<Customer>();
             selectedCustomerListPage.Add(selected);
@@ -59,10 +60,16 @@ namespace H1_ERP_System.UI
             selectedCustomerListPage.AddColumn("City", "City");
             selectedCustomerListPage.AddColumn("Country", "Country");
             selectedCustomerListPage.AddColumn("Last purchase", "LastPurchase");
-            selectedCustomerListPage.Draw();
+            selectedCustomerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.EditCustomer);
+
+            Console.WriteLine("F2  | Edit highlighted\n" +
+                              "ESC | Go back");
+            Customer selectedCustomer = selectedCustomerListPage.Select();
 
             Console.ReadKey();
             Quit();
         }
+        #endregion
+
     }
 }

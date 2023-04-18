@@ -21,6 +21,8 @@ namespace H1_ERP_System.ProductFolder
         public string ProfitProcent { get; set; }
         public Units Unit { get; set; } //Enhed
 
+        public Product() { }
+
         /// <summary>
         /// Location needs to be set with the method SetLocation()
         /// </summary>
@@ -74,9 +76,13 @@ namespace H1_ERP_System.ProductFolder
         /// <returns> String with percentage profit margin with 2 decimals </returns>
         public string CalculateProfitMargin()
         {
-            double percentage = SalesPrice - PurchasePrice;
-            percentage = (percentage / PurchasePrice) * 100;
-            return $"{percentage.ToString("0.00")}% ";
+            if (SalesPrice != 0 && PurchasePrice != 0)
+            {
+                double percentage = SalesPrice - PurchasePrice;
+                percentage = (percentage / PurchasePrice) * 100;
+                return $"{percentage.ToString("0.00")}% ";
+            }
+            return "0";
         }
     }
 }
