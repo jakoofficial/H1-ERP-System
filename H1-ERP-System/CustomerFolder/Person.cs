@@ -9,10 +9,10 @@ namespace H1_ERP_System.CustomerFolder
     abstract public class Person : Address
     {
 
-        public string FirstName { get; private set; } //Fornavn
-        public string LastName { get; private set; } //Efternavn
-        public string PhoneNumber { get; private set; } //Telefon nummer
-        public string Email { get; private set; } //E-mail
+        public string FirstName { get; set; } //Fornavn
+        public string LastName { get; set; } //Efternavn
+        public string PhoneNumber { get; set; } //Telefon nummer
+        public string Email { get; set; } //E-mail
 
 
         /// <summary>
