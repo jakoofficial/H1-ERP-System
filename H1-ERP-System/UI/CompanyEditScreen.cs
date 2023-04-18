@@ -68,7 +68,7 @@ namespace H1_ERP_System.UI
                 Clear();
                 Console.SetCursorPosition(0, 0);
                 Console.WriteLine("Company might have an empty value and can not be made.\n\n" +
-                                  "Press ENTER for trying again\n" +
+                                  "Press ENTER to try again\n" +
                                   "Or ESCAPE to quit creation\n");
                 ConsoleKey key = Console.ReadKey().Key;
                 if (key == ConsoleKey.Escape)
@@ -76,8 +76,6 @@ namespace H1_ERP_System.UI
                 else if (key == ConsoleKey.Enter)
                     goto createCompany;
             }
-
-
         }
 
         /// <summary>
@@ -91,7 +89,6 @@ namespace H1_ERP_System.UI
 
         editCompany:
             Form<Company> cpEditor = new Form<Company>();
-            Company tempComp = cp;
 
             cpEditor.TextBox($"Company Name ", "CompanyName");
             cpEditor.TextBox("Country", "Country");
@@ -109,8 +106,6 @@ namespace H1_ERP_System.UI
             if (!Checker.ChecksIfEmpty(cp))
             {
                 Database.UpdateCompany(cp);
-
-                tempComp = cp;
 
                 Address adr = Database.GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {cp.AddressId}");
                 adr.StreetNumber = cp.StreetNumber;
@@ -130,9 +125,8 @@ namespace H1_ERP_System.UI
                 else
                 {
                     Console.WriteLine("Address might have an empty value and can not be updated.\n\n" +
-                                      "Press ENTER for trying again\n" +
+                                      "Press ENTER to try again\n" +
                                       "Or ESCAPE to quit editing\n");
-                    cp = tempComp;
                     ConsoleKey key = Console.ReadKey().Key;
                     if (key == ConsoleKey.Escape)
                         Screen.Display(new CompanyScreen());
@@ -144,9 +138,8 @@ namespace H1_ERP_System.UI
             {
                 Clear();
                 Console.WriteLine("Company might have an empty value and can not be updated.\n\n" +
-                                  "Press ENTER for trying again\n" +
+                                  "Press ENTER to try again\n" +
                                   "Or ESCAPE to quit editing\n");
-                cp = tempComp;
                 ConsoleKey key = Console.ReadKey().Key;
                 if (key == ConsoleKey.Escape)
                     Screen.Display(new CompanyScreen());
@@ -156,9 +149,40 @@ namespace H1_ERP_System.UI
         }
 
 
-        //public static void DeleteCompany()
-        //{
+        /// <summary>
+        /// deletes a specified Company if the user confrims it 
+        /// </summary>
+        /// <param name="comp"></param>
+        public static void DeleteCompany(Company comp)
+        {
+            repeat:
+            Clear();
+            Console.WriteLine($"Are you sure you want to delete '" +
+                $"{comp.CompanyName}' \n1. yes\n2. No");
+            int.TryParse(Console.ReadLine(), out int choice);
+            switch (choice)
+            {
+                case 1:
+                    Database.RemoveCompany(comp);
+                    Clear();
+                    Console.WriteLine($"The company {comp.CompanyName} has been deleted\nPres enter to return");
+                    Console.ReadLine();
+                    break;
 
-        //}
+                case 2:
+                    Clear();
+                    Console.WriteLine($"The deletion of {comp.CompanyName} has been canceled\nPres enter to return");
+                    Console.ReadLine();
+                    break;
+
+                default:
+                    goto repeat;
+
+            }
+
+            
+            Screen.Display(new CompanyScreen());
+         
+        }
     }
 }
