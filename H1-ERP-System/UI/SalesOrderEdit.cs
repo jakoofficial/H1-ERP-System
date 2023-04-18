@@ -57,7 +57,7 @@ namespace H1_ERP_System.UI
                     Console.Clear();
                     Console.WriteLine("Successfully Updated");
                     Console.ReadLine();
-                    Screen.Display(new CustomerScreen());
+                    Screen.Display(new SalesScreen());
                 }
                 else
                 {

@@ -43,8 +43,13 @@ namespace H1_ERP_System.UI
             salesList.AddColumn("Total", "FullPrice");
 
             SaleOrderHeader s = salesList.Select();
+            if (s != null)
+            {
+                Clear(this);
+                ShowOrderLines(s);
+            }
             Clear(this);
-            ShowOrderLines(s);
+            Quit();
         }
 
         //Displays the Order Lines.
