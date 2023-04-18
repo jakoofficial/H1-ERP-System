@@ -80,7 +80,7 @@ namespace H1_ERP_System.UI
         {
             Console.WriteLine("Press any key to go back to the main page.");
             Console.ReadKey();
-            StartPage.StartUp();
+            Quit();
         }
     }
 }
