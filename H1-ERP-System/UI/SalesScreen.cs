@@ -72,14 +72,9 @@ namespace H1_ERP_System.UI
 
             Console.WriteLine("Press F1 to edit Selected | WIP\n" +
                               "Press F2 to create new | WIP");
+            
             SaleOrderLine sl = lpSal.Select();
 
-            ReturnToStart();
-        }
-        public void ReturnToStart()
-        {
-            Console.WriteLine("Press any key to go back to the main page.");
-            Console.ReadKey();
             Quit();
         }
     }
