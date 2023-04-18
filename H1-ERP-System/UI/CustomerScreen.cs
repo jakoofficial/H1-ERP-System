@@ -36,13 +36,14 @@ namespace H1_ERP_System.UI
 
             Customer selected = customerListPage.Select();
 
-            if (selected != null )
+            if (selected != null)
             {
                 Title = $"{selected.FirstName} {selected.LastName}";
                 Clear(this);
                 CustomerDetails(selected);
             }
-            else 
+            else
+                Clear();
                 Quit();
         }
         #endregion
@@ -66,7 +67,7 @@ namespace H1_ERP_System.UI
                               "ESC | Go back");
             Customer selectedCustomer = selectedCustomerListPage.Select();
 
-            Console.ReadKey();
+            Clear();
             Quit();
         }
         #endregion
