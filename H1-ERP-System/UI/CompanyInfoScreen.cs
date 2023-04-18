@@ -15,7 +15,7 @@ namespace H1_ERP_System.UI
     /// </summary>
     public class CompanyInfoScreen : Screen
     {
-        public override string Title { get; set; } = " Companies ";
+        public override string Title { get; set; } = "Companies";
         List<Company> l = Database.GetCompanies("SELECT * FROM dbo.Companies");
         protected override void Draw()
         {
@@ -30,8 +30,17 @@ namespace H1_ERP_System.UI
             //companyList.Draw();
 
             Company cp = companyList.Select();
-            Clear(this);
-            Text(cp);
+            if (cp != null )
+            {
+                Clear(this);
+                Text(cp);
+            }
+            else
+            {
+                Clear();
+                Quit();
+            }
+            
         }
 
         /// <summary>
@@ -58,7 +67,7 @@ namespace H1_ERP_System.UI
 
             Console.ReadKey();
             Clear(this);
-            TryAgain();
+            Quit();
             //}
         }
 
@@ -82,7 +91,7 @@ namespace H1_ERP_System.UI
             else
             {
                 Console.Clear();
-                StartPage.StartUp();
+                Quit();
             }
         }
     }

@@ -39,7 +39,8 @@ namespace H1_ERP_System.UI
             if (selected != null)
                 ProductDetails(selected); 
             else
-                ReturnToStart();
+                Clear();
+                Quit();
         }
 
         /// <summary>
@@ -64,15 +65,9 @@ namespace H1_ERP_System.UI
             SelectedproductListPage.AddColumn("% Profit", "ProfitProcent");
             SelectedproductListPage.AddColumn("Profit in DKK.", "Profit");
             SelectedproductListPage.Draw();
-            ReturnToStart();
+            Quit();
         }
 
-        public void ReturnToStart()
-        {
-            Console.WriteLine("Press any key to go back...");
-            Console.ReadKey();
-            StartPage.StartUp();
-        }
     }
 }
 

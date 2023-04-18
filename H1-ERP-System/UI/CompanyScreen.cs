@@ -14,7 +14,7 @@ namespace H1_ERP_System.UI
     /// </summary>
     public class CompanyScreen : Screen
     {
-        public override string Title { get; set; } = " Displaying Companies ";
+        public override string Title { get; set; } = "Displaying Companies";
         protected override void Draw()
         {
             Clear(this);
@@ -42,14 +42,9 @@ namespace H1_ERP_System.UI
                               "ESC | Go back");
             Company selected = companyList.Select();
             
-            ReturnToStart();
+            Quit();
         }
-        public static void ReturnToStart()
-        {
-            //Console.WriteLine("Press any key to go back...");
-            //Console.ReadKey();
-            StartPage.StartUp();
-        }
+
     }
 
 }
