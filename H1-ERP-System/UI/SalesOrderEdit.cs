@@ -36,7 +36,7 @@ namespace H1_ERP_System.UI
             customerForm.TextBox("Phonenumber", "PhoneNumber");
             customerForm.TextBox("EMail", "Email");
 
-            editCustomer:
+        editCustomer:
             Console.WriteLine("Press ESC When Done\n");
             customerForm.Edit(customer);
 
@@ -61,27 +61,30 @@ namespace H1_ERP_System.UI
                 }
                 else
                 {
-                    Console.WriteLine("Address might have an empty value and can not be updated.\n\n" +
-                                      "Press ENTER for trying again\n" +
-                                      "Or ESCAPE to quit editing\n");
-                    ConsoleKey key = Console.ReadKey().Key;
-                    if (key == ConsoleKey.Escape)
-                        Screen.Display(new CustomerScreen());
-                    else if (key == ConsoleKey.Enter)
-                        goto editCustomer;
+                    Retry(new SalesScreen());
+                    goto editCustomer;
                 }
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("Customer might have an empty value and can not be updated.\n\n" +
-                                  "Press ENTER for trying again\n" +
-                                  "Or ESCAPE to quit editing\n");
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape)
-                    Screen.Display(new CustomerScreen());
-                else if (key == ConsoleKey.Enter)
-                    goto editCustomer;
+                Retry(new SalesScreen());
+                goto editCustomer;
+            }
+        }
+        public static void Retry(object screen)
+        {
+            Console.Clear();
+            Console.WriteLine("TThere might be an empty value, please make sure everything has a value.\n\n" +
+                              "Press ENTER to try again\n" +
+                              "Or ESCAPE to quit editing\n");
+            ConsoleKey key = Console.ReadKey().Key;
+            if (key == ConsoleKey.Escape)
+            {
+                Screen.Display((Screen)screen);
+            }
+            else if (key == ConsoleKey.Enter)
+            {
+                return;
             }
         }
     }
