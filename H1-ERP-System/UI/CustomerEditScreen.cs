@@ -27,10 +27,8 @@ namespace H1_ERP_System.UI
 
         #region CreateCustomer
         /// <summary>
-        /// Creates a customer and checks if any of the values are empty.
         /// - Console.WriteLine have a s to fix a error in TECHCOOL where it will remove the first letter.
         /// </summary>
-        /// <param name="co"> Custoemr </param>
         public static void CreateCustomer(Customer co)
         {
             Console.Clear();
@@ -77,13 +75,10 @@ namespace H1_ERP_System.UI
         }
         #endregion
 
-
         #region EditCustomer
         /// <summary>
-        /// Edits a Customer and checks if anything is empty
         /// - Console.WriteLine have a s to fix a error in TECHCOOL where it will remove the first letter.
         /// </summary>
-        /// <param name="co"> Customer</param>
         public static void EditCustomer(Customer co)
         {
             Console.Clear();

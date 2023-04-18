@@ -14,9 +14,6 @@ namespace H1_ERP_System.UI
         public override string Title { get; set; } = "Customerlist";
 
         #region CustomerScreen
-        /// <summary>
-        /// Draws a list with all the Customers
-        /// </summary>
         protected override void Draw()
         {
             Title = "Customerlist";
@@ -24,9 +21,7 @@ namespace H1_ERP_System.UI
             ListPage<Customer> customerListPage = new ListPage<Customer>();
             List<Customer> list = Database.GetCustomerList();
             foreach (Customer customer in list)
-            {
                 customerListPage.Add(customer);
-            }
 
             customerListPage.AddColumn("Customers ID", "CustomerId");
             customerListPage.AddColumn("Name", "FullName");
@@ -45,21 +40,15 @@ namespace H1_ERP_System.UI
             {
                 Title = $"{selected.FirstName} {selected.LastName}";
                 Clear(this);
-                CustomerDeatials(selected);
+                CustomerDetails(selected);
             }
             else 
-            {
                 Quit();
-            }
         }
         #endregion
 
         #region CustomerDetails
-        /// <summary>
-        /// Shows the details for a selected Customer
-        /// </summary>
-        /// <param name="selected"></param>
-        public void CustomerDeatials(Customer selected)
+        public void CustomerDetails(Customer selected)
         {
             ListPage<Customer> selectedCustomerListPage = new ListPage<Customer>();
             selectedCustomerListPage.Add(selected);
@@ -72,7 +61,6 @@ namespace H1_ERP_System.UI
             selectedCustomerListPage.AddColumn("Country", "Country");
             selectedCustomerListPage.AddColumn("Last purchase", "LastPurchase");
             selectedCustomerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.EditCustomer);
-            //selectedCustomerListPage.Draw();
 
             Console.WriteLine("F2  | Edit highlighted\n" +
                               "ESC | Go back");
