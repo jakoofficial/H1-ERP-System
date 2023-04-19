@@ -43,8 +43,13 @@ namespace H1_ERP_System.UI
             salesList.AddColumn("Total", "FullPrice");
 
             SaleOrderHeader s = salesList.Select();
+            if (s != null)
+            {
+                Clear(this);
+                ShowOrderLines(s);
+            }
             Clear(this);
-            ShowOrderLines(s);
+            Quit();
         }
 
         //Displays the Order Lines.
@@ -55,20 +60,22 @@ namespace H1_ERP_System.UI
             {
                 lpSal.Add(salesOrder.OrderLines[i]);
             }
+
+
             Console.WriteLine($"\nCustomer ID: {salesOrder.Customer_Id}");
             Console.WriteLine($"Customer: {salesOrder.Customer_FullName}");
 
             lpSal.AddColumn("Order ID", "SalesOrderHeaderID", 10);
             lpSal.AddColumn("Purchase date ", "PurchasedDate");
             lpSal.AddColumn("Product name", "ProductName", 25);
-            lpSal.Draw();
-            ReturnToStart();
-        }
-        public void ReturnToStart()
-        {
-            Console.WriteLine("Press any key to go back to the main page.");
-            Console.ReadKey();
-            StartPage.StartUp();
+            lpSal.AddKey(ConsoleKey.F1, SalesOrderEdit.EditSale);
+
+            Console.WriteLine("Press F1 to edit Selected | WIP\n" +
+                              "Press F2 to create new | WIP");
+            
+            SaleOrderLine sl = lpSal.Select();
+
+            Quit();
         }
     }
 }
