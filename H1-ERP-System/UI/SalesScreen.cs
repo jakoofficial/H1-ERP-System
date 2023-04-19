@@ -69,9 +69,11 @@ namespace H1_ERP_System.UI
             lpSal.AddColumn("Purchase date ", "PurchasedDate");
             lpSal.AddColumn("Product name", "ProductName", 25);
             lpSal.AddKey(ConsoleKey.F1, SalesOrderEdit.EditSale);
+            //lpSal.AddKey(ConsoleKey.F2, SalesOrderEdit.CreateSale);
 
-            Console.WriteLine("Press F1 to edit Selected | WIP\n" +
-                              "Press F2 to create new | WIP");
+            Console.WriteLine("Press F1 to edit Selected\n" +
+                              "Press F2 to create new | WIP\n" +
+                              "Press ESC to go back");
             
             SaleOrderLine sl = lpSal.Select();
 
