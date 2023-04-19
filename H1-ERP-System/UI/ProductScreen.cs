@@ -34,6 +34,8 @@ namespace H1_ERP_System.UI
             productListPage.AddColumn("Sale Price", "SalesPrice");
             productListPage.AddColumn("Purchase Price", "PurchasePrice");
             productListPage.AddColumn("% Profit", "ProfitProcent");
+            productListPage.AddKey(ConsoleKey.F1, ProductEditScreen.CreateProduct);
+            productListPage.AddKey(ConsoleKey.F2, ProductEditScreen.EditProduct);
 
             Product selected = productListPage.Select();
             if (selected != null)
@@ -66,8 +68,6 @@ namespace H1_ERP_System.UI
             SelectedProductListPage.AddColumn("Unit Type", "Unit");
             SelectedProductListPage.AddColumn("% Profit", "ProfitProcent");
             SelectedProductListPage.AddColumn("Profit in DKK.", "Profit");
-            SelectedProductListPage.AddKey(ConsoleKey.F1, ProductEditScreen.CreateProduct);
-            SelectedProductListPage.AddKey(ConsoleKey.F2, ProductEditScreen.EditProduct);
 
 
             SelectedProductListPage.Select();
