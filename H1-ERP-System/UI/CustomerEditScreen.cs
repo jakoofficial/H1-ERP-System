@@ -31,6 +31,7 @@ namespace H1_ERP_System.UI
         /// </summary>
         public static void CreateCustomer(Customer co)
         {
+        
             Console.Clear();
             Form<Customer> coEdit = new Form<Customer>();
             co = new Customer();
@@ -61,15 +62,7 @@ namespace H1_ERP_System.UI
             }
             else
             {
-                Console.Clear();
-                Console.SetCursorPosition(0, 0);
-                Console.WriteLine("s\n Customer might have an empty value and can not be made.\n\n" +
-                                  " Press ENTER for trying again\n" +
-                                  " Or ESCAPE to quit creation\n");
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape)
-                    Screen.Display(new CustomerScreen());
-                else if (key == ConsoleKey.Enter)
+                if (Checker.Retry())                
                     goto createCustomer;
             }
         }
@@ -119,26 +112,13 @@ namespace H1_ERP_System.UI
                 }
                 else
                 {
-                    Console.WriteLine("s\n Address might have an empty value and can not be updated.\n\n" +
-                                      " Press ENTER for trying again\n" +
-                                      " Or ESCAPE to quit editing\n");
-                    ConsoleKey key = Console.ReadKey().Key;
-                    if (key == ConsoleKey.Escape)
-                        Screen.Display(new CustomerScreen());
-                    else if (key == ConsoleKey.Enter)
+                    if (Checker.Retry())
                         goto editCustomer;
                 }
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
-                                  " Press ENTER for trying again\n" +
-                                  " Or ESCAPE to quit editing\n");
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape)
-                    Screen.Display(new CustomerScreen());
-                else if (key == ConsoleKey.Enter)
+                if (Checker.Retry())
                     goto editCustomer;
             }
         }
