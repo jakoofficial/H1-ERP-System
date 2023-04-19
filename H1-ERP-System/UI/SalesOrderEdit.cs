@@ -61,14 +61,28 @@ namespace H1_ERP_System.UI
                 }
                 else
                 {
-                    Retry(new SalesScreen());
-                    goto editCustomer;
+                    Console.Clear();
+                    Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
+                                      " Press ENTER for trying again\n" +
+                                      " Or ESCAPE to quit editing\n");
+                    ConsoleKey key = Console.ReadKey().Key;
+                    if (key == ConsoleKey.Escape)
+                        Screen.Display(new SalesScreen());
+                    else if (key == ConsoleKey.Enter)
+                        goto editCustomer;
                 }
             }
             else
             {
-                Retry(new SalesScreen());
-                goto editCustomer;
+                Console.Clear();
+                Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
+                                  " Press ENTER for trying again\n" +
+                                  " Or ESCAPE to quit editing\n");
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key == ConsoleKey.Escape)
+                    Screen.Display(new SalesScreen());
+                else if (key == ConsoleKey.Enter)
+                    goto editCustomer;
             }
         }
         public static void Retry(object screen)
