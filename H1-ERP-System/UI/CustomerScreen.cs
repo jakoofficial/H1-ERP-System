@@ -16,8 +16,11 @@ namespace H1_ERP_System.UI
         #region CustomerScreen
         protected override void Draw()
         {
-            Title = "Customerlist";
-            Clear(this);
+            Console.Clear();
+            Console.WriteLine("Enter  | Select\n" +
+                              "F2     | Create new\n" +
+                              "ESC    | Go back");
+
             ListPage<Customer> customerListPage = new ListPage<Customer>();
             List<Customer> list = Database.GetCustomerList();
             foreach (Customer customer in list)
@@ -43,7 +46,6 @@ namespace H1_ERP_System.UI
                 CustomerDetails(selected);
             }
             else
-                Clear();
                 Quit();
         }
         #endregion
@@ -67,8 +69,8 @@ namespace H1_ERP_System.UI
                               "ESC | Go back");
             Customer selectedCustomer = selectedCustomerListPage.Select();
 
-            Clear();
-            Quit();
+            Console.Clear();
+            Title = "Customerlist";
         }
         #endregion
 
