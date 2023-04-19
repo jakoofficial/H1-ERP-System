@@ -21,7 +21,7 @@ namespace H1_ERP_System.UI
         {
             Clear();
 
-            List<SaleOrderHeader> saleHeaderList = Database.GetSaleOrders($"SELECT * FROM dbo.SalesOrders WHERE OrderNumber = {sl.SalesOrderHeaderID}");
+            List<SaleOrderHeader> saleHeaderList = Database.GetSaleOrders($"SELECT * FROM dbo.SaleOrders WHERE OrderNumber = {sl.SalesOrderHeaderID}");
 
             Customer customer = saleHeaderList[0].CustomerId;
 
