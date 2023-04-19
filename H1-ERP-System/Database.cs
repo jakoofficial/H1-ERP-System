@@ -32,7 +32,7 @@ namespace H1_ERP_System
         public SqlConnection GetConnection()
         {
             SqlConnectionStringBuilder sb = new();
-            sb.DataSource = "docker.data.techcollege.dk";
+            sb.DataSource = "192.168.1.70";
             sb.InitialCatalog = "H1PD021123_Gruppe2";
             sb.TrustServerCertificate = true;
             sb.UserID = "H1PD021123_Gruppe2";
