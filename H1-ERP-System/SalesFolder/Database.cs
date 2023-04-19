@@ -49,7 +49,7 @@ namespace H1_ERP_System
         public static List<SaleOrderLine> CreateSaleOrderList(int SaleOrderHeaderID)
         {
             List<SaleOrderLine> order = new List<SaleOrderLine>();
-            string queryString = $"SELECT * FROM dbo.SalesOrderLines WHERE OrderNumber={SaleOrderHeaderID}";
+            string queryString = $"SELECT * FROM dbo.SaleOrderLine WHERE SaleOrderLineId={SaleOrderHeaderID}";
             using (SqlConnection connection = Instance.GetConnection())
             {
 
@@ -81,7 +81,7 @@ namespace H1_ERP_System
 
             foreach (var item in s.OrderLines)
             {
-                string queryString2 = "INSERT INTO dbo.SaleOrderLine(ProductId, PurchasedDate, PurchasedAmount, OrderNumber )" +
+                string queryString2 = "INSERT INTO dbo.SaleOrderLine(ProductId, PurchasedDate, PurchasedAmount, SaleOrderLineId )" +
                                      $"VALUES ({item.Product.ItemNumber}, '{item.PurchasedDate}', {item.PurchasedAmount}, {s.SaleOrderId})";
 
                 RunNonQuery(queryString2);
@@ -99,14 +99,14 @@ namespace H1_ERP_System
         {
             string queryString = "UPDATE dbo.SaleOrders " +
                                 $"SET ImplementationTime='{s.ImplementationTime}', CustomerId={s.CustomerId.CustomerId}, Stage={(int)s.Stage} " +
-                                $"WHERE OrderNumber={s.SaleOrderId}";
+                                $"WHERE SaleOrderLineId={s.SaleOrderId}";
 
             RunNonQuery(queryString);
 
             foreach (var item in s.OrderLines)
             {
                 string queryString2 = "UPDATE dbo.SaleOrderLine " +
-                                     $"SET ProductId={item.Product.ItemNumber}, PurchasedDate='{item.PurchasedDate}', PurchasedAmount={item.PurchasedAmount}, OrderNumber={item.SalesOrderHeaderID} " +
+                                     $"SET ProductId={item.Product.ItemNumber}, PurchasedDate='{item.PurchasedDate}', PurchasedAmount={item.PurchasedAmount}, SaleOrderLineId={item.SalesOrderHeaderID} " +
                                      $"WHERE SalesOrderId={item.SaleOrderLineId}";
 
                 RunNonQuery(queryString2);
@@ -116,10 +116,10 @@ namespace H1_ERP_System
         /// <summary>
         /// Removes the saleorder by using it's ID.
         /// </summary>
-        /// <param name="id"> id = OrderNumber</param>
+        /// <param name="id"> id = SaleOrderLineId</param>
         public static void RemoveSaleOrder(int id)
         {
-            string queryString = $"DELETE dbo.SaleOrders WHERE OrderNumber={id}";
+            string queryString = $"DELETE dbo.SaleOrders WHERE SaleOrderLineId={id}";
 
             RunNonQuery(queryString);
         }

@@ -85,7 +85,7 @@ namespace H1_ERP_System.UI
                     goto editCustomer;
             }
         }
-        public static void Retry(object screen)
+        public static void Retry(Screen screen)
         {
             Console.Clear();
             Console.WriteLine("TThere might be an empty value, please make sure everything has a value.\n\n" +
