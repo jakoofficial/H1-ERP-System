@@ -25,6 +25,8 @@ namespace H1_ERP_System.UI
 
             List<Product> productList = Database.GetProductslist();
             ListPage<Product> productListPage = new ListPage<Product>();
+            Console.WriteLine("Press F1 to Create a new product.");
+            Console.WriteLine("Press F2 to Edit a product.");
             for (int i = 0; i < productList.Count; i++)
                 productListPage.Add(productList[i]);
 
@@ -55,8 +57,6 @@ namespace H1_ERP_System.UI
             Clear(this);
             ListPage<Product> SelectedProductListPage = new ListPage<Product>();
 
-            Console.WriteLine("Press F1 to Create a new product.");
-            Console.WriteLine("Press F2 to edit a product.");
             SelectedProductListPage.Add(selected);
             SelectedProductListPage.AddColumn("Item Number", "ItemNumber");
             SelectedProductListPage.AddColumn("Name", "Name");
@@ -68,7 +68,6 @@ namespace H1_ERP_System.UI
             SelectedProductListPage.AddColumn("Unit Type", "Unit");
             SelectedProductListPage.AddColumn("% Profit", "ProfitProcent");
             SelectedProductListPage.AddColumn("Profit in DKK.", "Profit");
-
 
             SelectedProductListPage.Select();
             Console.ReadKey();
