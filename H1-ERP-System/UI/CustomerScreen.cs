@@ -11,40 +11,47 @@ namespace H1_ERP_System.UI
 {
     public class CustomerScreen : Screen
     {
-        public override string Title { get; set; } = "Customerlist";
+        public override string Title { get; set; } = "Customer List";
 
         #region CustomerScreen
         protected override void Draw()
         {
-            Title = "Customerlist";
-            Clear(this);
+
             ListPage<Customer> customerListPage = new ListPage<Customer>();
             List<Customer> list = Database.GetCustomerList();
-            foreach (Customer customer in list)
-                customerListPage.Add(customer);
-
-            customerListPage.AddColumn("Customers ID", "CustomerId");
-            customerListPage.AddColumn("Name", "FullName");
-            customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
-            customerListPage.AddColumn("Email", "Email");
-            customerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.CreateCustomer);
-            
-            
-            Console.WriteLine("Enter  | Select\n" +
-                              "F2     | Create new\n" +
-                              "ESC    | Go back");
-
-            Customer selected = customerListPage.Select();
-
-            if (selected != null)
+            if (list.Count != 0 ) 
             {
-                Title = $"{selected.FirstName} {selected.LastName}";
-                Clear(this);
-                CustomerDetails(selected);
+                foreach (Customer customer in list)
+                    customerListPage.Add(customer);
+
+                customerListPage.AddColumn("Customers ID", "CustomerId");
+                customerListPage.AddColumn("Name", "FullName");
+                customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
+                customerListPage.AddColumn("Email", "Email");
+                customerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.CreateCustomer);
+
+
+                Console.WriteLine("Enter  | Select\n" +
+                                  "F2     | Create new\n" +
+                                  "ESC    | Go back");
+
+                Customer selected = customerListPage.Select();
+
+                if (selected != null)
+                {
+                    Title = $"{selected.FirstName} {selected.LastName}";
+                    Clear(this);
+                    CustomerDetails(selected);
+                }
+                else
+                    Quit();
             }
             else
-                Clear();
-                Quit();
+            {
+                CustomerEditScreen.CreateCustomer(new Customer());
+            }
+
+            
         }
         #endregion
 
@@ -67,8 +74,8 @@ namespace H1_ERP_System.UI
                               "ESC | Go back");
             Customer selectedCustomer = selectedCustomerListPage.Select();
 
-            Clear();
-            Quit();
+            Console.Clear();
+            Title = "Customerlist";
         }
         #endregion
 

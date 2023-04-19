@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace H1_ERP_System
                               "Press ENTER to try again\n" +
                               "Or ESCAPE to quit editing\n");
             ConsoleKey key = Console.ReadKey().Key;
+            Console.Clear();
             if (key == ConsoleKey.Enter)
             {
                 return true;
