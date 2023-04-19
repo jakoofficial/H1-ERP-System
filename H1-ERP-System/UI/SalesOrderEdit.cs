@@ -55,50 +55,19 @@ namespace H1_ERP_System.UI
                 {
                     Database.UpdateAddress(customerAddress);
                     Console.Clear();
-                    Console.WriteLine("Successfully Updated");
-                    Console.ReadLine();
+                    Console.WriteLine("SSuccessfully Updated");
                     Screen.Display(new SalesScreen());
                 }
                 else
                 {
-                    Console.Clear();
-                    Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
-                                      " Press ENTER for trying again\n" +
-                                      " Or ESCAPE to quit editing\n");
-                    ConsoleKey key = Console.ReadKey().Key;
-                    if (key == ConsoleKey.Escape)
-                        Screen.Display(new SalesScreen());
-                    else if (key == ConsoleKey.Enter)
-                        goto editCustomer;
+                    if (Checker.Retry())
+                        goto editCustomer; 
                 }
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
-                                  " Press ENTER for trying again\n" +
-                                  " Or ESCAPE to quit editing\n");
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape)
-                    Screen.Display(new SalesScreen());
-                else if (key == ConsoleKey.Enter)
+                if (Checker.Retry())
                     goto editCustomer;
-            }
-        }
-        public static void Retry(object screen)
-        {
-            Console.Clear();
-            Console.WriteLine("TThere might be an empty value, please make sure everything has a value.\n\n" +
-                              "Press ENTER to try again\n" +
-                              "Or ESCAPE to quit editing\n");
-            ConsoleKey key = Console.ReadKey().Key;
-            if (key == ConsoleKey.Escape)
-            {
-                Screen.Display((Screen)screen);
-            }
-            else if (key == ConsoleKey.Enter)
-            {
-                return;
             }
         }
     }
