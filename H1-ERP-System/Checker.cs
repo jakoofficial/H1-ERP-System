@@ -32,6 +32,7 @@ namespace H1_ERP_System
                               "Press ENTER to try again\n" +
                               "Or ESCAPE to quit editing\n");
             ConsoleKey key = Console.ReadKey().Key;
+            Console.Clear();
             if (key == ConsoleKey.Enter)
             {
                 return true;

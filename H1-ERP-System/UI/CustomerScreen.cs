@@ -11,7 +11,7 @@ namespace H1_ERP_System.UI
 {
     public class CustomerScreen : Screen
     {
-        public override string Title { get; set; } = "Customerlist";
+        public override string Title { get; set; } = "Customer List";
 
         #region CustomerScreen
         protected override void Draw()

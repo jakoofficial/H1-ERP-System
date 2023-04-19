@@ -40,9 +40,67 @@ namespace H1_ERP_System.UI
                               "F2  | Create new\n" +
                               "F5  | Delete\n" +
                               "ESC | Go back");
-            Company selected = companyList.Select();
-            
+            Company cp = companyList.Select();
+            if (cp != null)
+            {
+                Clear(this);
+                Text(cp);
+            }
+            else
+            {
+                Clear();
+                Quit();
+            }
+
             Quit();
+        }
+
+        public void Text(Company cp)
+        {
+            //Console.WriteLine("\nWhich company would you like information about? \nPlease select an ID!");
+            //Console.Write("> ");
+            //if (choice != 0 && choice <= l.Count)
+            //{
+            ListPage<Company> companyInfoList = new ListPage<Company>();
+            companyInfoList.Add(cp);
+
+            companyInfoList.AddColumn("Company Name", "CompanyName");
+            companyInfoList.AddColumn("Street", "Street");
+            companyInfoList.AddColumn("Street Number", "StreetNumber");
+            companyInfoList.AddColumn("Postal code", "PostalCode");
+            companyInfoList.AddColumn("City", "City");
+            companyInfoList.AddColumn("Country", "Country");
+            companyInfoList.AddColumn("Currency", "Currency");
+
+            companyInfoList.Draw();
+
+            Console.ReadKey();
+            Clear(this);
+            Quit();
+            //}
+        }
+
+        /// <summary>
+        /// TryAgain() - Asks user if they'd like to try to search for another Company, if not, clears and opens the StartUp page again. 
+        /// If yes, goes back to Text().
+        /// </summary>
+        public void TryAgain()
+        {
+            Clear();
+            Console.WriteLine("\nWould you like to try again?");
+            Console.WriteLine("1. Yes \n2. No");
+            Console.Write("> ");
+            int.TryParse(Console.ReadLine(), out int choice);
+            if (choice == 1)
+            {
+                Clear(this);
+                Draw();
+            }
+            else
+            {
+                Console.Clear();
+                Quit();
+            }
         }
 
     }
