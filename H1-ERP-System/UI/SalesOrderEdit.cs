@@ -17,11 +17,62 @@ namespace H1_ERP_System.UI
             Clear(this);
         }
 
+        public static void CreateSale(SaleOrderHeader? s)
+        {
+            //Customer + Orderheader needs to be made
+            Clear();
+            Customer c = new Customer();
+
+            Form<Customer> newCustomerForm = new Form<Customer>();
+            newCustomerForm.TextBox($"First Name ", "FirstName");
+            newCustomerForm.TextBox("Last Name", "LastName");
+            newCustomerForm.TextBox("Phonenumber", "PhoneNumber");
+            newCustomerForm.TextBox("Street", "Street");
+            newCustomerForm.TextBox("Street Number", "StreetNumber");
+            newCustomerForm.TextBox("PostalCode", "PostalCode");
+            newCustomerForm.TextBox("City", "City");
+            newCustomerForm.TextBox("Country", "Country");
+            newCustomerForm.TextBox("EMail", "Email");
+            newCustomerForm.TextBox("Last Purchase", "LastPurchase");
+
+        newCustomerForm:
+            Console.WriteLine("Press ESC When Done\n");
+            newCustomerForm.Edit(c);
+
+            Customer customer = new Customer(0, c.LastPurchase, c.FirstName, c.LastName, c.PhoneNumber, c.Email, c.AddressId, c.Street, c.StreetNumber, c.PostalCode, c.City, c.Country);
+            if (!Checker.ChecksIfEmpty(customer))
+            {
+                Database.AddCustomerToDB(customer);
+                Customer gotCustomer = Database.GetCustomer("SELECT TOP(1) * FROM dbo.Customers ORDER BY CustomerId DESC");
+                SaleOrderHeader slh = new SaleOrderHeader(0,
+                    DateTime.Now.ToString(), DateTime.Now.ToString(), gotCustomer, OrderStage.None, new List<SaleOrderLine>());
+                if (slh != null)
+                {
+                    Database.AddSaleOrderToDB(slh);
+                    Console.Clear();
+                    Console.WriteLine("SSuccessfully Created");
+                    Console.ReadLine();
+                    Screen.Display(new SalesScreen());
+                }
+                else
+                {
+                    if (Checker.Retry())
+                        goto newCustomerForm;
+                }
+            }
+            else
+            {
+                if (Checker.Retry())
+                    goto newCustomerForm;
+            }
+
+        }
+
         public static void EditSale(SaleOrderLine sl)
         {
             Clear();
 
-            List<SaleOrderHeader> saleHeaderList = Database.GetSaleOrders($"SELECT * FROM dbo.SalesOrders WHERE OrderNumber = {sl.SalesOrderHeaderID}");
+            List<SaleOrderHeader> saleHeaderList = Database.GetSaleOrders($"SELECT * FROM dbo.SaleOrders WHERE OrderNumber = {sl.SalesOrderHeaderID}");
 
             Customer customer = saleHeaderList[0].CustomerId;
 
@@ -29,12 +80,14 @@ namespace H1_ERP_System.UI
 
             customerForm.TextBox($"First Name ", "FirstName");
             customerForm.TextBox("Last Name", "LastName");
+            customerForm.TextBox("Phonenumber", "PhoneNumber");
             customerForm.TextBox("Street", "Street");
             customerForm.TextBox("Street Number", "StreetNumber");
             customerForm.TextBox("PostalCode", "PostalCode");
             customerForm.TextBox("City", "City");
-            customerForm.TextBox("Phonenumber", "PhoneNumber");
+            customerForm.TextBox("Country", "Country");
             customerForm.TextBox("EMail", "Email");
+            customerForm.TextBox("Last Purchase", "LastPurchase");
 
         editCustomer:
             Console.WriteLine("Press ESC When Done\n");
@@ -55,50 +108,19 @@ namespace H1_ERP_System.UI
                 {
                     Database.UpdateAddress(customerAddress);
                     Console.Clear();
-                    Console.WriteLine("Successfully Updated");
-                    Console.ReadLine();
+                    Console.WriteLine("SSuccessfully Updated");
                     Screen.Display(new SalesScreen());
                 }
                 else
                 {
-                    Console.Clear();
-                    Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
-                                      " Press ENTER for trying again\n" +
-                                      " Or ESCAPE to quit editing\n");
-                    ConsoleKey key = Console.ReadKey().Key;
-                    if (key == ConsoleKey.Escape)
-                        Screen.Display(new SalesScreen());
-                    else if (key == ConsoleKey.Enter)
+                    if (Checker.Retry())
                         goto editCustomer;
                 }
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("s\n Customer might have an empty value and can not be updated.\n\n" +
-                                  " Press ENTER for trying again\n" +
-                                  " Or ESCAPE to quit editing\n");
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape)
-                    Screen.Display(new SalesScreen());
-                else if (key == ConsoleKey.Enter)
+                if (Checker.Retry())
                     goto editCustomer;
-            }
-        }
-        public static void Retry(Screen screen)
-        {
-            Console.Clear();
-            Console.WriteLine("TThere might be an empty value, please make sure everything has a value.\n\n" +
-                              "Press ENTER to try again\n" +
-                              "Or ESCAPE to quit editing\n");
-            ConsoleKey key = Console.ReadKey().Key;
-            if (key == ConsoleKey.Escape)
-            {
-                Screen.Display((Screen)screen);
-            }
-            else if (key == ConsoleKey.Enter)
-            {
-                return;
             }
         }
     }
