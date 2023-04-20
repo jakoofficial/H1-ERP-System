@@ -11,7 +11,7 @@ namespace H1_ERP_System
     public class Checker
     {
         /// <summary>
-        /// Goes through the objects properties and returns false if one or more is null
+        /// Goes through the objects properties and returns true if one or more is null
         /// </summary>
         /// <param name="o">Object to look through</param>
         /// <returns>If object properties is null</returns>
@@ -33,7 +33,7 @@ namespace H1_ERP_System
                               "Press ENTER to try again\n" +
                               "Or ESCAPE to quit editing\n");
             ConsoleKey key = Console.ReadKey().Key;
-            Console.Clear();
+            //Console.Clear();
             if (key == ConsoleKey.Enter)
             {
                 return true;
