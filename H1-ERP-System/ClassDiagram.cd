@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="H1_ERP_System.CompanyFolder.Company" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAIAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CompanyFolder\Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.Database" Collapsed="true">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAABEAAQAAAAAABEAAAAmAIADABCEOQIAAApABgAA=</HashCode>
+      <FileName>CompanyFolder\Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.Checker" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABBAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Checker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.CustomerFolder.Address" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAIIAAIAAAAAAIAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>CustomerFolder\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.CustomerFolder.Customer" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomerFolder\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.CustomerFolder.Person" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAQAAAAAAAAAAAAAAAAAAABAg=</HashCode>
+      <FileName>CustomerFolder\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.ProductFolder.Product" Collapsed="true">
+    <Position X="10.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAAABgAAAAIAJAAASCAAEAAAAgAAAAAAAAAIA=</HashCode>
+      <FileName>ProductFolder\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.SalesFolder.SaleOrderHeader" Collapsed="true">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAEAACAAAAQAAABAAAAQAAABAAAAgAAAAAAgA=</HashCode>
+      <FileName>SalesFolder\SaleOrderHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.SalesFolder.SaleOrderLine" Collapsed="true">
+    <Position X="10.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAQAAAAAAAAAAAgQABAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>SalesFolder\SaleOrderLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.CompanyEditScreen" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAAAAAACABAAAAAEAAAAEAAAAAAA=</HashCode>
+      <FileName>UI\CompanyEditScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.CompanyScreen" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAACCAAAAAA=</HashCode>
+      <FileName>UI\CompanyScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.CustomerEditScreen" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAkAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\CustomerEditScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.CustomerScreen" Collapsed="true">
+    <Position X="10.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\CustomerScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.Login" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>UI\Login.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.MainMenu" Collapsed="true">
+    <Position X="16" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.ProductEditScreen" Collapsed="true">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAIAkAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>UI\ProductEditScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.ProductScreen" Collapsed="true">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\ProductScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.SalesOrderEdit" Collapsed="true">
+    <Position X="12.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAkBAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\SalesOrderEdit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.UI.SalesScreen" Collapsed="true">
+    <Position X="14.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAEkAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\SalesScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="H1_ERP_System.SalesFolder.OrderStage" Collapsed="true">
+    <Position X="10.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAABAAQAAAAgAAEAAAA=</HashCode>
+      <FileName>SalesFolder\SaleOrderHeader.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
