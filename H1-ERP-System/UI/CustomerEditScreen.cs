@@ -180,6 +180,8 @@ namespace H1_ERP_System.UI
             }
             if (option == 1)
                 Database.DeleteCustomer(cos);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
         }
 
