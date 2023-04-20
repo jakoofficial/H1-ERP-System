@@ -29,27 +29,37 @@ namespace H1_ERP_System.UI
         public void ShowOrderHeader()
         {
             ListPage<SaleOrderHeader> salesList = new ListPage<SaleOrderHeader>();
-            List<SaleOrderHeader> orders = Database.GetSaleOrders($"SELECT * FROM SalesOrders");
+            List<SaleOrderHeader> orders = Database.GetSaleOrders($"SELECT * FROM SaleOrders");
 
-            for (int i = 0; i < orders.Count; i++)
+            if (orders.Count != 0)
             {
-                salesList.Add(orders[i]);
-            }
+                for (int i = 0; i < orders.Count; i++)
+                {
+                    salesList.Add(orders[i]);
+                }
 
-            salesList.AddColumn("Sale ID", "SaleOrderId");
-            salesList.AddColumn("Purchase date", "TimeCreated", 30);
-            salesList.AddColumn("Customer ID", "Customer_Id");
-            salesList.AddColumn("Customer Name", "Customer_FullName", 30);
-            salesList.AddColumn("Total", "FullPrice");
+                salesList.AddColumn("Sale ID", "SaleOrderId");
+                salesList.AddColumn("Purchase date", "TimeCreated", 30);
+                salesList.AddColumn("Customer ID", "Customer_Id");
+                salesList.AddColumn("Customer Name", "Customer_FullName", 30);
+                salesList.AddColumn("Total", "FullPrice");
+                salesList.AddKey(ConsoleKey.F2, SalesOrderEdit.CreateSale);
 
-            SaleOrderHeader s = salesList.Select();
-            if (s != null)
-            {
+                Console.WriteLine("F2     | Create new\n" +
+                                  "ESC    | Go back");
+                SaleOrderHeader s = salesList.Select();
+                if (s != null)
+                {
+                    Clear(this);
+                    ShowOrderLines(s);
+                }
                 Clear(this);
-                ShowOrderLines(s);
+                Quit();
             }
-            Clear(this);
-            Quit();
+            else
+            {
+                SalesOrderEdit.CreateSale(null);
+            }
         }
 
         //Displays the Order Lines.
@@ -74,7 +84,7 @@ namespace H1_ERP_System.UI
             Console.WriteLine("Press F1 to edit Selected\n" +
                               "Press F2 to create new | WIP\n" +
                               "Press ESC to go back");
-            
+
             SaleOrderLine sl = lpSal.Select();
 
             Quit();
