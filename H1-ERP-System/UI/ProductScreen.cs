@@ -23,7 +23,8 @@ namespace H1_ERP_System.UI
         {
             //Clear(this);
 
-            List<Product> productList = Database.GetProductslist();
+            List<Product> productList = Database.
+                GetProductslist();
             ListPage<Product> productListPage = new ListPage<Product>();
             if (productList.Count != 0)
             {
