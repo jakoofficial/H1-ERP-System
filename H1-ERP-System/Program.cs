@@ -8,6 +8,5 @@ using H1_ERP_System.SalesFolder;
 using H1_ERP_System.UI;
 using TECHCOOL.UI;
 
-//StartPage.StartUp();
-
+Login.LoginInput();
 Screen.Display(new MainMenu());
