@@ -69,10 +69,15 @@ namespace H1_ERP_System.UI
             selectedCustomerListPage.AddColumn("Country", "Country");
             selectedCustomerListPage.AddColumn("Last purchase", "LastPurchase");
             selectedCustomerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.EditCustomer);
+            selectedCustomerListPage.AddKey(ConsoleKey.F5, CustomerEditScreen.DeleteCustomerScreen);
 
-            Console.WriteLine("F2  | Edit highlighted\n" +
+            Console.WriteLine("F2  | Edit\n" +
+                              "F5  | Delete\n" +
                               "ESC | Go back");
+            
             Customer selectedCustomer = selectedCustomerListPage.Select();
+
+            
 
             Console.Clear();
             Title = "Customerlist";
