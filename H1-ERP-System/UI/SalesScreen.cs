@@ -43,7 +43,10 @@ namespace H1_ERP_System.UI
                 salesList.AddColumn("Customer ID", "Customer_Id");
                 salesList.AddColumn("Customer Name", "Customer_FullName", 30);
                 salesList.AddColumn("Total", "FullPrice");
+                salesList.AddKey(ConsoleKey.F2, SalesOrderEdit.CreateSale);
 
+                Console.WriteLine("F2     | Create new\n" +
+                                  "ESC    | Go back");
                 SaleOrderHeader s = salesList.Select();
                 if (s != null)
                 {
@@ -55,10 +58,7 @@ namespace H1_ERP_System.UI
             }
             else
             {
-                Console.WriteLine("No data could be gathered\n" +
-                                  "Press Enter to go back");
-                Console.ReadLine();
-                Quit();
+                SalesOrderEdit.CreateSale(null);
             }
         }
 

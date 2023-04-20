@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     {
+                        Debug.WriteLine((int)reader[4]);
                         Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}");
                         Customer customer = new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[5], (string)reader[6], adr.AddressId, adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country);
                         return customer;

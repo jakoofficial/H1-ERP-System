@@ -29,7 +29,7 @@ namespace H1_ERP_System.SalesFolder
         } //Kunde Navn
         public double FullPrice { get; set; } //Kunde Navn
         public OrderStage Stage { get; set; } //Tilstand
-        public List<SaleOrderLine> OrderLines { get; set; } //En liste af orderlinjer
+        public List<SaleOrderLine>? OrderLines { get; set; } //En liste af orderlinjer
 
         /// <summary>
         ///
