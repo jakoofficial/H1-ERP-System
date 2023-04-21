@@ -15,7 +15,14 @@ It focuses around creating an ERP system with a functioning Database and a user 
 ## General info
 ## Technologies
 ### Written in
+- C#, MS SQL
 ### Created using
+- .NET 6
+- Visual Studio
+- TECHCOOL
 ## Documents
+- [License](./LICENSE.txt)
+- [Project agreement & rules](./Documents/ERP_System_Gennemgående_Opgave.pdf)
 ### Diagrams
 ### SQL Query
+- [Full database SQL script](./Documents/ERPDatabaseSQLScript.sql)
