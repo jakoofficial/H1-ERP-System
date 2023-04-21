@@ -13,7 +13,6 @@ namespace H1_ERP_System.UI
         protected override void Draw()
         {
             Menu menu = new Menu();
-            menu.Add(new CompanyInfoScreen());
             menu.Add(new CompanyScreen());
             menu.Add(new CustomerScreen());
             menu.Add(new ProductScreen());

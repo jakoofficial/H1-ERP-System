@@ -9,15 +9,17 @@ using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using H1_ERP_System.CompanyFolder;
 using H1_ERP_System.CustomerFolder;
+using H1_ERP_System.UI;
 
 namespace H1_ERP_System
 {
     public partial class Database
     {
-        //Company c = Database.GetCompany("SELECT * FROM dbo.Companies WHERE CompanyId = 1");
-        //Address a = c.Address;
 
-        //Console.WriteLine(a.Country);
+        //UserID & Password: H1PD021123_Gruppe2
+        public static string username = "";
+        public static string password = "";
+       
 
         public static Database Instance { get; }
         static Database()
@@ -32,13 +34,12 @@ namespace H1_ERP_System
         public SqlConnection GetConnection()
         {
             SqlConnectionStringBuilder sb = new();
-            sb.DataSource = "docker.data.techcollege.dk";
+            sb.DataSource = "192.168.1.70";
             sb.InitialCatalog = "H1PD021123_Gruppe2";
             sb.TrustServerCertificate = true;
-            sb.UserID = "H1PD021123_Gruppe2";
-            sb.Password = "H1PD021123_Gruppe2";
+            sb.UserID = username;
+            sb.Password = password;
             string connectionString = sb.ToString();
-            //Console.WriteLine(connectionString);
 
             SqlConnection connection = new SqlConnection(connectionString);
 

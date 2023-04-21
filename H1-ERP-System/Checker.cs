@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TECHCOOL.UI;
 
 namespace H1_ERP_System
 {
     public class Checker
     {
         /// <summary>
-        /// Goes through the objects properties and returns false if one or more is null
+        /// Goes through the objects properties and returns true if one or more is null
         /// </summary>
         /// <param name="o">Object to look through</param>
         /// <returns>If object properties is null</returns>
@@ -22,6 +24,21 @@ namespace H1_ERP_System
                 return !isNull; //Returns opposite value for clarity
             }
             else { return true; }
+        }
+
+        public static bool Retry()
+        {
+            Console.Clear();
+            Console.WriteLine("TThere might be an empty value, please make sure everything has a value.\n\n" +
+                              "Press ENTER to try again\n" +
+                              "Or ESCAPE to quit editing\n");
+            ConsoleKey key = Console.ReadKey().Key;
+            //Console.Clear();
+            if (key == ConsoleKey.Enter)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

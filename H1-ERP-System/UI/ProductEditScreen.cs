@@ -21,7 +21,7 @@ namespace H1_ERP_System.UI
         protected override void Draw()
         {
             Clear(this);
-            
+
         }
 
         public static void CreateProduct(Product pr)
@@ -50,7 +50,7 @@ namespace H1_ERP_System.UI
             pr.Profit = pr.CalculateProfit();
             pr.ProfitProcent = pr.CalculateProfitMargin();
 
-            if (pr.ProfitProcent == "0")
+            if (pr.ProfitProcent != "0")
             {
                 //Checks if the new Product object is empty, or not. 
                 //If not empty: Update the product with the new information, and send the user back to the ProductScreen
@@ -60,14 +60,17 @@ namespace H1_ERP_System.UI
                 {
                     Database.AddProductToDB(pr);
                     Console.Clear();
-                    Console.WriteLine("S Successfully Created");
-                    Console.ReadLine();
+                    Console.WriteLine("s\n Successfully Updated" +
+                                      "\n Press Any Key To return to Product List.");
+                    Console.ReadKey();
                     Screen.Display(new ProductScreen());
                 }
                 else
                 {
-                    Retry(new ProductScreen());
-                    goto CreateProduct;
+                    if (Checker.Retry())
+                    {
+                        goto CreateProduct;
+                    }
                 }
             }
         }
@@ -78,7 +81,6 @@ namespace H1_ERP_System.UI
         {
             Clear();
 
-        editProduct:
 
             int originalItemNumber = p.ItemNumber;
             Form<Product> pEditor = new Form<Product>();
@@ -96,6 +98,7 @@ namespace H1_ERP_System.UI
             pEditor.AddOption("Unit Type", "Pieces", Product.Units.Pieces);
             pEditor.AddOption("Unit Type", "Kilogram", Product.Units.Kilogram);
 
+        editProduct:
             Console.WriteLine("Press ESC When Done\n");
             pEditor.Edit(p);
 
@@ -106,30 +109,18 @@ namespace H1_ERP_System.UI
             {
                 Database.UpdateProduct(p, originalItemNumber);
                 Console.Clear();
-                Console.WriteLine("SSuccessfully Updated");
-                Console.ReadLine();
+                Console.WriteLine("s\n Successfully Updated" +
+                                  "\n Press Any Key To return to Product List.");
+                Console.ReadKey();
+                Clear();
                 Screen.Display(new ProductScreen());
             }
             else
             {
-                Retry(new ProductScreen());
-                goto editProduct;
-            }
-        }
-        public static void Retry(object screen)
-        {
-            Console.Clear();
-            Console.WriteLine("TThere might be an empty value, please make sure everything has a value.\n\n" +
-                              "Press ENTER to try again\n" +
-                              "Or ESCAPE to quit editing\n");
-            ConsoleKey key = Console.ReadKey().Key;
-            if (key == ConsoleKey.Escape)
-            {
-                Screen.Display((Screen)screen);
-            }
-            else if (key == ConsoleKey.Enter)
-            {
-                return;
+                if (Checker.Retry())
+                {
+                    goto editProduct;
+                }
             }
         }
     }
