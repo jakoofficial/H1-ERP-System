@@ -43,9 +43,11 @@ namespace H1_ERP_System.UI
                 salesList.AddColumn("Customer ID", "Customer_Id");
                 salesList.AddColumn("Customer Name", "Customer_FullName", 30);
                 salesList.AddColumn("Total", "FullPrice");
-                salesList.AddKey(ConsoleKey.F2, SalesOrderEdit.CreateSale);
+                salesList.AddKey(ConsoleKey.F2, SalesEditScreen.CreateSale);
+                salesList.AddKey(ConsoleKey.F5, SalesEditScreen.DeleteSale);
 
                 Console.WriteLine("F2     | Create new\n" +
+                                  "F5     | Delete\n" +
                                   "ESC    | Go back");
                 SaleOrderHeader s = salesList.Select();
                 if (s != null)
@@ -58,7 +60,7 @@ namespace H1_ERP_System.UI
             }
             else
             {
-                SalesOrderEdit.CreateSale(null);
+                SalesEditScreen.CreateSale(null);
             }
         }
 
@@ -78,7 +80,7 @@ namespace H1_ERP_System.UI
             lpSal.AddColumn("Order ID", "SalesOrderHeaderID", 10);
             lpSal.AddColumn("Purchase date ", "PurchasedDate");
             lpSal.AddColumn("Product name", "ProductName", 25);
-            lpSal.AddKey(ConsoleKey.F1, SalesOrderEdit.EditSale);
+            lpSal.AddKey(ConsoleKey.F1, SalesEditScreen.EditSale);
             //lpSal.AddKey(ConsoleKey.F2, SalesOrderEdit.CreateSale);
 
             Console.WriteLine("Press F1 to edit Selected\n" +
