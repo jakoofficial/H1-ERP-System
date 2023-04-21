@@ -25,5 +25,7 @@ The project also utilize the NuGet package TECHCOOL for GUI and some functionali
 - [License](./LICENSE.txt)
 - [Project agreement & rules](./Documents/ERP_System_Gennemgående_Opgave.pdf)
 ### Diagrams
+- [ER-Diagram](./Documents/ER-Diagram.png)
+- [Class diagram](./Documents/H1_ERP-Class_Diagram.drawio.png)
 ### SQL Query
 - [Full database SQL script](./Documents/ERPDatabaseSQLScript.sql)
