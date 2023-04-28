@@ -60,8 +60,9 @@ namespace H1_ERP_System.UI
                 {
                     Database.AddProductToDB(pr);
                     Console.Clear();
-                    Console.WriteLine("SSuccessfully Created");
-                    Console.ReadLine();
+                    Console.WriteLine("s\n Successfully Updated" +
+                                      "\n Press Any Key To return to Product List.");
+                    Console.ReadKey();
                     Screen.Display(new ProductScreen());
                 }
                 else
@@ -80,7 +81,6 @@ namespace H1_ERP_System.UI
         {
             Clear();
 
-        editProduct:
 
             int originalItemNumber = p.ItemNumber;
             Form<Product> pEditor = new Form<Product>();
@@ -98,6 +98,7 @@ namespace H1_ERP_System.UI
             pEditor.AddOption("Unit Type", "Pieces", Product.Units.Pieces);
             pEditor.AddOption("Unit Type", "Kilogram", Product.Units.Kilogram);
 
+        editProduct:
             Console.WriteLine("Press ESC When Done\n");
             pEditor.Edit(p);
 
@@ -108,7 +109,8 @@ namespace H1_ERP_System.UI
             {
                 Database.UpdateProduct(p, originalItemNumber);
                 Console.Clear();
-                Console.WriteLine("SSuccessfully Updated");
+                Console.WriteLine("s\n Successfully Updated" +
+                                  "\n Press Any Key To return to Product List.");
                 Console.ReadKey();
                 Clear();
                 Screen.Display(new ProductScreen());

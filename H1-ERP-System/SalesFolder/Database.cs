@@ -114,12 +114,12 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Removes the saleorder by using it's ID.
+        /// Removes the SaleOrderHeader by using it's ID.
         /// </summary>
-        /// <param name="id"> id = SaleOrderLineId</param>
-        public static void RemoveSaleOrder(int id)
+        /// <param name="id"> id = SaleOrderHeaderId</param>
+        public static void RemoveSaleOrderHeader(int id)
         {
-            string queryString = $"DELETE dbo.SaleOrders WHERE SaleOrderLineId={id}";
+            string queryString = $"DELETE dbo.SaleOrders WHERE SaleOrderId={id}";
 
             RunNonQuery(queryString);
         }
