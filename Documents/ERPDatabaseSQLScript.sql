@@ -67,5 +67,5 @@ CREATE TABLE SaleOrderLine(
     CONSTRAINT FK_ProductId FOREIGN KEY (ProductId) REFERENCES Products(ItemId)
         ON DELETE SET NULL,
     CONSTRAINT FK_SaleOrderId FOREIGN KEY (SaleOrderId) REFERENCES SaleOrders(SaleOrderId)
-        ON DELETE NO ACTION
+        ON DELETE CASCADE
 )

@@ -1,4 +1,5 @@
-﻿using H1_ERP_System.CustomerFolder;
+﻿using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 using H1_ERP_System.SalesFolder;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using TECHCOOL.UI;
 
 namespace H1_ERP_System.UI
 {
-    public class SalesOrderEdit : Screen
+    public class SalesEditScreen : Screen
     {
         public override string Title { get; set; } = "Sales Order Edit/Create";
         protected override void Draw()
@@ -122,6 +123,38 @@ namespace H1_ERP_System.UI
                 if (Checker.Retry())
                     goto editCustomer;
             }
+        }
+
+        public static void DeleteSale(SaleOrderHeader sale)
+        {
+        repeat:
+            Clear();
+            Console.WriteLine($"Are you sure you want to delete " +
+                $" sale order id {sale.SaleOrderId} from '{sale.CustomerId.FullName}' \n1. yes\n2. No");
+            int.TryParse(Console.ReadLine(), out int choice);
+            switch (choice)
+            {
+                case 1:
+                    Database.RemoveSaleOrderHeader(sale.SaleOrderId);
+                    Clear();
+                    Console.WriteLine($"The sale order id {sale.SaleOrderId} has been deleted\nPres enter to return");
+                    Console.ReadLine();
+                    break;
+
+                case 2:
+                    Clear();
+                    Console.WriteLine($"The deletion of sale order id {sale.SaleOrderId} has been canceled\nPres enter to return");
+                    Console.ReadLine();
+                    break;
+
+                default:
+                    goto repeat;
+
+            }
+
+            
+            Screen.Display(new SalesScreen());
+
         }
     }
 }
