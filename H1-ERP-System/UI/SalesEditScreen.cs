@@ -127,34 +127,12 @@ namespace H1_ERP_System.UI
 
         public static void DeleteSale(SaleOrderHeader sale)
         {
-        repeat:
-            Clear();
-            Console.WriteLine($"Are you sure you want to delete " +
-                $" sale order id {sale.SaleOrderId} from '{sale.CustomerId.FullName}' \n1. yes\n2. No");
-            int.TryParse(Console.ReadLine(), out int choice);
-            switch (choice)
+
+            if (Checker.DeleteData(Convert.ToString(sale.SaleOrderId)))
             {
-                case 1:
-                    Database.RemoveSaleOrderHeader(sale.SaleOrderId);
-                    Clear();
-                    Console.WriteLine($"The sale order id {sale.SaleOrderId} has been deleted\nPres enter to return");
-                    Console.ReadLine();
-                    break;
-
-                case 2:
-                    Clear();
-                    Console.WriteLine($"The deletion of sale order id {sale.SaleOrderId} has been canceled\nPres enter to return");
-                    Console.ReadLine();
-                    break;
-
-                default:
-                    goto repeat;
-
+                Database.RemoveSaleOrderHeader(sale.SaleOrderId);
             }
-
-            
-            Screen.Display(new SalesScreen());
-
+            Console.Clear();
         }
     }
 }
