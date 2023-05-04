@@ -16,7 +16,6 @@ namespace H1_ERP_System.UI
         #region CustomerScreen
         protected override void Draw()
         {
-
             ListPage<Customer> customerListPage = new ListPage<Customer>();
             List<Customer> list = Database.GetCustomerList();
             if (list.Count != 0 ) 
@@ -52,8 +51,6 @@ namespace H1_ERP_System.UI
             {
                 CustomerEditScreen.CreateCustomer(new Customer());
             }
-
-            
         }
         #endregion
 
@@ -77,12 +74,9 @@ namespace H1_ERP_System.UI
             
             Customer selectedCustomer = selectedCustomerListPage.Select();
 
-            
-
             Console.Clear();
             Title = "Customerlist";
         }
         #endregion
-
     }
 }
