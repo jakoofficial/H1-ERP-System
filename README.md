@@ -9,8 +9,7 @@
 - [Technologies](#technologies)
 - [Documents](#documents)
 ## General info
-This project was made to help us students get a deeper understanding of programmering.
-It focuses around creating an ERP system with a functioning Database and a user Interface using a Console. 
+This project have the focus of creating a console based ERP system for a fictional company, while helping us learn and understand new ways of working with c#
 
 The project uses MS SQL to connect with the database and select, create, update and delete data from the various tables.
 The project also utilize the NuGet package TECHCOOL for GUI and some functionalities.
