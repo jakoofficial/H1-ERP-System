@@ -1,4 +1,5 @@
 ﻿using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 using H1_ERP_System.ProductFolder;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,6 @@ namespace H1_ERP_System.UI
             ListPage<Product> productListPage = new ListPage<Product>();
             if (productList.Count != 0)
             {
-
-                Console.WriteLine("Press F1 to Create a new product.");
-                Console.WriteLine("Press F2 to Edit a product.");
                 for (int i = 0; i < productList.Count; i++)
                     productListPage.Add(productList[i]);
 
@@ -41,7 +39,12 @@ namespace H1_ERP_System.UI
                 productListPage.AddColumn("Purchase Price", "PurchasePrice");
                 productListPage.AddColumn("% Profit", "ProfitProcent");
                 productListPage.AddKey(ConsoleKey.F1, ProductEditScreen.CreateProduct);
-                productListPage.AddKey(ConsoleKey.F2, ProductEditScreen.EditProduct);
+                productListPage.AddKey(ConsoleKey.F5, ProductEditScreen.DeleteProductScreen);
+
+                Console.WriteLine("Enter  | Select\n" +
+                                  "F1     | Create new\n" +
+                                  "F5     | Delete\n" +
+                                  "ESC    | Go back");
 
                 Product selected = productListPage.Select();
                 if (selected != null)
@@ -56,32 +59,33 @@ namespace H1_ERP_System.UI
             }
         }
 
-        /// <summary>
-        /// Method to show more information about selected product.
-        /// </summary>
-        /// <param name="selected"></param>
         public void ProductDetails(Product selected)
         {
             Title = $" {selected.Name} ";
             Clear(this);
-            ListPage<Product> SelectedProductListPage = new ListPage<Product>();
 
-            SelectedProductListPage.Add(selected);
-            SelectedProductListPage.AddColumn("Item Number", "ItemNumber");
-            SelectedProductListPage.AddColumn("Name", "Name");
-            SelectedProductListPage.AddColumn("Description", "Description");
-            SelectedProductListPage.AddColumn("Sale Price", "SalesPrice");
-            SelectedProductListPage.AddColumn("Purchase Price", "PurchasePrice");
-            SelectedProductListPage.AddColumn("Location", "Location");
-            SelectedProductListPage.AddColumn("In Stock", "QuantityInStock");
-            SelectedProductListPage.AddColumn("Unit Type", "Unit");
-            SelectedProductListPage.AddColumn("% Profit", "ProfitProcent");
-            SelectedProductListPage.AddColumn("Profit in DKK.", "Profit");
+            ListPage<Product> selectedProductListPage = new ListPage<Product>();
+            selectedProductListPage.Add(selected);
 
-            SelectedProductListPage.Select();
-            Console.ReadKey();
+            selectedProductListPage.AddColumn("Item Number", "ItemNumber");
+            selectedProductListPage.AddColumn("Name", "Name");
+            selectedProductListPage.AddColumn("Description", "Description");
+            selectedProductListPage.AddColumn("Sale Price", "SalesPrice");
+            selectedProductListPage.AddColumn("Purchase Price", "PurchasePrice");
+            selectedProductListPage.AddColumn("Location", "Location");
+            selectedProductListPage.AddColumn("In Stock", "QuantityInStock");
+            selectedProductListPage.AddColumn("Unit Type", "Unit");
+            selectedProductListPage.AddColumn("% Profit", "ProfitProcent");
+            selectedProductListPage.AddColumn("Profit in DKK.", "Profit");
+            selectedProductListPage.AddKey(ConsoleKey.F2, ProductEditScreen.EditProduct);
+
+            Console.WriteLine("F2  | Edit\n" +
+                              "ESC | Go back");
+
+            selectedProductListPage.Select();
+
+            Console.Clear();
             Title = "Product List";
-            Quit();
         }
     }
 }
