@@ -27,15 +27,12 @@ namespace H1_ERP_System.UI
                 for (int i = 0; i < l.Count; i++)
                     companyList.Add(l[i]);
 
-
                 companyList.AddColumn("Company Name", "CompanyName", 20);
                 companyList.AddColumn("Country", "Country");
                 companyList.AddColumn("Currency", "Currency");
                 companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
                 companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.CreateCompany);
                 companyList.AddKey(ConsoleKey.F5, CompanyEditScreen.DeleteCompany);
-
-
 
                 //companyList.Draw();
                 Console.WriteLine("F1  | Edit highlighted\n" +
@@ -54,7 +51,7 @@ namespace H1_ERP_System.UI
                     Quit();
                 }
             } else
-                CustomerEditScreen.CreateCustomer(new Customer());
+                CompanyEditScreen.CreateCompany(new Company());
         }
 
         public void Text(Company cp)
@@ -104,7 +101,5 @@ namespace H1_ERP_System.UI
                 Quit();
             }
         }
-
     }
-
 }
