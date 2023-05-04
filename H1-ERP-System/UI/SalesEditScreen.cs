@@ -131,6 +131,9 @@ namespace H1_ERP_System.UI
             if (Checker.DeleteData(Convert.ToString(sale.SaleOrderId)))
             {
                 Database.RemoveSaleOrderHeader(sale.SaleOrderId);
+                Console.Clear();
+                Console.WriteLine("Deleting Complete");
+                Console.ReadLine();
             }
             Console.Clear();
         }

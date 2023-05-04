@@ -34,6 +34,11 @@ namespace H1_ERP_System
             Console.WriteLine(text);
         }
 
+        /// <summary>
+        /// Yes or no question that return true if yes or false if no
+        /// </summary>
+        /// <param name="deleteItem">Name of the item for deletion. Leave empty for "data"</param>
+        /// <returns>true or false</returns>
         public static bool DeleteData(string deleteItem = "data")
         {
             Console.Clear();

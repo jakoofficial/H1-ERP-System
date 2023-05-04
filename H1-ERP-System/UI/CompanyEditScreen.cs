@@ -158,34 +158,11 @@ namespace H1_ERP_System.UI
             if(Checker.DeleteData(comp.CompanyName))
             {
                 Database.RemoveCompany(comp);
+                Console.Clear();
+                Console.WriteLine("Deleting Complete");
+                Console.ReadLine();
             }
             Console.Clear();
-            
-            //repeat:
-            //Clear();
-            //Console.WriteLine($"Are you sure you want to delete '" +
-            //    $"{comp.CompanyName}' \n1. yes\n2. No");
-            //int.TryParse(Console.ReadLine(), out int choice);
-            //switch (choice)
-            //{
-            //    case 1:
-            //        Database.RemoveCompany(comp);
-            //        Clear();
-            //        Console.WriteLine($"The company {comp.CompanyName} has been deleted\nPres enter to return");
-            //        Console.ReadLine();
-            //        break;
-
-            //    case 2:
-            //        Clear();
-            //        Console.WriteLine($"The deletion of {comp.CompanyName} has been canceled\nPres enter to return");
-            //        Console.ReadLine();
-            //        break;
-
-            //    default:
-            //        goto repeat;
-
-            //}
-
             
             Screen.Display(new CompanyScreen());
          
