@@ -32,7 +32,7 @@ namespace H1_ERP_System.UI
 
 
                 Console.WriteLine("Enter  | Select\n" +
-                                  "F2     | Create new\n" +
+                                  "F1     | Create new\n" +
                                   "F5     | Delete\n" +
                                   "ESC    | Go back");
 
