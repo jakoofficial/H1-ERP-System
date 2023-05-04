@@ -134,9 +134,13 @@ namespace H1_ERP_System.UI
         public static void DeleteCustomerScreen(Customer cos)
         {
             if (Checker.DeleteData(cos.FullName))
+            {
                 Database.DeleteCustomer(cos);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Black;
+                Console.Clear();
+                Console.WriteLine("Deleting Complete");
+                Console.ReadLine();
+            }
+
             Console.Clear();
         }
 

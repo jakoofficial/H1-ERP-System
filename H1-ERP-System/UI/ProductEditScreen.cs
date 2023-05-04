@@ -1,4 +1,5 @@
-﻿using H1_ERP_System.ProductFolder;
+﻿using H1_ERP_System.CustomerFolder;
+using H1_ERP_System.ProductFolder;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,7 +22,6 @@ namespace H1_ERP_System.UI
         protected override void Draw()
         {
             Clear(this);
-
         }
 
         public static void CreateProduct(Product pr)
@@ -74,9 +74,7 @@ namespace H1_ERP_System.UI
                 }
             }
         }
-
-
-
+ 
         public static void EditProduct(Product p)
         {
             Clear();
@@ -122,6 +120,17 @@ namespace H1_ERP_System.UI
                     goto editProduct;
                 }
             }
+        }
+        public static void DeleteProductScreen(Product pro)
+        {
+            if (Checker.DeleteData(pro.Name))
+            {
+                Database.DeleteProduct(pro.ItemNumber);
+                Console.Clear();
+                Console.WriteLine("Deleting Complete");
+                Console.ReadLine();
+            }
+            Console.Clear();
         }
     }
 }

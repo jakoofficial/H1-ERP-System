@@ -29,10 +29,12 @@ namespace H1_ERP_System.UI
                 customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
                 customerListPage.AddColumn("Email", "Email");
                 customerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.CreateCustomer);
+                customerListPage.AddKey(ConsoleKey.F5, CustomerEditScreen.DeleteCustomerScreen);
 
 
                 Console.WriteLine("Enter  | Select\n" +
                                   "F2     | Create new\n" +
+                                  "F5     | Delete\n" +
                                   "ESC    | Go back");
 
                 Customer selected = customerListPage.Select();
@@ -69,10 +71,8 @@ namespace H1_ERP_System.UI
             selectedCustomerListPage.AddColumn("Country", "Country");
             selectedCustomerListPage.AddColumn("Last purchase", "LastPurchase");
             selectedCustomerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.EditCustomer);
-            selectedCustomerListPage.AddKey(ConsoleKey.F5, CustomerEditScreen.DeleteCustomerScreen);
 
             Console.WriteLine("F2  | Edit\n" +
-                              "F5  | Delete\n" +
                               "ESC | Go back");
             
             Customer selectedCustomer = selectedCustomerListPage.Select();
