@@ -84,7 +84,7 @@ namespace H1_ERP_System.UI
             //lpSal.AddKey(ConsoleKey.F2, SalesOrderEdit.CreateSale);
 
             Console.WriteLine("Press F2 to edit Selected\n" +
-                              "Press F2 to create new | WIP\n" +
+                              //"Press F2 to create new | WIP\n" +
                               "Press ESC to go back");
 
             SaleOrderLine sl = lpSal.Select();
