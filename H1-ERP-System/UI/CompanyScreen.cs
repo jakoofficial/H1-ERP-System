@@ -29,15 +29,15 @@ namespace H1_ERP_System.UI
             companyList.AddColumn("Company Name", "CompanyName", 20);
             companyList.AddColumn("Country", "Country");
             companyList.AddColumn("Currency", "Currency");
-            companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
-            companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.CreateCompany);
+            companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.CreateCompany);
+            companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.EditCompany);
             companyList.AddKey(ConsoleKey.F5, CompanyEditScreen.DeleteCompany);
 
 
 
             //companyList.Draw();
-            Console.WriteLine("F1  | Edit highlighted\n" +
-                              "F2  | Create new\n" +
+            Console.WriteLine("F1  | Create new\n" +
+                              "F2  | Edit highlighted\n" +
                               "F5  | Delete\n" +
                               "ESC | Go back");
             Company cp = companyList.Select();
