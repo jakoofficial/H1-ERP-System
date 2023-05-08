@@ -15,7 +15,7 @@ namespace H1_ERP_System.UI
     /// </summary>
     public class CompanyScreen : Screen
     {
-        public override string Title { get; set; } = "Displaying Companies";
+        public override string Title { get; set; } = "Companies";
         protected override void Draw()
         {
             Clear(this);
