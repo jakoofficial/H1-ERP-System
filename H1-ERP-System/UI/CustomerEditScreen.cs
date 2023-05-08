@@ -1,5 +1,6 @@
 ﻿using H1_ERP_System.CompanyFolder;
 using H1_ERP_System.CustomerFolder;
+using H1_ERP_System.SalesFolder;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -54,7 +55,7 @@ namespace H1_ERP_System.UI
             coEdit.Edit(co);
             Customer customer = new Customer(0, co.LastPurchase, co.FirstName, co.LastName, co.PhoneNumber, co.Email, 0, co.Street, co.StreetNumber, co.PostalCode, co.City, co.Country);
 
-            if (!Checker.ChecksIfEmpty(customer))
+            if (!Checker.IfEmpty(customer))
             {
                 Database.AddCustomerToDB(customer);
                 Console.Clear();
@@ -92,7 +93,7 @@ namespace H1_ERP_System.UI
         editCustomer:
             Console.WriteLine("Press ESC When Done\n");
             coEdit.Edit(co);
-            if (!Checker.ChecksIfEmpty(co))
+            if (!Checker.IfEmpty(co))
             {
                 Database.UpdateCustomer(co);
 
@@ -103,7 +104,7 @@ namespace H1_ERP_System.UI
                 coAddress.PostalCode = co.PostalCode;
                 coAddress.Country = co.Country;
 
-                if (!Checker.ChecksIfEmpty(coAddress))
+                if (!Checker.IfEmpty(coAddress))
                 {
                     Database.UpdateAddress(coAddress);
                     Console.Clear();
@@ -133,53 +134,28 @@ namespace H1_ERP_System.UI
         /// <param name="cos"></param>
         public static void DeleteCustomerScreen(Customer cos)
         {
-            Console.Clear();
-            int option = 1;
-            ConsoleKeyInfo key;
-            bool selected = false;
-            (int left, int top) = Console.GetCursorPosition();
-            int colorChecker = 1;
-            
-
-            Clear();
-            while (!selected)
+            List<SaleOrderHeader> sl = Database.GetSaleOrders($"SELECT * FROM dbo.SaleOrders WHERE CustomerId = {cos.CustomerId}");
+            if (sl.Count > 0 && sl[0].Customer_Id == cos.CustomerId)
             {
-                Console.SetCursorPosition(left, top);
-                MenuOptionColorSetter(ConsoleColor.White, ConsoleColor.Black, $"\nAre you sure you wanna delete '{cos.FullName}'?");
-
-                if (colorChecker == 1)
-                {
-                    MenuOptionColorSetter(ConsoleColor.Black, ConsoleColor.White, "Yes");
-                    MenuOptionColorSetter(ConsoleColor.White, ConsoleColor.Black, "No");
-                }
-                if (colorChecker == 2)
-                {
-                    MenuOptionColorSetter(ConsoleColor.White, ConsoleColor.Black, "Yes");
-                    MenuOptionColorSetter(ConsoleColor.Black, ConsoleColor.White, "No");
-                }
-
-                ConsoleKeyInfo Key = Console.ReadKey(true);
-                Console.CursorVisible = false;
-
-                switch (Key.Key)
-                {
-                    case ConsoleKey.DownArrow:
-                        option = (option == 2 ? 1 : option + 1);
-                        colorChecker = (colorChecker == 2 ? 1 : colorChecker + 1);
-                        break;
-
-                    case ConsoleKey.UpArrow:
-                        option = (option == 1 ? 2 : option - 1);
-                        colorChecker = (colorChecker == 1 ? 2 : colorChecker - 1);
-                        break;
-
-                    case ConsoleKey.Enter:
-                        selected = true;
-                        break;
-                }
+                Console.Clear();
+                Console.WriteLine("Can't Delete Customer with an order!");
+                Console.ReadLine();
             }
-            if (option == 1)
-                Database.DeleteCustomer(cos);
+            else
+            {
+                if (cos.AddressId != null)
+                {
+                    if (Checker.DeleteData(cos.FullName))
+                    {
+                        Database.DeleteCustomer(cos);
+                        Console.Clear();
+                        Console.WriteLine("Deleting Complete");
+                        Console.ReadLine();
+                    }
+                }
+
+            }
+
             Console.Clear();
         }
 

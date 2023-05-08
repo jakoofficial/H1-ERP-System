@@ -55,7 +55,7 @@ namespace H1_ERP_System.UI
             cpEditor.Edit(cp);
             Company company = new Company(0, cp.CompanyName, cp.Currency, cp.AddressId, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country);
 
-            if (!Checker.ChecksIfEmpty(cp))
+            if (!Checker.IfEmpty(cp))
             {
                 Database.AddCompany(company);
                 Clear();
@@ -103,7 +103,7 @@ namespace H1_ERP_System.UI
 
             Console.WriteLine("Press ESC When Done\n");
             cpEditor.Edit(cp);
-            if (!Checker.ChecksIfEmpty(cp))
+            if (!Checker.IfEmpty(cp))
             {
                 Database.UpdateCompany(cp);
 
@@ -114,7 +114,7 @@ namespace H1_ERP_System.UI
                 adr.PostalCode = cp.PostalCode;
                 adr.Country = cp.Country;
 
-                if (!Checker.ChecksIfEmpty(adr))
+                if (!Checker.IfEmpty(adr))
                 {
                     Database.UpdateAddress(adr);
                     Clear();
@@ -155,31 +155,14 @@ namespace H1_ERP_System.UI
         /// <param name="comp"></param>
         public static void DeleteCompany(Company comp)
         {
-            repeat:
-            Clear();
-            Console.WriteLine($"Are you sure you want to delete '" +
-                $"{comp.CompanyName}' \n1. yes\n2. No");
-            int.TryParse(Console.ReadLine(), out int choice);
-            switch (choice)
+            if(Checker.DeleteData(comp.CompanyName))
             {
-                case 1:
-                    Database.RemoveCompany(comp);
-                    Clear();
-                    Console.WriteLine($"The company {comp.CompanyName} has been deleted\nPres enter to return");
-                    Console.ReadLine();
-                    break;
-
-                case 2:
-                    Clear();
-                    Console.WriteLine($"The deletion of {comp.CompanyName} has been canceled\nPres enter to return");
-                    Console.ReadLine();
-                    break;
-
-                default:
-                    goto repeat;
-
+                Database.RemoveCompany(comp);
+                Console.Clear();
+                Console.WriteLine("Deleting Complete");
+                Console.ReadLine();
             }
-
+            Console.Clear();
             
             Screen.Display(new CompanyScreen());
          

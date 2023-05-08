@@ -1,4 +1,5 @@
 ﻿using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,38 +22,36 @@ namespace H1_ERP_System.UI
 
             List<Company> l = Database.GetCompanies("SELECT * FROM dbo.Companies");
             ListPage<Company> companyList = new ListPage<Company>();
-            for (int i = 0; i < l.Count; i++)
+            if (l.Count != 0)
             {
-                companyList.Add(l[i]);
-            }
+                for (int i = 0; i < l.Count; i++)
+                    companyList.Add(l[i]);
 
-            companyList.AddColumn("Company Name", "CompanyName", 20);
-            companyList.AddColumn("Country", "Country");
-            companyList.AddColumn("Currency", "Currency");
-            companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
-            companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.CreateCompany);
-            companyList.AddKey(ConsoleKey.F5, CompanyEditScreen.DeleteCompany);
+                companyList.AddColumn("Company Name", "CompanyName", 20);
+                companyList.AddColumn("Country", "Country");
+                companyList.AddColumn("Currency", "Currency");
+                companyList.AddKey(ConsoleKey.F1, CompanyEditScreen.EditCompany);
+                companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.CreateCompany);
+                companyList.AddKey(ConsoleKey.F5, CompanyEditScreen.DeleteCompany);
 
-
-
-            //companyList.Draw();
-            Console.WriteLine("F1  | Edit highlighted\n" +
-                              "F2  | Create new\n" +
-                              "F5  | Delete\n" +
-                              "ESC | Go back");
-            Company cp = companyList.Select();
-            if (cp != null)
-            {
-                Clear(this);
-                Text(cp);
-            }
-            else
-            {
-                Clear();
-                Quit();
-            }
-
-            Quit();
+                //companyList.Draw();
+                Console.WriteLine("F1  | Create new\n" +
+                                  "F2  | Edit highlighted\n" +
+                                  "F5  | Delete\n" +
+                                  "ESC | Go back");
+                Company cp = companyList.Select();
+                if (cp != null)
+                {
+                    Clear(this);
+                    Text(cp);
+                }
+                else
+                {
+                    Clear();
+                    Quit();
+                }
+            } else
+                CompanyEditScreen.CreateCompany(new Company());
         }
 
         public void Text(Company cp)
@@ -102,7 +101,5 @@ namespace H1_ERP_System.UI
                 Quit();
             }
         }
-
     }
-
 }

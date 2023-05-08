@@ -52,7 +52,8 @@ namespace H1_ERP_System
                 {
                     while (reader.Read())
                     {
-                        Address adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}");
+                        Address adr;
+                        adr = GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}");
                         cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[5], (string)reader[6], adr.AddressId, adr.Street, adr.StreetNumber, adr.PostalCode, adr.City, adr.Country));
                         //cList.Add(new Customer((int)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], GetAddress($"SELECT * FROM dbo.Address WHERE AddressId = {(int)reader[4]}"), (string)reader[5], (string)reader[6]));                       
                     }

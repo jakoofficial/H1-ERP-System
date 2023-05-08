@@ -1,4 +1,5 @@
-﻿using H1_ERP_System.CustomerFolder;
+﻿using H1_ERP_System.CompanyFolder;
+using H1_ERP_System.CustomerFolder;
 using H1_ERP_System.SalesFolder;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using TECHCOOL.UI;
 
 namespace H1_ERP_System.UI
 {
-    public class SalesOrderEdit : Screen
+    public class SalesEditScreen : Screen
     {
         public override string Title { get; set; } = "Sales Order Edit/Create";
         protected override void Draw()
@@ -40,7 +41,7 @@ namespace H1_ERP_System.UI
             newCustomerForm.Edit(c);
 
             Customer customer = new Customer(0, c.LastPurchase, c.FirstName, c.LastName, c.PhoneNumber, c.Email, c.AddressId, c.Street, c.StreetNumber, c.PostalCode, c.City, c.Country);
-            if (!Checker.ChecksIfEmpty(customer))
+            if (!Checker.IfEmpty(customer))
             {
                 Database.AddCustomerToDB(customer);
                 Customer gotCustomer = Database.GetCustomer("SELECT TOP(1) * FROM dbo.Customers ORDER BY CustomerId DESC");
@@ -93,7 +94,7 @@ namespace H1_ERP_System.UI
             Console.WriteLine("Press ESC When Done\n");
             customerForm.Edit(customer);
 
-            if (!Checker.ChecksIfEmpty(customer))
+            if (!Checker.IfEmpty(customer))
             {
                 Database.UpdateCustomer(customer);
 
@@ -104,7 +105,7 @@ namespace H1_ERP_System.UI
                 customerAddress.PostalCode = customer.PostalCode;
                 customerAddress.Country = customer.Country;
 
-                if (!Checker.ChecksIfEmpty(customerAddress))
+                if (!Checker.IfEmpty(customerAddress))
                 {
                     Database.UpdateAddress(customerAddress);
                     Console.Clear();
@@ -122,6 +123,19 @@ namespace H1_ERP_System.UI
                 if (Checker.Retry())
                     goto editCustomer;
             }
+        }
+
+        public static void DeleteSale(SaleOrderHeader sale)
+        {
+
+            if (Checker.DeleteData(Convert.ToString(sale.SaleOrderId)))
+            {
+                Database.RemoveSaleOrderHeader(sale.SaleOrderId);
+                Console.Clear();
+                Console.WriteLine("Deleting Complete");
+                Console.ReadLine();
+            }
+            Console.Clear();
         }
     }
 }
