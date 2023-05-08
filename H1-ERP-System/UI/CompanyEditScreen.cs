@@ -127,8 +127,6 @@ namespace H1_ERP_System.UI
             }
         }
 
-
-
         /// <summary>
         /// deletes a specified Company if the user confrims it 
         /// </summary>

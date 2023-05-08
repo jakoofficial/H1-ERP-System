@@ -27,7 +27,7 @@ namespace H1_ERP_System.UI
                 customerListPage.AddColumn("Name", "FullName");
                 customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
                 customerListPage.AddColumn("Email", "Email");
-                customerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.CreateCustomer);
+                customerListPage.AddKey(ConsoleKey.F1, CustomerEditScreen.CreateCustomer);
                 customerListPage.AddKey(ConsoleKey.F5, CustomerEditScreen.DeleteCustomerScreen);
 
 
