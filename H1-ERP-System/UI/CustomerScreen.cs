@@ -11,7 +11,7 @@ namespace H1_ERP_System.UI
 {
     public class CustomerScreen : Screen
     {
-        public override string Title { get; set; } = "Customer List";
+        public override string Title { get; set; } = "Customers";
 
         #region CustomerScreen
         protected override void Draw()
@@ -75,7 +75,7 @@ namespace H1_ERP_System.UI
             Customer selectedCustomer = selectedCustomerListPage.Select();
 
             Console.Clear();
-            Title = "Customerlist";
+            Title = "Customers";
         }
         #endregion
     }
