@@ -16,7 +16,7 @@ namespace H1_ERP_System.UI
 {
     public class ProductScreen : Screen
     {
-        public override string Title { get; set; } = "Product List";
+        public override string Title { get; set; } = "Products";
         /// <summary>
         /// Creates a table of Products using ListPage.
         /// </summary>
@@ -85,7 +85,7 @@ namespace H1_ERP_System.UI
             selectedProductListPage.Select();
 
             Console.Clear();
-            Title = "Product List";
+            Title = "Products";
         }
     }
 }

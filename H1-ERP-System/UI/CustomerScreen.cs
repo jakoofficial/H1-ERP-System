@@ -11,7 +11,7 @@ namespace H1_ERP_System.UI
 {
     public class CustomerScreen : Screen
     {
-        public override string Title { get; set; } = "Customer List";
+        public override string Title { get; set; } = "Customers";
 
         #region CustomerScreen
         protected override void Draw()
@@ -27,7 +27,7 @@ namespace H1_ERP_System.UI
                 customerListPage.AddColumn("Name", "FullName");
                 customerListPage.AddColumn("PhoneNumber", "PhoneNumber");
                 customerListPage.AddColumn("Email", "Email");
-                customerListPage.AddKey(ConsoleKey.F2, CustomerEditScreen.CreateCustomer);
+                customerListPage.AddKey(ConsoleKey.F1, CustomerEditScreen.CreateCustomer);
                 customerListPage.AddKey(ConsoleKey.F5, CustomerEditScreen.DeleteCustomerScreen);
 
 
@@ -75,7 +75,7 @@ namespace H1_ERP_System.UI
             Customer selectedCustomer = selectedCustomerListPage.Select();
 
             Console.Clear();
-            Title = "Customerlist";
+            Title = "Customers";
         }
         #endregion
     }

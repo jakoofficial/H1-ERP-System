@@ -58,22 +58,14 @@ namespace H1_ERP_System.UI
             if (!Checker.IfEmpty(cp))
             {
                 Database.AddCompany(company);
-                Clear();
+                Console.Clear();
                 Console.WriteLine("\n Successfully Created");
                 Console.ReadLine();
                 Screen.Display(new CompanyScreen());
             }
             else
             {
-                Clear();
-                Console.SetCursorPosition(0, 0);
-                Console.WriteLine("Company might have an empty value and can not be made.\n\n" +
-                                  "Press ENTER to try again\n" +
-                                  "Or ESCAPE to quit creation\n");
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape)
-                    Screen.Display(new CompanyScreen());
-                else if (key == ConsoleKey.Enter)
+                if (Checker.Retry())
                     goto createCompany;
             }
         }
@@ -124,30 +116,16 @@ namespace H1_ERP_System.UI
                 }
                 else
                 {
-                    Console.WriteLine("Address might have an empty value and can not be updated.\n\n" +
-                                      "Press ENTER to try again\n" +
-                                      "Or ESCAPE to quit editing\n");
-                    ConsoleKey key = Console.ReadKey().Key;
-                    if (key == ConsoleKey.Escape)
-                        Screen.Display(new CompanyScreen());
-                    else if (key == ConsoleKey.Enter)
+                    if (Checker.Retry())
                         goto editCompany;
                 }
             }
             else
             {
-                Clear();
-                Console.WriteLine("Company might have an empty value and can not be updated.\n\n" +
-                                  "Press ENTER to try again\n" +
-                                  "Or ESCAPE to quit editing\n");
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape)
-                    Screen.Display(new CompanyScreen());
-                else if (key == ConsoleKey.Enter)
+                if (Checker.Retry())
                     goto editCompany;
             }
         }
-
 
         /// <summary>
         /// deletes a specified Company if the user confrims it 

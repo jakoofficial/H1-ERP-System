@@ -73,6 +73,11 @@ namespace H1_ERP_System.UI
                     }
                 }
             }
+            else
+            {
+                if (Checker.Retry())
+                    goto CreateProduct;
+            }
         }
  
         public static void EditProduct(Product p)
