@@ -55,7 +55,7 @@ namespace H1_ERP_System.UI
             cpEditor.Edit(cp);
             Company company = new Company(0, cp.CompanyName, cp.Currency, cp.AddressId, cp.Street, cp.StreetNumber, cp.PostalCode, cp.City, cp.Country);
 
-            if (!Checker.ChecksIfEmpty(cp))
+            if (!Checker.IfEmpty(cp))
             {
                 Database.AddCompany(company);
                 Clear();
@@ -103,7 +103,7 @@ namespace H1_ERP_System.UI
 
             Console.WriteLine("Press ESC When Done\n");
             cpEditor.Edit(cp);
-            if (!Checker.ChecksIfEmpty(cp))
+            if (!Checker.IfEmpty(cp))
             {
                 Database.UpdateCompany(cp);
 
@@ -114,7 +114,7 @@ namespace H1_ERP_System.UI
                 adr.PostalCode = cp.PostalCode;
                 adr.Country = cp.Country;
 
-                if (!Checker.ChecksIfEmpty(adr))
+                if (!Checker.IfEmpty(adr))
                 {
                     Database.UpdateAddress(adr);
                     Clear();

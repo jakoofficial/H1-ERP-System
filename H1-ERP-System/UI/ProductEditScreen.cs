@@ -56,7 +56,7 @@ namespace H1_ERP_System.UI
                 //If not empty: Update the product with the new information, and send the user back to the ProductScreen
                 //If empty: if object is empty/has an empty value, give user option to go again (goto createProduct) or exit to ProductScreen. 
 
-                if (!Checker.ChecksIfEmpty(pr))
+                if (!Checker.IfEmpty(pr))
                 {
                     Database.AddProductToDB(pr);
                     Console.Clear();
@@ -103,7 +103,7 @@ namespace H1_ERP_System.UI
             //Checks if the Product object is empty, or not. 
             //If not empty: Update the product with the new information, and send the user back to the ProductScreen
             //If empty: if object is empty/has an empty value, give user option to go again (goto editProduct) or exit to ProductScreen. 
-            if (!Checker.ChecksIfEmpty(p) && p.SetLocation(p.Location))
+            if (!Checker.IfEmpty(p) && p.SetLocation(p.Location))
             {
                 Database.UpdateProduct(p, originalItemNumber);
                 Console.Clear();
