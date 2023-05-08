@@ -16,7 +16,7 @@ namespace H1_ERP_System
         /// </summary>
         /// <param name="o">Object to look through</param>
         /// <returns>If object properties is null</returns>
-        public static bool ChecksIfEmpty(object o)
+        public static bool IfEmpty(object o)
         {//https://stackoverflow.com/questions/41275797/check-if-any-property-of-class-is-null
          //Comment by Rob (Dec 22, 2016)
             if (o.GetType().GetProperties().All(p => p.GetValue(o) != null))
@@ -34,6 +34,11 @@ namespace H1_ERP_System
             Console.WriteLine(text);
         }
 
+        /// <summary>
+        /// Yes or no question that return true if yes or false if no
+        /// </summary>
+        /// <param name="deleteItem">Name of the item for deletion. Leave empty for "data"</param>
+        /// <returns>true or false</returns>
         public static bool DeleteData(string deleteItem = "data")
         {
             Console.Clear();

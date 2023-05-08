@@ -9,4 +9,5 @@ using H1_ERP_System.UI;
 using TECHCOOL.UI;
 
 Login.LoginInput();
+Console.CursorVisible = false;
 Screen.Display(new MainMenu());
