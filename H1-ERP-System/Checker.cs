@@ -32,6 +32,7 @@ namespace H1_ERP_System
             Console.ForegroundColor = foreColor;
             Console.BackgroundColor = backColor;
             Console.WriteLine(text);
+
         }
 
         /// <summary>

@@ -50,16 +50,15 @@ namespace H1_ERP_System.UI
                     Clear();
                     Quit();
                 }
-            } else
+            } 
+            else
+            {
                 CompanyEditScreen.CreateCompany(new Company());
+            }
         }
 
         public void Text(Company cp)
         {
-            //Console.WriteLine("\nWhich company would you like information about? \nPlease select an ID!");
-            //Console.Write("> ");
-            //if (choice != 0 && choice <= l.Count)
-            //{
             ListPage<Company> companyInfoList = new ListPage<Company>();
             companyInfoList.Add(cp);
 
