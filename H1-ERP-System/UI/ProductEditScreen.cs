@@ -84,7 +84,6 @@ namespace H1_ERP_System.UI
         {
             Clear();
 
-
             int originalItemNumber = p.ItemNumber;
             Form<Product> pEditor = new Form<Product>();
 

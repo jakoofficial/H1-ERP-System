@@ -8,11 +8,9 @@ namespace H1_ERP_System.CustomerFolder
 {
     public class Customer : Person
     {
-
         public int CustomerId { get; private set; } //Bruger identifikation
         public string LastPurchase { get; set; } //Sidste købte dato
         public string FullName { get; private set; }
-
 
         public Customer() : base("", "", "", "", 0, "", "", "", "", "")
         { }
@@ -38,8 +36,5 @@ namespace H1_ERP_System.CustomerFolder
             LastPurchase = lastPurchase;
             FullName = GetName();
         }
-        
-
-
     }
 }

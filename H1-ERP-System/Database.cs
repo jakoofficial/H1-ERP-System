@@ -15,12 +15,10 @@ namespace H1_ERP_System
 {
     public partial class Database
     {
-
         //UserID & Password: H1PD021123_Gruppe2
         public static string username = "";
         public static string password = "";
        
-
         public static Database Instance { get; }
         static Database()
         {
@@ -59,13 +57,6 @@ namespace H1_ERP_System
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
                 Console.WriteLine(connection.State);
-                //using (SqlDataReader reader = command.ExecuteReader())
-                //{
-                //    while (reader.Read())
-                //    {
-                //        Console.WriteLine(String.Format("{0}, {1}", reader[0], reader[1]));
-                //    }
-                //}
             }
         }
     }

@@ -34,7 +34,6 @@ namespace H1_ERP_System.UI
                 companyList.AddKey(ConsoleKey.F2, CompanyEditScreen.EditCompany);
                 companyList.AddKey(ConsoleKey.F5, CompanyEditScreen.DeleteCompany);
 
-                //companyList.Draw();
                 Console.WriteLine("F1  | Create new\n" +
                                   "F2  | Edit highlighted\n" +
                                   "F5  | Delete\n" +

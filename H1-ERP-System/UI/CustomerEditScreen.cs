@@ -34,7 +34,6 @@ namespace H1_ERP_System.UI
         /// </summary>
         public static void CreateCustomer(Customer co)
         {
-
             Console.Clear();
             Form<Customer> coEdit = new Form<Customer>();
             co = new Customer();
@@ -128,10 +127,6 @@ namespace H1_ERP_System.UI
         #endregion
 
         #region DeleteCustomer
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="cos"></param>
         public static void DeleteCustomerScreen(Customer cos)
         {
             List<SaleOrderHeader> sl = Database.GetSaleOrders($"SELECT * FROM dbo.SaleOrders WHERE CustomerId = {cos.CustomerId}");
@@ -153,17 +148,8 @@ namespace H1_ERP_System.UI
                         Console.ReadLine();
                     }
                 }
-
             }
-
             Console.Clear();
-        }
-
-        public static void MenuOptionColorSetter(ConsoleColor foreColor, ConsoleColor backColor, string text = "")
-        {
-            Console.ForegroundColor = foreColor;
-            Console.BackgroundColor = backColor;
-            Console.WriteLine(text);
         }
         #endregion
     }
