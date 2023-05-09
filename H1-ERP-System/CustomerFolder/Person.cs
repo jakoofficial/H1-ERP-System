@@ -8,12 +8,10 @@ namespace H1_ERP_System.CustomerFolder
 {
     abstract public class Person : Address
     {
-
         public string FirstName { get; set; } //Fornavn
         public string LastName { get; set; } //Efternavn
         public string PhoneNumber { get; set; } //Telefon nummer
         public string Email { get; set; } //E-mail
-
 
         /// <summary>
         /// Used for creating a person
@@ -36,8 +34,6 @@ namespace H1_ERP_System.CustomerFolder
             Email = email;
         }
         
-
-
         /// <summary>
         /// Gets the name of the person
         /// </summary>

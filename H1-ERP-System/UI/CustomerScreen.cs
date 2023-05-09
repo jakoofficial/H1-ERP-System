@@ -30,7 +30,6 @@ namespace H1_ERP_System.UI
                 customerListPage.AddKey(ConsoleKey.F1, CustomerEditScreen.CreateCustomer);
                 customerListPage.AddKey(ConsoleKey.F5, CustomerEditScreen.DeleteCustomerScreen);
 
-
                 Console.WriteLine("Enter  | Select\n" +
                                   "F1     | Create new\n" +
                                   "F5     | Delete\n" +

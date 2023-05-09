@@ -66,7 +66,6 @@ namespace H1_ERP_System.UI
                 if (Checker.Retry())
                     goto newCustomerForm;
             }
-
         }
 
         public static void EditSale(SaleOrderLine sl)
@@ -127,7 +126,6 @@ namespace H1_ERP_System.UI
 
         public static void DeleteSale(SaleOrderHeader sale)
         {
-
             if (Checker.DeleteData(Convert.ToString(sale.SaleOrderId)))
             {
                 Database.RemoveSaleOrderHeader(sale.SaleOrderId);

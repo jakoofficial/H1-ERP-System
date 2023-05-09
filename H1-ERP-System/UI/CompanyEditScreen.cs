@@ -26,7 +26,6 @@ namespace H1_ERP_System.UI
         protected override void Draw()
         {
             Clear(this);
-            //EditCompany(CP);
         }
 
         /// <summary>
@@ -76,7 +75,6 @@ namespace H1_ERP_System.UI
         /// <param name="cp">Company</param>
         public static void EditCompany(Company cp)
         {
-            //var props = new Dictionary<string, object>();
             Clear();
 
         editCompany:
@@ -143,7 +141,6 @@ namespace H1_ERP_System.UI
             Console.Clear();
             
             Screen.Display(new CompanyScreen());
-         
         }
     }
 }
