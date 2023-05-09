@@ -9,7 +9,7 @@
 - [Technologies](#technologies)
 - [Documents](#documents)
 ## General info
-This project have the focus of creating a console based ERP system for a fictional company, while helping us learn and understand new ways of working with c#
+This project is focused on creating a console based ERP system for a fictional company, while helping us learn and understand new ways of working with C#
 
 The project uses MS SQL to connect with the database and select, create, update and delete data from the various tables.
 The project also utilize the NuGet package TECHCOOL for GUI and some functionalities.
