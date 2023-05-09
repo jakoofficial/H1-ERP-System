@@ -79,7 +79,7 @@ namespace H1_ERP_System.UI
                     goto CreateProduct;
             }
         }
- 
+
         public static void EditProduct(Product p)
         {
             Clear();
@@ -131,7 +131,7 @@ namespace H1_ERP_System.UI
             {
                 Database.DeleteProduct(pro.ItemNumber);
                 Console.Clear();
-                Console.WriteLine("Deleting Complete");
+                Console.WriteLine("Deletion Completed");
                 Console.ReadLine();
             }
             Console.Clear();
