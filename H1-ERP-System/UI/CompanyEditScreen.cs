@@ -58,7 +58,7 @@ namespace H1_ERP_System.UI
             {
                 Database.AddCompany(company);
                 Console.Clear();
-                Console.WriteLine("\n Successfully Created");
+                Console.WriteLine("s\n Successfully Created");
                 Console.ReadKey();
                 Screen.Display(new CompanyScreen());
             }
