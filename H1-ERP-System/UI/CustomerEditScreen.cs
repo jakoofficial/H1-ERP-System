@@ -46,7 +46,7 @@ namespace H1_ERP_System.UI
             coEdit.TextBox("PostalCode", "PostalCode");
             coEdit.TextBox("City", "City");
             coEdit.TextBox("Country", "Country");
-            coEdit.TextBox("EMail", "Email");
+            coEdit.TextBox("Email", "Email");
             coEdit.TextBox("Last Purchase", "LastPurchase");
 
         createCustomer:
@@ -59,7 +59,7 @@ namespace H1_ERP_System.UI
                 Database.AddCustomerToDB(customer);
                 Console.Clear();
                 Console.WriteLine("s\n Successfully Created");
-                Console.ReadLine();
+                Console.ReadKey();
                 Screen.Display(new CustomerScreen());
             }
             else
