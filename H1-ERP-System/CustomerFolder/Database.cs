@@ -15,7 +15,7 @@ namespace H1_ERP_System
     public partial class Database
     {
         /// <summary>
-        /// Returns a customer from the database table using a queryString
+        /// Returns a customer from the database table using a query string
         /// </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Returns a list of customers from the database table using a queryString
+        /// Returns a list of customers from the database table using a query string
         /// </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>
@@ -106,12 +106,12 @@ namespace H1_ERP_System
             string queryString = $"DELETE FROM dbo.Customers WHERE CustomerId={c.CustomerId}";
             RunNonQuery(queryString);
         }
+
         /// <summary>
         /// Gets address, using a query string.
         /// </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>
-
         public static Address GetAddress(string queryString)
         {
             if (!queryString.IsNullOrEmpty())

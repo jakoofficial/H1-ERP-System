@@ -52,7 +52,6 @@ namespace H1_ERP_System.SalesFolder
         /// <summary>
         /// Calculates all the prices in the SaleOrderLine list, and returns the result
         /// </summary>
-        /// <param name="Price"></param>
         /// <returns> The price for all items in total </returns>
         public double SaleOrderPrice()
         {

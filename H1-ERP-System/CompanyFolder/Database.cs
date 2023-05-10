@@ -73,7 +73,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Remove the chosen company using the Company object
+        /// Removes the chosen company using the Company object
         /// </summary>
         /// <param name="cp"></param>
         public static void RemoveCompany(Company cp)
