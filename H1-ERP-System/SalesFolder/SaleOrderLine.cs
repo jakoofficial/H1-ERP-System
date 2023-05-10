@@ -16,11 +16,13 @@ namespace H1_ERP_System.SalesFolder
         public string PurchasedDate { get; set; }
         public int PurchasedAmount { get; set; }
         public int SalesOrderHeaderID { get; set; }
-        public string ProductName { get
+        public string ProductName 
+        { 
+            get
             {
                 return Product == null ? "" : Product.Name;
-            } }
-
+            } 
+        }
 
         public SaleOrderLine(int id, Product product, string purchasedDate, int purchasedAmount, int salesOrderHeaderID)
         {     
@@ -31,10 +33,6 @@ namespace H1_ERP_System.SalesFolder
             SalesOrderHeaderID = salesOrderHeaderID;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns> The Price exlpained in summary </returns>
         public double FullPriceForLine()
         {
             double totalPrice = 0;

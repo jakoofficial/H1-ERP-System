@@ -48,7 +48,6 @@ namespace H1_ERP_System
             (int left, int top) = Console.GetCursorPosition();
             int colorChecker = 1;
 
-
             Console.Clear();
             while (!selected)
             {
@@ -92,11 +91,7 @@ namespace H1_ERP_System
                 }
             }
             return false;
-            //if (option == 1)
-            //    Database.DeleteCustomer(cos);
-            //Console.Clear();
         }
-
 
         public static bool Retry()
         {
@@ -105,13 +100,12 @@ namespace H1_ERP_System
                               "Press ENTER to try again\n" +
                               "Or ESCAPE to quit editing\n");
             ConsoleKey key = Console.ReadKey().Key;
-            //Console.Clear();
+            
             if (key == ConsoleKey.Enter)
             {
                 return true;
             }
             return false;
         }
-
     }
 }
