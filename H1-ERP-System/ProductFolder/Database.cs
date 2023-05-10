@@ -26,7 +26,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Retrieves the Product with the specified ItemNumber/ItemId From our database
+        /// Retrieves the Product with the specified ItemNumber/ItemId from the database
         /// </summary>
         /// <param name="itemID"> ItemNumber/ItemId of the item that will be retrieved </param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Retrieves a list with all the Products from our database
+        /// Retrieves a list with all the Products from the database
         /// </summary>
         /// <returns></returns>
         public static List<Product> GetProductslist()
@@ -76,7 +76,7 @@ namespace H1_ERP_System
         /// <summary>
         /// Inserts a product into the database
         /// </summary>
-        /// <param name="p"> The product that will be added to our database </param>
+        /// <param name="p"> The product that will be added to the database </param>
         public static void AddProductToDB(Product p)
         {
             string queryString = "INSERT INTO dbo.Products " +
@@ -102,7 +102,7 @@ namespace H1_ERP_System
         /// <summary>
         /// Delete a specified item from our database, using the items ID.
         /// </summary>
-        /// <param name="itemNumber"> ItemNumber/ItemId of the item that will be delete from our database </param>
+        /// <param name="itemNumber"> ItemNumber/ItemId of the item that will be deleted from the database </param>
         public static void DeleteProduct(int itemNumber)
         {
             string queryString = $"Delete FROM dbo.Products WHERE ItemId={itemNumber}";

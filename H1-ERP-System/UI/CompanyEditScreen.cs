@@ -126,7 +126,7 @@ namespace H1_ERP_System.UI
         }
 
         /// <summary>
-        /// deletes a specified Company if the user confrims it 
+        /// Deletes a specified company if the user confirms it 
         /// </summary>
         /// <param name="comp"></param>
         public static void DeleteCompany(Company comp)

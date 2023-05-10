@@ -14,7 +14,7 @@ namespace H1_ERP_System
     public partial class Database
     {
         /// <summary>
-        /// Used to get a list of companies from the database table using a queryString
+        /// Used to get a list of companies from the database table using a query string
         /// </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>

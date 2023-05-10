@@ -25,13 +25,11 @@ namespace H1_ERP_System
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                //Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         SaleOrderHeader order = new SaleOrderHeader((int)reader[0], (string)reader[1], (string)reader[2], GetCustomer($"SELECT * FROM dbo.Customers WHERE CustomerId = {(int)reader[3]}"), (OrderStage)(int)reader[4], CreateSaleOrderList((int)reader[0]));
-                        //order.OrderLines = CreateSaleOrderList((int)reader[0]);
                         orderList.Add(order);
                     }
                     return orderList;
