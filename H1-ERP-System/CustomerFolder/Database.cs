@@ -14,6 +14,11 @@ namespace H1_ERP_System
 {
     public partial class Database
     {
+        /// <summary>
+        /// Returns a customer from the database table using a queryString
+        /// </summary>
+        /// <param name="queryString"></param>
+        /// <returns></returns>
         public static Customer GetCustomer(string queryString)
         {
             using (SqlConnection connection = Instance.GetConnection())
@@ -36,8 +41,9 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Retrieves a list with all the Customer from our database
+        /// Returns a list of customers from the database table using a queryString
         /// </summary>
+        /// <param name="queryString"></param>
         /// <returns></returns>
         public static List<Customer> GetCustomerList()
         {
@@ -62,7 +68,7 @@ namespace H1_ERP_System
             return cList;
         }
         /// <summary>
-        /// Inserts a product into our database
+        /// Inserts a new customer into the database. Uses an object of the type Customer
         /// </summary>
         /// <param name="c"> The Customer that will be added to our database </param>
         public static void AddCustomerToDB(Customer c)
@@ -91,7 +97,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// deletes a Customer from the database and the address the customer has in the database
+        /// Deletes a Customer (and their address) from the database.
         /// </summary>
         /// <param name="c"></param>
         public static void DeleteCustomer(Customer c)
@@ -100,6 +106,11 @@ namespace H1_ERP_System
             string queryString = $"DELETE FROM dbo.Customers WHERE CustomerId={c.CustomerId}";
             RunNonQuery(queryString);
         }
+        /// <summary>
+        /// Gets address, using a query string.
+        /// </summary>
+        /// <param name="queryString"></param>
+        /// <returns></returns>
 
         public static Address GetAddress(string queryString)
         {
@@ -109,7 +120,6 @@ namespace H1_ERP_System
                 {
                     SqlCommand cmd = new SqlCommand(queryString, connection);
                     connection.Open();
-                    //Debug.WriteLine("Connectoin {0}", connection.State);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -137,7 +147,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Update the address from a company or customer using their Address
+        /// Update the address connected to the customer or company
         /// </summary>
         /// <param name="adr">Address from the Company or Customer</param>
         public static void UpdateAddress(Address adr)
@@ -149,7 +159,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Remove the Address from the table using Company or Customer Address Id
+        /// Removes the Address from the table using Company or Customer Address Id
         /// </summary>
         /// <param name="id">Address ID from the address on Company or Customer</param>
         public static void RemoveAddress(int id)

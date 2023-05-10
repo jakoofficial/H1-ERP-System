@@ -54,7 +54,7 @@ namespace H1_ERP_System.UI
             {
                 //Checks if the new Product object is empty, or not. 
                 //If not empty: Update the product with the new information, and send the user back to the ProductScreen
-                //If empty: if object is empty/has an empty value, give user option to go again (goto createProduct) or exit to ProductScreen. 
+                //If empty: if object is empty/has an empty value, gives user option to go again (goto createProduct) or exit to ProductScreen. 
 
                 if (!Checker.IfEmpty(pr))
                 {
@@ -79,7 +79,10 @@ namespace H1_ERP_System.UI
                     goto CreateProduct;
             }
         }
-
+        /// <summary>
+        /// Edits a Product, with the object type Product
+        /// </summary>
+        /// <param name="p"></param>
         public static void EditProduct(Product p)
         {
             Clear();
@@ -125,14 +128,19 @@ namespace H1_ERP_System.UI
                 }
             }
         }
+
+        /// <summary>
+        /// Deletes specified product.
+        /// </summary>
+        /// <param name="pro"></param>
         public static void DeleteProductScreen(Product pro)
         {
-            if (Checker.DeleteData(pro.Name))
+            if (Checker.DeleteData("product: "+pro.Name))
             {
                 Database.DeleteProduct(pro.ItemNumber);
                 Console.Clear();
                 Console.WriteLine("Deletion Completed");
-                Console.ReadLine();
+                Console.ReadKey();
             }
             Console.Clear();
         }

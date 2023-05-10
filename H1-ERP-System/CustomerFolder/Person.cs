@@ -14,7 +14,7 @@ namespace H1_ERP_System.CustomerFolder
         public string Email { get; set; } //E-mail
 
         /// <summary>
-        /// Used for creating a person
+        /// Used to create an object of type: person
         /// </summary>
         /// <param name="firstName">The first name of the person</param>
         /// <param name="lastName">The last name of the person</param>
@@ -35,7 +35,7 @@ namespace H1_ERP_System.CustomerFolder
         }
         
         /// <summary>
-        /// Gets the name of the person
+        /// Gets the name of the person, combining first name and last name.
         /// </summary>
         /// <returns>String : Gets the fullname of the person</returns>
         public string GetName()

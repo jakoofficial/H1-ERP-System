@@ -42,7 +42,6 @@ namespace H1_ERP_System
                     reader.Read();
                     Product p = new Product((int)reader[0], (string)reader[1], (string)reader[2], (double)reader[3], (double)reader[4], (double)reader[6], (Product.Units)(int)reader[7]);
                     p.SetLocation((string)reader[5]);
-                    //Console.WriteLine(String.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}", reader[0], reader[1], reader[2], reader[3], reader[4], reader[5], reader[6], reader[7]));
                     return p;
                 }
             }
@@ -75,7 +74,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Inserts a product into our database
+        /// Inserts a product into the database
         /// </summary>
         /// <param name="p"> The product that will be added to our database </param>
         public static void AddProductToDB(Product p)
@@ -101,7 +100,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Delete a specified item from our database
+        /// Delete a specified item from our database, using the items ID.
         /// </summary>
         /// <param name="itemNumber"> ItemNumber/ItemId of the item that will be delete from our database </param>
         public static void DeleteProduct(int itemNumber)

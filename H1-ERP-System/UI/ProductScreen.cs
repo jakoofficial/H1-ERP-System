@@ -22,8 +22,6 @@ namespace H1_ERP_System.UI
         /// </summary>
         protected override void Draw()
         {
-            //Clear(this);
-
             List<Product> productList = Database.
                 GetProductslist();
             ListPage<Product> productListPage = new ListPage<Product>();

@@ -52,7 +52,7 @@ namespace H1_ERP_System.UI
                     Database.AddSaleOrderToDB(slh);
                     Console.Clear();
                     Console.WriteLine("SSuccessfully Created");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     Screen.Display(new SalesScreen());
                 }
                 else
@@ -86,7 +86,7 @@ namespace H1_ERP_System.UI
             customerForm.TextBox("PostalCode", "PostalCode");
             customerForm.TextBox("City", "City");
             customerForm.TextBox("Country", "Country");
-            customerForm.TextBox("EMail", "Email");
+            customerForm.TextBox("Email", "Email");
             customerForm.TextBox("Last Purchase", "LastPurchase");
 
         editCustomer:
@@ -109,6 +109,7 @@ namespace H1_ERP_System.UI
                     Database.UpdateAddress(customerAddress);
                     Console.Clear();
                     Console.WriteLine("SSuccessfully Updated");
+                    Console.ReadKey();
                     Screen.Display(new SalesScreen());
                 }
                 else
@@ -126,12 +127,12 @@ namespace H1_ERP_System.UI
 
         public static void DeleteSale(SaleOrderHeader sale)
         {
-            if (Checker.DeleteData(Convert.ToString(sale.SaleOrderId)))
+            if (Checker.DeleteData("sale: " + Convert.ToString(sale.SaleOrderId)))
             {
                 Database.RemoveSaleOrderHeader(sale.SaleOrderId);
                 Console.Clear();
                 Console.WriteLine("Deletion Completed");
-                Console.ReadLine();
+                Console.ReadKey();
             }
             Console.Clear();
         }

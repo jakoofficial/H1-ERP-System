@@ -29,7 +29,7 @@ namespace H1_ERP_System.UI
         }
 
         /// <summary>
-        /// Allows the creation of a new Company with new Address
+        /// Create a new Company with a new Address
         /// </summary>
         /// <param name="cp">Company</param>
         public static void CreateCompany(Company cp)
@@ -59,7 +59,7 @@ namespace H1_ERP_System.UI
                 Database.AddCompany(company);
                 Console.Clear();
                 Console.WriteLine("\n Successfully Created");
-                Console.ReadLine();
+                Console.ReadKey();
                 Screen.Display(new CompanyScreen());
             }
             else
@@ -109,7 +109,7 @@ namespace H1_ERP_System.UI
                     Database.UpdateAddress(adr);
                     Clear();
                     Console.WriteLine("\n Successfully Updated");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     Screen.Display(new CompanyScreen());
                 }
                 else
@@ -131,12 +131,12 @@ namespace H1_ERP_System.UI
         /// <param name="comp"></param>
         public static void DeleteCompany(Company comp)
         {
-            if(Checker.DeleteData(comp.CompanyName))
+            if(Checker.DeleteData("company: " + comp.CompanyName))
             {
                 Database.RemoveCompany(comp);
                 Console.Clear();
                 Console.WriteLine("Deletion Completed");
-                Console.ReadLine();
+                Console.ReadKey();
             }
             Console.Clear();
             

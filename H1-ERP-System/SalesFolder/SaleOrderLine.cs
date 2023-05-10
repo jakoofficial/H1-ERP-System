@@ -13,8 +13,8 @@ namespace H1_ERP_System.SalesFolder
     {
         public int SaleOrderLineId { get; set; }
         public Product Product { get; set; }
-        public string PurchasedDate { get; set; }
-        public int PurchasedAmount { get; set; }
+        public string PurchasedDate { get; set; } //Købsdato
+        public int PurchasedAmount { get; set; } //Mængde købt
         public int SalesOrderHeaderID { get; set; }
         public string ProductName 
         { 
@@ -33,6 +33,10 @@ namespace H1_ERP_System.SalesFolder
             SalesOrderHeaderID = salesOrderHeaderID;
         }
 
+        /// <summary>
+        /// Returns the total price amount of the order line.
+        /// </summary>
+        /// <returns>Returns a double</returns>
         public double FullPriceForLine()
         {
             double totalPrice = 0;

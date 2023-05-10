@@ -14,8 +14,7 @@ namespace H1_ERP_System
     public partial class Database
     {
         /// <summary>
-        /// Gets SalesOrder data from database by using QueryString.
-        /// And returns a new SaleOrderHeader.
+        /// Gets SalesOrder data from database by using a query string, and returns a new SaleOrderHeader.
         /// </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>
@@ -67,7 +66,7 @@ namespace H1_ERP_System
         }
 
         /// <summary>
-        /// Adds a saleOrderHeader with a OrderLine.
+        /// Adds a SaleOrderHeader with a OrderLine.
         /// </summary>
         /// <param name="s"></param>
         public static void AddSaleOrderToDB(SaleOrderHeader s)
@@ -89,8 +88,7 @@ namespace H1_ERP_System
 
 
         /// <summary>
-        /// Updates a SaleOrderHeader by writing the new one in as "s"
-        /// also updates OrderLines(the list of SaleOrderLines)
+        /// Updates the selected SaleOrderHeader by using it's ID. Also updates OrderLines(the list of SaleOrderLines)
         /// </summary>
         /// <param name="s"></param>
         public static void UpdateSaleOrder(SaleOrderHeader s)
