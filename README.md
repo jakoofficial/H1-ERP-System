@@ -20,6 +20,8 @@ The project also utilize the NuGet package TECHCOOL for GUI and some functionali
 - .NET 6
 - Visual Studio
 - TECHCOOL
+## Release Builds
+- [Build v.1.0](https://raw.githubusercontent.com/jakoofficial/H1-ERP-System/master/ERP-System.zip)
 ## Documents
 - [License](./LICENSE.txt)
 - [Project agreement & rules](./Documents/ERP_System_Gennemgående_Opgave.pdf)
