@@ -144,7 +144,7 @@ namespace H1_ERP_System.UI
                     {
                         Database.DeleteCustomer(cos);
                         Console.Clear();
-                        Console.WriteLine("Deleting Complete");
+                        Console.WriteLine("Deletion Completed");
                         Console.ReadLine();
                     }
                 }

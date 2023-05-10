@@ -130,7 +130,7 @@ namespace H1_ERP_System.UI
             {
                 Database.RemoveSaleOrderHeader(sale.SaleOrderId);
                 Console.Clear();
-                Console.WriteLine("Deleting Complete");
+                Console.WriteLine("Deletion Completed");
                 Console.ReadLine();
             }
             Console.Clear();
