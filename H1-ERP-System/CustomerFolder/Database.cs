@@ -85,7 +85,7 @@ namespace H1_ERP_System
         {
             UpdateAddress(new Address(0, c.Street, c.StreetNumber, c.PostalCode, c.City, c.Country));
             string queryString = "UPDATE dbo.Customers " +
-                $"SET LastPurchased='{c.LastPurchase}', FirstName='{c.FirstName}', LastName='{c.LastName}', PhoneNumber={c.PhoneNumber}, Email='{c.Email}' " +
+                $"SET LastPurchased='{c.LastPurchase}', FirstName='{c.FirstName}', LastName='{c.LastName}', PhoneNumber='{c.PhoneNumber}', Email='{c.Email}' " +
                 $"WHERE CustomerId={c.CustomerId}";
             RunNonQuery(queryString);
         }
