@@ -61,6 +61,15 @@ namespace H1_ERP_System.ProductFolder
             return false;
         }
 
+        public bool CheckLocation()
+        {
+            if (Location.Length == 4)
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Calculates the profit of the item
         /// </summary>

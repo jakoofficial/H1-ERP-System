@@ -35,7 +35,7 @@ namespace H1_ERP_System.UI
             pEditor.TextBox("Description", "Description");
             pEditor.TextBox("Sale Price", "SalesPrice");
             pEditor.TextBox("Purchase Price", "PurchasePrice");
-            pEditor.TextBox("Location", "Location");
+            pEditor.TextBox("Location (4 char)", "Location");
             pEditor.TextBox("In Stock", "QuantityInStock");
             pEditor.SelectBox("Unit Type", "Unit");
             pEditor.AddOption("Unit Type", "Hours", Product.Units.Hours);
@@ -50,7 +50,7 @@ namespace H1_ERP_System.UI
             pr.Profit = pr.CalculateProfit();
             pr.ProfitProcent = pr.CalculateProfitMargin();
 
-            if (pr.ProfitProcent != "0")
+            if (pr.ProfitProcent != "0" && pr.CheckLocation())
             {
                 //Checks if the new Product object is empty, or not. 
                 //If not empty: Update the product with the new information, and send the user back to the ProductScreen
