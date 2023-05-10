@@ -25,7 +25,9 @@ namespace H1_ERP_System.UI
             ShowOrderHeader();
         }
 
-        //Displays the Order Header.
+        /// <summary>
+        /// Displays the Order Header.
+        /// </summary>
         public void ShowOrderHeader()
         {
             ListPage<SaleOrderHeader> salesList = new ListPage<SaleOrderHeader>();
@@ -64,7 +66,10 @@ namespace H1_ERP_System.UI
             }
         }
 
-        //Displays the Order Lines.
+        /// <summary>
+        /// Displays the Order Lines.
+        /// </summary>
+        /// <param name="salesOrder"></param>
         public void ShowOrderLines(SaleOrderHeader salesOrder)
         {
             ListPage<SaleOrderLine> lpSal = new ListPage<SaleOrderLine>();

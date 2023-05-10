@@ -21,6 +21,8 @@ namespace H1_ERP_System.UI
                 Database.username = inputUser;
                 Database.password = inputPass;
 
+                //Attempts to connect to the database:
+                //In case of incorrect credentials, or no connection, catches an exception, informs the user of the error, and retries.
                 try
                 {
                     Database.Instance.GetConnection().Open();

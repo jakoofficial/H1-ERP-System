@@ -9,7 +9,7 @@ namespace H1_ERP_System.ProductFolder
 {
     public class Product
     {
-        public enum Units { Hours, Meters, Pieces, Kilogram } //
+        public enum Units { Hours, Meters, Pieces, Kilogram }
         public int ItemNumber { get; set; } //Varenummer
         public string Name { get; set; } //Navn
         public string Description { get; set; } //Beskrivelse

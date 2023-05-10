@@ -14,9 +14,6 @@ namespace H1_ERP_System.CompanyFolder
         public string CompanyName { get; set; } //Firmanavn
         public Currencies Currency { get; set; } //Valuta
 
-        /// <summary>
-        /// Empty Constructor
-        /// </summary>
         public Company() : base(0,"", "", "", "", "")
         {}
 

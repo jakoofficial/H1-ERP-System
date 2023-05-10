@@ -140,7 +140,7 @@ namespace H1_ERP_System.UI
             {
                 if (cos.AddressId != null)
                 {
-                    if (Checker.DeleteData(cos.FullName))
+                    if (Checker.DeleteData("customer: "+cos.FullName))
                     {
                         Database.DeleteCustomer(cos);
                         Console.Clear();

@@ -50,7 +50,7 @@ namespace H1_ERP_System.SalesFolder
         }
 
         /// <summary>
-        /// calculates all the prices in the list and returns the result
+        /// Calculates all the prices in the SaleOrderLine list, and returns the result
         /// </summary>
         /// <param name="Price"></param>
         /// <returns> The price for all items in total </returns>
