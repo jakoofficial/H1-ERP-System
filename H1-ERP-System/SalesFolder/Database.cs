@@ -55,7 +55,6 @@ namespace H1_ERP_System
 
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                //Console.WriteLine(connection.State);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -64,7 +63,6 @@ namespace H1_ERP_System
                     }
                 }
                 return order;
-                //return null;
             }
         }
 
@@ -123,7 +121,5 @@ namespace H1_ERP_System
 
             RunNonQuery(queryString);
         }
-
-
     }
 }

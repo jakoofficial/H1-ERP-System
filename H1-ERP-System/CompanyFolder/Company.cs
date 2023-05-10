@@ -20,12 +20,6 @@ namespace H1_ERP_System.CompanyFolder
         public Company() : base(0,"", "", "", "", "")
         {}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="companyName"></param>
-        /// <param name="address"></param>
-        /// <param name="currency"> Choose between DKK, USD or EUR. </param>
         public Company(int id, string companyName, Currencies currency, int addressId, string street, string streetNumber, string postalCode, string city, string country) 
             : base(addressId, street, streetNumber, postalCode, city, country)
         {

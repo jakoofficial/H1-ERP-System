@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 namespace H1_ERP_System.SalesFolder
 {
     public enum OrderStage { None, Created, Confirmed, Packaged, Completed }
-
-
     public class SaleOrderHeader
     {
         public int SaleOrderId { get; set; } // Ordernummer

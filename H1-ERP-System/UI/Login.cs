@@ -9,7 +9,6 @@ namespace H1_ERP_System.UI
 {
     public class Login
     {
-
         public static void LoginInput()
         {
             while (true)
@@ -34,9 +33,8 @@ namespace H1_ERP_System.UI
                     Console.ForegroundColor= ConsoleColor.White;
                     Console.ReadKey();
                 }
-                    Console.Clear();
+                Console.Clear();
             }
         }
-
     }
 }
